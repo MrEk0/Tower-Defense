@@ -9,4 +9,9 @@ public class TowerSettings : ScriptableObject
     [SerializeField] float range;
     [SerializeField] float shootInterval;
     [SerializeField] float damage;
+
+    public float BuildPrice => buildPrice;
+    public float Range => range;
+    public float ShootInterval => shootInterval;
+    public float Damage => damage;
 }
