@@ -15,6 +15,6 @@ public class TowerCell : MonoBehaviour
 
         Vector2 pointToMove=Camera.main.WorldToScreenPoint(roundMousePos);
         towerWindow.GetComponent<RectTransform>().position = pointToMove;
-        towerWindow.GetComponent<SpawnTower>().spawnPos = screenPoint;
+        towerWindow.GetComponent<TowerSpawner>().spawnPos = roundMousePos;
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &426722284016840341
+--- !u!1 &109663967647181829
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 760633152693102284}
-  - component: {fileID: 7173375440154566038}
-  - component: {fileID: 2226095735185552720}
-  - component: {fileID: -3387929544893416441}
+  - component: {fileID: 1353837145772192336}
+  - component: {fileID: 2307068729078611912}
+  - component: {fileID: 8749531595878044078}
+  - component: {fileID: 2418104375429969112}
+  - component: {fileID: 4181140420921049216}
   m_Layer: 0
-  m_Name: DoubleRocketTower
+  m_Name: Soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &760633152693102284
+--- !u!4 &1353837145772192336
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426722284016840341}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -0.5, z: 0}
+  m_GameObject: {fileID: 109663967647181829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7173375440154566038
+--- !u!212 &2307068729078611912
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426722284016840341}
+  m_GameObject: {fileID: 109663967647181829}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,9 +73,9 @@ SpriteRenderer:
   m_SortingLayerID: -1924654081
   m_SortingLayer: 3
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 3c6b60f1798666b4fabce6d7e7a001bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4451c3bd228eb7e42a339dc329dfda8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -83,13 +84,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2226095735185552720
+--- !u!61 &8749531595878044078
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426722284016840341}
+  m_GameObject: {fileID: 109663967647181829}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -107,18 +108,41 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.34205723, y: 0.47022772}
   m_EdgeRadius: 0
---- !u!114 &-3387929544893416441
+--- !u!50 &2418104375429969112
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109663967647181829}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &4181140420921049216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 426722284016840341}
+  m_GameObject: {fileID: 109663967647181829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1362a5739ac5b4d419e206fc2413e477, type: 3}
+  m_Script: {fileID: 11500000, guid: f1c0a83a2cd3a38499d0e276e2ce53b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerType: {fileID: 11400000, guid: aa2277fa6c631bc448a5f59ac35bbf41, type: 2}
+  enemyType: {fileID: 11400000, guid: fddf8184a760b164a958406b0366c6de, type: 2}
+  path: {fileID: 1132323818967045163, guid: 25416792804d4734c8ae50fed6fb0f38, type: 3}
+  isRightHandStart: 1

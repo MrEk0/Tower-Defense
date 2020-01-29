@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1504760908664136409}
   - component: {fileID: 6124359663103686727}
   - component: {fileID: 5700677214689573801}
+  - component: {fileID: -6009877803801758802}
   m_Layer: 0
   m_Name: RedTower
   m_TagString: Untagged
@@ -108,3 +109,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-6009877803801758802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338384281151820320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1362a5739ac5b4d419e206fc2413e477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerType: {fileID: 11400000, guid: fc05b715320f4664eaaae43532631231, type: 2}
