@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     //[SerializeField] List<Transform> wayPoints;
     [SerializeField] Transform path;
     [SerializeField] TextMeshProUGUI coinText;
+    [SerializeField] TextMeshProUGUI livesText;
     [SerializeField] bool isRightHandStart = true;
 
     float health;
@@ -62,9 +63,11 @@ public class Enemy : MonoBehaviour
             else
             {
                 //player get damage
+                
                 Destroy(gameObject);
-                coins += enemyType.GetRandomCoin();
-                coinText.text = "Coins " + coins.ToString();
+
+                //coins += enemyType.GetRandomCoin();
+                //coinText.text = "Coins " + coins.ToString();
             }
         }
         else
@@ -105,5 +108,14 @@ public class Enemy : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - angleOffset);
 
         return Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * 10f);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health = Mathf.Max(health - damage, 0);
+        if(health==0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -38,7 +38,7 @@ public class WaveManager : MonoBehaviour
         timeBetweenSpawns = currentWave.TimeBetweenSpawns;
         //startPoint = currentWave.StartPoint;
         //startPoint = startPoint;
-        waveText.text = "Wave "+(waveNumber+1).ToString() + "/" + waves.Count;
+        waveText.text = "Wave "+(waveNumber+1) + "/" + waves.Count;
 
         timeSinceWaveStarted = 0f;
     }

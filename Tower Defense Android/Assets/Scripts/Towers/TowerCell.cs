@@ -8,6 +8,9 @@ public class TowerCell : MonoBehaviour
     [SerializeField] GameObject towerWindow;
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         towerWindow.SetActive(true);
 
         Vector2 screenPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
