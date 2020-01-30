@@ -9,7 +9,6 @@ public class Bullet : MonoBehaviour
     float speed;
     float damage;
     Rigidbody2D rb;
-    Transform myTransform;
 
     public Transform target { private get; set; }
     private void Awake()
@@ -18,8 +17,12 @@ public class Bullet : MonoBehaviour
         damage = towerType.Damage;
 
         rb = GetComponent<Rigidbody2D>();
-        myTransform = GetComponent<Transform>();
     }
+    // Start is called before the first frame update
+    //void Start()
+    //{
+    //    rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+    //}
 
     private void Update()
     {
@@ -29,11 +32,12 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            Vector2 dir = target.position - myTransform.position;
+            Vector2 dir = target.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            myTransform.rotation = Quaternion.Euler(0f, 0f, angle-90);
+            transform.rotation = Quaternion.Euler(0f, 0f, angle-90);
 
-            rb.velocity = myTransform.up * speed;
+            rb.velocity = transform.up * speed;
+            //rb.MovePosition(target.position);
         }
     }
 

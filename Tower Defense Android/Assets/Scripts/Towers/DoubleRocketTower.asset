@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildPrice: 200
   range: 4
-  shootInterval: 1
+  shootInterval: 3
   damage: 20
   bulletSpeed: 8
   bullet: {fileID: 426722284016840341, guid: e8ff4e17c7543574986c950f25863cdc, type: 3}

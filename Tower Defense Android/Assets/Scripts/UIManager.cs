@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI wavesText;
     [SerializeField] GameObject towerPanel;
     [SerializeField] GameObject sellPanel;
-    [SerializeField] GameObject gameoverPanel;
     [SerializeField] GameObject healthBarPrefab;
     [SerializeField] Transform healthBarParent;
     [SerializeField] float startNumberOfCoins;
@@ -40,8 +39,6 @@ public class UIManager : MonoBehaviour
 
         coins = startNumberOfCoins;
         lives = startAmountOfHealth;
-
-        Time.timeScale = 1f;
     }
 
     public void ChangeNumberOfCoins(float cost)
@@ -52,8 +49,7 @@ public class UIManager : MonoBehaviour
 
     public void GetDamage(float amount)
     {
-        //lives = Mathf.Max(lives-amount, 0);
-        lives -= amount;
+        lives = Mathf.Max(lives-amount, 0);
 
         if (lives >= 0)
         {
@@ -61,10 +57,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            livesText.text = "Health 0";
-
-            gameoverPanel.SetActive(true);
-            Time.timeScale = 0f;
+            Debug.Log("Death");
         }
     }
 
@@ -90,8 +83,8 @@ public class UIManager : MonoBehaviour
 
     public void SellTower()
     {
-        float sellingCost = towerToSell.GetComponent<Tower>().TowerType.BuildPrice / 2;
-        coins += Mathf.Round(sellingCost);
+        float sellingCost = towerToSell.GetComponent<Tower>().BuildPrice / 2;
+        coins += sellingCost;
         coinsText.text = "Coins " + coins;
 
         Destroy(towerToSell);
@@ -101,6 +94,7 @@ public class UIManager : MonoBehaviour
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
+
 
         sellPanel.SetActive(true);
 

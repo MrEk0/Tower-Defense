@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4653842508328912612}
   - component: {fileID: 2387230814255424612}
   - component: {fileID: 8800308499856197520}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: GreenTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -122,3 +122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerType: {fileID: 11400000, guid: 1ab50bdb4d96f364f9ae3ebc1d3065c1, type: 2}
+  priceText: {fileID: 9183079517978761851, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
+    type: 3}
+  sellPanelPrefab: {fileID: 4477613106919353457, guid: 7c49c7f31f216a74b96e48412cf9178c,
+    type: 3}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 4096

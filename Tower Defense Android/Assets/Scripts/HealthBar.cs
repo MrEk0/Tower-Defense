@@ -42,6 +42,7 @@ public class HealthBar : MonoBehaviour
     private void FollowEnemy()
     {
         Vector2 pointToMove = mainCam.WorldToScreenPoint(enemy.transform.position + new Vector3(0f, 0.5f, 0f));
+        //transform.GetComponent<RectTransform>().position = pointToMove;
         transformRect.position = pointToMove;
     }
 }

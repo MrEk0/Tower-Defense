@@ -6,6 +6,7 @@ using UnityEngine;
 public class WaveSettings : ScriptableObject
 {
     [SerializeField] List<Enemy> listOfEnemies;
+    //[SerializeField] Transform startPoint;
     [SerializeField] float duration;
     [SerializeField] float startSpawnTime = 3f;
     [SerializeField] float timeBetweenSpawns=1f;
@@ -13,6 +14,7 @@ public class WaveSettings : ScriptableObject
     public float Duration => duration;
     public float StartSpawnTime => startSpawnTime;
     public float TimeBetweenSpawns => timeBetweenSpawns;
+    //public Transform StartPoint => startPoint;
 
     public Enemy GetEnemy()
     {

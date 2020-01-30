@@ -6,7 +6,10 @@ using TMPro;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemySettings enemyType;
+    //[SerializeField] List<Transform> wayPoints;
     [SerializeField] Transform path;
+    //[SerializeField] TextMeshProUGUI coinText;
+    //[SerializeField] TextMeshProUGUI livesText;
     [SerializeField] bool isRightHandStart = true;
 
     float health;
@@ -14,15 +17,13 @@ public class Enemy : MonoBehaviour
     float damage;
 
     float angleOffset;
-    int wayPointNumber = 0;
-    float coins = 0f;
 
     List<Transform> wayPoints;
-    Transform currentTarget;    
+    Transform currentTarget;
+    int wayPointNumber = 0;
     Rigidbody2D rb;
-    Transform myTransform;
 
-    public UIManager UIManager { private get; set; }
+    float coins = 0f;
 
     private void Awake()
     {
@@ -31,7 +32,6 @@ public class Enemy : MonoBehaviour
         damage = enemyType.Damage;
 
         rb = GetComponent<Rigidbody2D>();
-        myTransform = GetComponent<Transform>();
         wayPoints = CreateListOfWayPoint();
         currentTarget = wayPoints[wayPointNumber];
 
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        float distance = Vector2.Distance(myTransform.position, currentTarget.position);
+        float distance = Vector2.Distance(transform.position, currentTarget.position);
 
         if (Mathf.Approximately(distance, 0))
         {
@@ -62,11 +62,12 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                if (UIManager)
-                {
-                    UIManager.GetDamage(damage);
-                }
+                //player get damage
+                FindObjectOfType<UIManager>().GetDamage(damage);
                 Destroy(gameObject);
+
+                //coins += enemyType.GetRandomCoin();
+                //coinText.text = "Coins " + coins.ToString();
             }
         }
         else
@@ -78,25 +79,31 @@ public class Enemy : MonoBehaviour
     private void UpdateMovement()
     {
         wayPointNumber++;
-        currentTarget = wayPoints[wayPointNumber];       
+        currentTarget = wayPoints[wayPointNumber];
+
+        //Vector2 dir = currentTarget.position - transform.position;
+        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.AngleAxis(angle - angleOffset, Vector3.forward);
+        //transform.rotation = SmoothlyRotation(currentTarget);
+        
     }
 
     private void Move()
     {
-        Vector2 newPos = Vector2.MoveTowards(myTransform.position, currentTarget.position, speed * Time.deltaTime);
+        Vector2 newPos = Vector2.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
         rb.MovePosition(newPos);
 
-        myTransform.rotation = SmoothRotation(currentTarget);
+        transform.rotation = SmoothRotation(currentTarget);
     }
 
     private Quaternion SmoothRotation(Transform target)
     {
-        if (myTransform.position == target.position)
-            return myTransform.rotation;
+        if (transform.position == target.position)
+            return transform.rotation;
 
-        Quaternion currentRotation = myTransform.rotation;
+        Quaternion currentRotation = transform.rotation;
 
-        Vector2 dir = currentTarget.position - myTransform.position;
+        Vector2 dir = currentTarget.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - angleOffset);
 
@@ -106,14 +113,10 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health = Mathf.Max(health - damage, 0);
-        if (health == 0)
+        if(health==0)
         {
             Destroy(gameObject);
-
-            if (UIManager)
-            {
-                UIManager.ChangeNumberOfCoins(enemyType.GetRandomCoin());
-            }
+            FindObjectOfType<UIManager>().ChangeNumberOfCoins(enemyType.GetRandomCoin());
         }
     }
 
