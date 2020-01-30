@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1924654081
+  m_SortingLayerID: 1544313773
   m_SortingLayer: 3
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e5c3990e2d99a9b4da15c53a6d4a31e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -145,6 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: {fileID: 11400000, guid: ffe6c7b78a59f3540a184b4fff87603b, type: 2}
   path: {fileID: 1132323818967045163, guid: 25416792804d4734c8ae50fed6fb0f38, type: 3}
-  coinText: {fileID: 0}
-  livesText: {fileID: 0}
   isRightHandStart: 1

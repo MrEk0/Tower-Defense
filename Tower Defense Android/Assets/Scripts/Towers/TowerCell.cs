@@ -11,6 +11,9 @@ public class TowerCell : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
+        if (IsPointerOverUIObject())
+            return;
+
         towerWindow.SetActive(true);
 
         Vector2 screenPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -19,5 +22,15 @@ public class TowerCell : MonoBehaviour
         Vector2 pointToMove=Camera.main.WorldToScreenPoint(roundMousePos);
         towerWindow.GetComponent<RectTransform>().position = pointToMove;
         towerWindow.GetComponent<TowerSpawner>().spawnPos = roundMousePos;
+    }
+
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }
