@@ -18,3 +18,8 @@ MonoBehaviour:
   damage: 20
   bulletSpeed: 5
   bullet: {fileID: 2788015215729615249, guid: bbafa6c989e5caf4592f49b357beefd1, type: 3}
+  castlePoint: {fileID: 3367311543862939660, guid: 7957faab4167c964cae6ef7d4c7fbebe,
+    type: 3}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 4096

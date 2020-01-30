@@ -11,6 +11,8 @@ public class TowerSettings : ScriptableObject
     [SerializeField] float damage;
     [SerializeField] float bulletSpeed;
     [SerializeField] GameObject bullet;
+    [SerializeField] Transform castlePoint;
+    [SerializeField] LayerMask enemyMask;
 
     public float BuildPrice => buildPrice;
     public float Range => range;
@@ -20,4 +22,7 @@ public class TowerSettings : ScriptableObject
     public GameObject Bullet => bullet;
 
     public float BulletSpeed  => bulletSpeed;
+
+    public Transform CastlePoint  => castlePoint;
+    public LayerMask EnemyMask => enemyMask;
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Wave", menuName ="Wave")]
 public class WaveSettings : ScriptableObject
 {
-    [SerializeField] List<GameObject> listOfEnemies;
+    [SerializeField] List<Enemy> listOfEnemies;
     //[SerializeField] Transform startPoint;
     [SerializeField] float duration;
     [SerializeField] float startSpawnTime = 3f;
@@ -16,7 +16,7 @@ public class WaveSettings : ScriptableObject
     public float TimeBetweenSpawns => timeBetweenSpawns;
     //public Transform StartPoint => startPoint;
 
-    public GameObject GetEnemy()
+    public Enemy GetEnemy()
     {
         int numberOfEnemy = Random.Range(0, listOfEnemies.Count);
         return listOfEnemies[numberOfEnemy];

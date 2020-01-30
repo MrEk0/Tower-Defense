@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 
 
@@ -9,7 +10,7 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] List<WaveSettings> waves;
     [SerializeField] Transform startPoint;
-    [SerializeField] TextMeshProUGUI waveText;
+    //[SerializeField] TextMeshProUGUI waveText;
 
     WaveSettings currentWave;
     float duration;
@@ -22,11 +23,16 @@ public class WaveManager : MonoBehaviour
     float timeSinceEnemyDropped = Mathf.Infinity;
     bool canSpawn = true;
 
-    
+    public event Action<int, int> onWaveChanged;
 
     private void Awake()
     {
-        UpdateWave();
+        //UpdateWave();
+        currentWave = waves[waveNumber];
+
+        duration = currentWave.Duration;
+        startTime = currentWave.StartSpawnTime;
+        timeBetweenSpawns = currentWave.TimeBetweenSpawns;
     }
 
     private void UpdateWave()
@@ -36,9 +42,8 @@ public class WaveManager : MonoBehaviour
         duration = currentWave.Duration;
         startTime = currentWave.StartSpawnTime;
         timeBetweenSpawns = currentWave.TimeBetweenSpawns;
-        //startPoint = currentWave.StartPoint;
-        //startPoint = startPoint;
-        waveText.text = "Wave "+(waveNumber+1) + "/" + waves.Count;
+
+        onWaveChanged(waveNumber, waves.Count);
 
         timeSinceWaveStarted = 0f;
     }
@@ -64,17 +69,12 @@ public class WaveManager : MonoBehaviour
         {
             if (timeSinceEnemyDropped > timeBetweenSpawns)
             {
-                Instantiate(currentWave.GetEnemy(), startPoint.position, Quaternion.identity, transform);
+                Enemy enemy=Instantiate(currentWave.GetEnemy(), startPoint.position, Quaternion.identity, transform);
+                FindObjectOfType<UIManager>().CreateHealthBar(enemy);
                 timeSinceEnemyDropped = 0f;
             }           
         }
 
         timeSinceEnemyDropped += Time.deltaTime;
     }
-
-    //private void StopSpawning()
-    //{
-    //    currentWave = null;
-    //    duration = 0;
-    //}
 }

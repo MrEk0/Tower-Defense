@@ -16,3 +16,10 @@ MonoBehaviour:
   range: 5
   shootInterval: 3
   damage: 10
+  bulletSpeed: 5
+  bullet: {fileID: 2788015215729615249, guid: 6b666474cb6f2084a996fe5627cd16b5, type: 3}
+  castlePoint: {fileID: 3367311543862939660, guid: 7957faab4167c964cae6ef7d4c7fbebe,
+    type: 3}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 4096

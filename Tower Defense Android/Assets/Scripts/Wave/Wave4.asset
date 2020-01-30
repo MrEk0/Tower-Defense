@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d48bf10d5337b194bb3d034ab61a5f7b, type: 3}
-  m_Name: Wave2
+  m_Name: Wave4
   m_EditorClassIdentifier: 
   listOfEnemies:
-  - {fileID: 109663967647181829, guid: 150601489f7d4864f954bf2fac9df94f, type: 3}
-  - {fileID: 8488417957697732345, guid: 44b83a7f746d09f468ebd94d21be4746, type: 3}
-  startPoint: {fileID: 0}
+  - {fileID: 4760783197863292852, guid: 0f50b85475978d14b8459cda08d3078c, type: 3}
+  - {fileID: 4181140420921049216, guid: 150601489f7d4864f954bf2fac9df94f, type: 3}
+  - {fileID: 6076681494273316657, guid: 96dfc7382d4e67f4b88b6f56c31f3c54, type: 3}
+  - {fileID: 876128480930876735, guid: 44b83a7f746d09f468ebd94d21be4746, type: 3}
   duration: 10
   startSpawnTime: 3
-  timeBetweenSpawns: 2
+  timeBetweenSpawns: 1

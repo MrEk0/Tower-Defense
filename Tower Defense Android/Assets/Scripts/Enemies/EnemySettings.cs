@@ -10,6 +10,7 @@ public class EnemySettings : ScriptableObject
     [SerializeField] float damage;
     [SerializeField] float lowerCoinsBoundary;
     [SerializeField] float upperCoinsBoundary;
+    //[SerializeField] GameObject healthBarPrefab;
 
     public float Health => health;
 
@@ -17,8 +18,8 @@ public class EnemySettings : ScriptableObject
 
     public float Damage => damage;
 
-    public float GetRandomCoin()
+    public int GetRandomCoin()
     {
-       return Random.Range(lowerCoinsBoundary, upperCoinsBoundary);
+       return Mathf.RoundToInt(Random.Range(lowerCoinsBoundary, upperCoinsBoundary));
     }
 }

@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] EnemySettings enemyType;
     //[SerializeField] List<Transform> wayPoints;
     [SerializeField] Transform path;
-    [SerializeField] TextMeshProUGUI coinText;
-    [SerializeField] TextMeshProUGUI livesText;
+    //[SerializeField] TextMeshProUGUI coinText;
+    //[SerializeField] TextMeshProUGUI livesText;
     [SerializeField] bool isRightHandStart = true;
 
     float health;
@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     int wayPointNumber = 0;
     Rigidbody2D rb;
 
-    static float coins = 0f;
+    float coins = 0f;
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 //player get damage
-                
+                FindObjectOfType<UIManager>().GetDamage(damage);
                 Destroy(gameObject);
 
                 //coins += enemyType.GetRandomCoin();
@@ -116,6 +116,12 @@ public class Enemy : MonoBehaviour
         if(health==0)
         {
             Destroy(gameObject);
+            FindObjectOfType<UIManager>().ChangeNumberOfCoins(enemyType.GetRandomCoin());
         }
+    }
+
+    public float GetHealth()
+    {
+        return health;
     }
 }

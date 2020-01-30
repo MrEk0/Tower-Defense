@@ -1,31 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class Tower : MonoBehaviour
 {
     [SerializeField] TowerSettings towerType;
-    [SerializeField] TextMeshProUGUI priceText;
+    //[SerializeField] TextMeshProUGUI priceText;
+    //[SerializeField] GameObject sellPanelPrefab;
+    //[SerializeField] LayerMask enemyMask;
 
     float range;
-    float damage;
     float shootInterval;
+    LayerMask enemyMask;
     float buildPrice;
+    Transform castlePoint;
     GameObject bulletPrefab;
 
     float timeSinceLastShot=Mathf.Infinity;
     Transform target;
 
+    public float BuildPrice  => buildPrice;
+
     private void Awake()
     {
         range = towerType.Range;
-        damage = towerType.Damage;
         shootInterval = towerType.ShootInterval;
         buildPrice = towerType.BuildPrice;
+        enemyMask = towerType.EnemyMask;
+        castlePoint = towerType.CastlePoint;
 
         bulletPrefab = towerType.Bullet;
-        priceText.text = buildPrice.ToString();
+        //priceText.text = buildPrice.ToString();
     }
 
     // Update is called once per frame
@@ -40,7 +47,6 @@ public class Tower : MonoBehaviour
             //SmoothRotation(target);
             if (Vector2.Distance(transform.position, target.transform.position) > range)
             {
-                Debug.Log("Find");
                 FindNewTarget();
             }
             else
@@ -57,12 +63,15 @@ public class Tower : MonoBehaviour
 
     private void FindNewTarget()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, range, Vector2.zero);
-        if (hit)
+        float distance = Mathf.Infinity;
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
+        foreach (Collider2D enemy in colliders)
         {
-            if (hit.collider.GetComponent<Enemy>() != null)
+            if (Vector2.Distance(castlePoint.position, enemy.transform.position) < distance)
             {
-                target = hit.transform;
+                distance = Vector2.Distance(castlePoint.position, enemy.transform.position);
+                target = enemy.transform;
             }
         }
     }
@@ -91,6 +100,23 @@ public class Tower : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - 90);
 
         return Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * 10f);
+    }
+
+    private void OnMouseDown()
+    {
+        //if (EventSystem.current.IsPointerOverGameObject())
+        //    return;
+
+        //Debug.Log("Click");
+        //sellPanelPrefab.SetActive(true);
+
+        //Vector2 screenPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Vector2 roundMousePos = new Vector2(Mathf.RoundToInt(screenPoint.x), Mathf.RoundToInt(screenPoint.y));
+
+        //Vector2 pointToMove = Camera.main.WorldToScreenPoint(roundMousePos);
+        //sellPanelPrefab.GetComponent<RectTransform>().position = pointToMove;
+        FindObjectOfType<UIManager>().ShowSellPanel();
+        FindObjectOfType<UIManager>().towerToSell = gameObject;
     }
 
     private void OnDrawGizmos()
