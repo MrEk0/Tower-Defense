@@ -6553,6 +6553,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SellPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4477613106919353457, guid: 7c49c7f31f216a74b96e48412cf9178c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4477613106919353456, guid: 7c49c7f31f216a74b96e48412cf9178c,
         type: 3}
       propertyPath: m_LocalPosition.x
