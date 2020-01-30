@@ -32,7 +32,7 @@ RectTransform:
   m_Children:
   - {fileID: 2409867786155022467}
   m_Father: {fileID: 8113626203818020794}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -120,13 +120,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2080155598701993775}
-        m_MethodName: SpawnTower
+      - m_Target: {fileID: 0}
+        m_MethodName: BuyTower
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 426722284016840341, guid: e8ff4e17c7543574986c950f25863cdc,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: aa2277fa6c631bc448a5f59ac35bbf41,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: TowerSettings, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -138,6 +138,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2080155598701993775}
+        m_MethodName: SpawnTower
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 426722284016840341, guid: e8ff4e17c7543574986c950f25863cdc,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -177,7 +189,7 @@ RectTransform:
   m_Children:
   - {fileID: 1229791606707747606}
   m_Father: {fileID: 8113626203818020794}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -265,13 +277,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2080155598701993775}
-        m_MethodName: SpawnTower
+      - m_Target: {fileID: 0}
+        m_MethodName: BuyTower
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 4038633560473396783, guid: 9a6107a9228ab0547bd84d40eae457a5,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: d3f5f3c70b698fc409f7c4ef6f65dd2e,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: TowerSettings, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -283,6 +295,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2080155598701993775}
+        m_MethodName: SpawnTower
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4038633560473396783, guid: 9a6107a9228ab0547bd84d40eae457a5,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -322,7 +346,7 @@ RectTransform:
   m_Children:
   - {fileID: 6853658955630788550}
   m_Father: {fileID: 8113626203818020794}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -410,13 +434,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2080155598701993775}
-        m_MethodName: SpawnTower
+      - m_Target: {fileID: 0}
+        m_MethodName: BuyTower
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2338384281151820320, guid: 5438c71f6578247449c652ebed7edbe3,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: fc05b715320f4664eaaae43532631231,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: TowerSettings, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -428,6 +452,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2080155598701993775}
+        m_MethodName: SpawnTower
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2338384281151820320, guid: 5438c71f6578247449c652ebed7edbe3,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -555,13 +591,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2080155598701993775}
-        m_MethodName: SpawnTower
+      - m_Target: {fileID: 0}
+        m_MethodName: BuyTower
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 4174062773126198545, guid: 0939f3454d14a71489ae54ab6ba1dc87,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 1ab50bdb4d96f364f9ae3ebc1d3065c1,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: TowerSettings, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -573,6 +609,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2080155598701993775}
+        m_MethodName: SpawnTower
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4174062773126198545, guid: 0939f3454d14a71489ae54ab6ba1dc87,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -598,7 +646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8113626203818020794
 RectTransform:
   m_ObjectHideFlags: 0
@@ -611,10 +659,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8113626203352260055}
-  - {fileID: 3047910171856088737}
   - {fileID: 1328049519497248288}
   - {fileID: 5451023887715934694}
   - {fileID: 7074390424758641072}
+  - {fileID: 3047910171856088737}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -862,7 +910,7 @@ RectTransform:
   m_Children:
   - {fileID: 6260489127136753670}
   m_Father: {fileID: 8113626203818020794}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -970,6 +1018,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8113626203352260055}
     m_Modifications:
+    - target: {fileID: 8065296419121904637, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
+        type: 3}
+      propertyPath: towerType
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ab50bdb4d96f364f9ae3ebc1d3065c1,
+        type: 2}
     - target: {fileID: 9183079517978761850, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1079,11 +1133,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Price
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183079517978761851, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
-        type: 3}
-      propertyPath: m_text
-      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3, type: 3}
@@ -1100,6 +1149,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1328049519497248288}
     m_Modifications:
+    - target: {fileID: 8065296419121904637, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
+        type: 3}
+      propertyPath: towerType
+      value: 
+      objectReference: {fileID: 11400000, guid: fc05b715320f4664eaaae43532631231,
+        type: 2}
     - target: {fileID: 9183079517978761850, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1210,11 +1265,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Price
       objectReference: {fileID: 0}
-    - target: {fileID: 9183079517978761851, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
-        type: 3}
-      propertyPath: m_text
-      value: 800
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3, type: 3}
 --- !u!224 &6853658955630788550 stripped
@@ -1230,6 +1280,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5451023887715934694}
     m_Modifications:
+    - target: {fileID: 8065296419121904637, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
+        type: 3}
+      propertyPath: towerType
+      value: 
+      objectReference: {fileID: 11400000, guid: aa2277fa6c631bc448a5f59ac35bbf41,
+        type: 2}
     - target: {fileID: 9183079517978761850, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1340,11 +1396,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Price
       objectReference: {fileID: 0}
-    - target: {fileID: 9183079517978761851, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
-        type: 3}
-      propertyPath: m_text
-      value: 800
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3, type: 3}
 --- !u!224 &2409867786155022467 stripped
@@ -1360,6 +1411,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7074390424758641072}
     m_Modifications:
+    - target: {fileID: 8065296419121904637, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
+        type: 3}
+      propertyPath: towerType
+      value: 
+      objectReference: {fileID: 11400000, guid: d3f5f3c70b698fc409f7c4ef6f65dd2e,
+        type: 2}
     - target: {fileID: 9183079517978761850, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1469,11 +1526,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Price
-      objectReference: {fileID: 0}
-    - target: {fileID: 9183079517978761851, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
-        type: 3}
-      propertyPath: m_text
-      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3, type: 3}

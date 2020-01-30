@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9183079517978761850}
   - component: {fileID: 9183079517978761828}
   - component: {fileID: 9183079517978761851}
+  - component: {fileID: 8065296419121904637}
   m_Layer: 5
   m_Name: Price
   m_TagString: Untagged
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 513
+  m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -157,3 +158,16 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8065296419121904637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9183079517978761849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2fc3029c7eb345a4e81962cc389a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerType: {fileID: 0}
