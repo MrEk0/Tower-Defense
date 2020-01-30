@@ -48,9 +48,9 @@ TagManager:
   - name: Props
     uniqueID: 2534335567
     locked: 0
-  - name: Tower
-    uniqueID: 2370313215
-    locked: 0
   - name: Bullet
     uniqueID: 649863009
+    locked: 0
+  - name: Tower
+    uniqueID: 2370313215
     locked: 0

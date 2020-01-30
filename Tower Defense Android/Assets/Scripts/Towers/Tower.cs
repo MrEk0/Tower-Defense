@@ -7,21 +7,19 @@ using TMPro;
 public class Tower : MonoBehaviour
 {
     [SerializeField] TowerSettings towerType;
-    //[SerializeField] TextMeshProUGUI priceText;
-    //[SerializeField] GameObject sellPanelPrefab;
-    //[SerializeField] LayerMask enemyMask;
 
     float range;
     float shootInterval;
-    LayerMask enemyMask;
     float buildPrice;
+    float timeSinceLastShot = Mathf.Infinity;
+
+    LayerMask enemyMask;    
     Transform castlePoint;
-    GameObject bulletPrefab;
-
-    float timeSinceLastShot=Mathf.Infinity;
+    GameObject bulletPrefab;   
     Transform target;
+    Transform myTransform;
 
-    public float BuildPrice  => buildPrice;
+    public TowerSettings TowerType => towerType;
 
     private void Awake()
     {
@@ -30,9 +28,9 @@ public class Tower : MonoBehaviour
         buildPrice = towerType.BuildPrice;
         enemyMask = towerType.EnemyMask;
         castlePoint = towerType.CastlePoint;
-
         bulletPrefab = towerType.Bullet;
-        //priceText.text = buildPrice.ToString();
+
+        myTransform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -44,28 +42,30 @@ public class Tower : MonoBehaviour
         }
         else
         {
-            //SmoothRotation(target);
-            if (Vector2.Distance(transform.position, target.transform.position) > range)
+            if (Vector2.Distance(myTransform.position, target.transform.position) > range)
             {
                 FindNewTarget();
             }
             else
             {
-                Vector2 dir = target.position - transform.position;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
-                //transform.rotation=SmoothRotation(target);
+                Rotate();
                 Shoot();
             }
         }
-        //SmoothRotation(target);
+    }
+
+    private void Rotate()
+    {
+        Vector2 dir = target.position - myTransform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
     }
 
     private void FindNewTarget()
     {
         float distance = Mathf.Infinity;
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
         foreach (Collider2D enemy in colliders)
         {
             if (Vector2.Distance(castlePoint.position, enemy.transform.position) < distance)
@@ -80,7 +80,7 @@ public class Tower : MonoBehaviour
     {
         if (timeSinceLastShot > shootInterval)
         {
-            GameObject bullet= Instantiate(bulletPrefab, transform.position, transform.rotation, transform);
+            GameObject bullet = Instantiate(bulletPrefab, myTransform.position, myTransform.rotation, myTransform);
             bullet.GetComponent<Bullet>().target = target;
             timeSinceLastShot = 0f;
         }
@@ -90,12 +90,12 @@ public class Tower : MonoBehaviour
 
     private Quaternion SmoothRotation(Transform target)
     {
-        if (transform.position == target.position)
-            return transform.rotation;
+        if (myTransform.position == target.position)
+            return myTransform.rotation;
 
-        Quaternion currentRotation = transform.rotation;
+        Quaternion currentRotation = myTransform.rotation;
 
-        Vector2 dir = target.position - transform.position;
+        Vector2 dir = target.position - myTransform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - 90);
 
@@ -104,23 +104,9 @@ public class Tower : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //if (EventSystem.current.IsPointerOverGameObject())
-        //    return;
-
-        //Debug.Log("Click");
-        //sellPanelPrefab.SetActive(true);
-
-        //Vector2 screenPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Vector2 roundMousePos = new Vector2(Mathf.RoundToInt(screenPoint.x), Mathf.RoundToInt(screenPoint.y));
-
-        //Vector2 pointToMove = Camera.main.WorldToScreenPoint(roundMousePos);
-        //sellPanelPrefab.GetComponent<RectTransform>().position = pointToMove;
-        FindObjectOfType<UIManager>().ShowSellPanel();
-        FindObjectOfType<UIManager>().towerToSell = gameObject;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, range);
+        UIManager uIManager = FindObjectOfType<UIManager>();
+        
+        uIManager.ShowSellPanel();
+        uIManager.towerToSell = gameObject;
     }
 }

@@ -10,7 +10,6 @@ public class EnemySettings : ScriptableObject
     [SerializeField] float damage;
     [SerializeField] float lowerCoinsBoundary;
     [SerializeField] float upperCoinsBoundary;
-    //[SerializeField] GameObject healthBarPrefab;
 
     public float Health => health;
 
