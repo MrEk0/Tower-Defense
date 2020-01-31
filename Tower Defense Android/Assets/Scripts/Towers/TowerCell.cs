@@ -6,6 +6,14 @@ using UnityEngine.EventSystems;
 public class TowerCell : MonoBehaviour
 {
     [SerializeField] GameObject towerWindow;
+
+    Camera cam;
+
+    private void Awake()
+    {
+        cam = Camera.main;
+    }
+
     private void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -16,10 +24,10 @@ public class TowerCell : MonoBehaviour
 
         towerWindow.SetActive(true);
 
-        Vector2 screenPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 screenPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 roundMousePos = new Vector2(Mathf.RoundToInt(screenPoint.x), Mathf.RoundToInt(screenPoint.y));
 
-        Vector2 pointToMove=Camera.main.WorldToScreenPoint(roundMousePos);
+        Vector2 pointToMove= cam.WorldToScreenPoint(roundMousePos);
         towerWindow.GetComponent<RectTransform>().position = pointToMove;
         towerWindow.GetComponent<TowerSpawner>().spawnPos = roundMousePos;
     }

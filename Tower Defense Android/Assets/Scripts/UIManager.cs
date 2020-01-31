@@ -52,7 +52,6 @@ public class UIManager : MonoBehaviour
 
     public void GetDamage(float amount)
     {
-        //lives = Mathf.Max(lives-amount, 0);
         lives -= amount;
 
         if (lives >= 0)

@@ -10,7 +10,6 @@ public class Tower : MonoBehaviour
 
     float range;
     float shootInterval;
-    float buildPrice;
     float timeSinceLastShot = Mathf.Infinity;
 
     LayerMask enemyMask;    
@@ -25,7 +24,6 @@ public class Tower : MonoBehaviour
     {
         range = towerType.Range;
         shootInterval = towerType.ShootInterval;
-        buildPrice = towerType.BuildPrice;
         enemyMask = towerType.EnemyMask;
         castlePoint = towerType.CastlePoint;
         bulletPrefab = towerType.Bullet;
