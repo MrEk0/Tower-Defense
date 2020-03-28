@@ -144,5 +144,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: {fileID: 11400000, guid: fddf8184a760b164a958406b0366c6de, type: 2}
-  path: {fileID: 1132323818967045163, guid: 25416792804d4734c8ae50fed6fb0f38, type: 3}
+  path: {fileID: 6707647809204451995, guid: b370586fcdb76284bbaa617ff569bb39, type: 3}
   isRightHandStart: 1
