@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[DefaultExecutionOrder(-100)]
 public class WaveManager : MonoBehaviour
 {
+    public static WaveManager Instance { get; private set; }
+
     [SerializeField] List<WaveSettings> waves;
     [SerializeField] Transform startPoint;
 
     WaveSettings currentWave;
-    UIManager uIManager;
 
     float duration;
     float startTime;
@@ -25,13 +26,12 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
-        currentWave = waves[waveNumber];
+        Instance = this;
 
+        currentWave = waves[waveNumber];
         duration = currentWave.Duration;
         startTime = currentWave.StartSpawnTime;
         timeBetweenSpawns = currentWave.TimeBetweenSpawns;
-
-        uIManager = GetComponent<UIManager>();
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class WaveManager : MonoBehaviour
 
         if (timeSinceWaveStarted > duration+startTime)
         {
-            if (waveNumber < waves.Count - 1)
+            if (waveNumber < waves.Count-1)
             {
                 waveNumber++;
                 UpdateWave();
@@ -56,8 +56,7 @@ public class WaveManager : MonoBehaviour
             if (timeSinceEnemyDropped > timeBetweenSpawns)
             {
                 Enemy enemy=Instantiate(currentWave.GetEnemy(), startPoint.position, Quaternion.identity, transform);
-                enemy.UIManager = uIManager;
-                uIManager.CreateHealthBar(enemy);
+                UIManager.Instance.CreateHealthBar(enemy);
                 timeSinceEnemyDropped = 0f;
             }           
         }

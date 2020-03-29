@@ -7,35 +7,30 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemySettings enemyType;
     [SerializeField] Transform path;
-    [SerializeField] bool isRightHandStart = true;
+    [SerializeField] float rotationSpeed=10f;
 
-    float health;
-    float speed;
-    float damage;
-
-    float angleOffset;
-    int wayPointNumber = 0;
-    float coins = 0f;
+    private float _health;
+    private float _speed;
+    private float _damage;
+    private float _angleOffset=180f;
+    private int _wayPointNumber = 0;
 
     List<Transform> wayPoints;
+    Vector2 newPos;
     Transform currentTarget;    
     Rigidbody2D rb;
     Transform myTransform;
 
-    public UIManager UIManager { private get; set; }
-
     private void Awake()
     {
-        health = enemyType.Health;
-        speed = enemyType.Speed;
-        damage = enemyType.Damage;
+        _health = enemyType.Health;
+        _speed = enemyType.Speed;
+        _damage = enemyType.Damage;
 
         rb = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
         wayPoints = CreateListOfWayPoint();
-        currentTarget = wayPoints[wayPointNumber];
-
-        angleOffset = isRightHandStart ? 180 : 0;
+        currentTarget = wayPoints[_wayPointNumber];
     }
 
     private List<Transform> CreateListOfWayPoint()
@@ -56,16 +51,13 @@ public class Enemy : MonoBehaviour
 
         if (Mathf.Approximately(distance, 0))
         {
-            if (wayPointNumber < wayPoints.Count-1)
+            if (_wayPointNumber < wayPoints.Count-1)
             {
                 UpdateMovement();
             }
             else
             {
-                if (UIManager)
-                {
-                    UIManager.GetDamage(damage);
-                }
+                UIManager.Instance.GetDamage(_damage);
                 Destroy(gameObject);
             }
         }
@@ -77,13 +69,13 @@ public class Enemy : MonoBehaviour
 
     private void UpdateMovement()
     {
-        wayPointNumber++;
-        currentTarget = wayPoints[wayPointNumber];       
+        _wayPointNumber++;
+        currentTarget = wayPoints[_wayPointNumber];       
     }
 
     private void Move()
     {
-        Vector2 newPos = Vector2.MoveTowards(myTransform.position, currentTarget.position, speed * Time.deltaTime);
+        newPos = Vector2.MoveTowards(myTransform.position, currentTarget.position, _speed * Time.deltaTime);
         rb.MovePosition(newPos);
 
         myTransform.rotation = SmoothRotation(currentTarget);
@@ -98,27 +90,24 @@ public class Enemy : MonoBehaviour
 
         Vector2 dir = currentTarget.position - myTransform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - angleOffset);
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - _angleOffset);
 
-        return Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * 10f);
+        return Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 
     public void TakeDamage(float damage)
     {
-        health = Mathf.Max(health - damage, 0);
-        if (health == 0)
+        _health = Mathf.Max(_health - damage, 0);
+        if (_health == 0)
         {
             Destroy(gameObject);
 
-            if (UIManager)
-            {
-                UIManager.ChangeNumberOfCoins(enemyType.GetRandomCoin());
-            }
+            UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());
         }
     }
 
     public float GetHealth()
     {
-        return health;
+        return _health;
     }
 }

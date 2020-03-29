@@ -6,6 +6,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
     [SerializeField] TextMeshProUGUI livesText;
     [SerializeField] TextMeshProUGUI coinsText;
     [SerializeField] TextMeshProUGUI wavesText;
@@ -19,22 +21,23 @@ public class UIManager : MonoBehaviour
 
     float coins;
     float lives;
-    float wave = 1f;
 
     public GameObject towerToSell { private get; set; }
 
     private void OnEnable()
     {
-        GetComponent<WaveManager>().onWaveChanged += ChangeWave;
+        WaveManager.Instance.onWaveChanged += ChangeWave;
     }
 
     private void OnDisable()
     {
-        GetComponent<WaveManager>().onWaveChanged -= ChangeWave;
+        WaveManager.Instance.onWaveChanged -= ChangeWave;
     }
 
     private void Awake()
     {
+        Instance = this;
+
         livesText.text = "Health " + startAmountOfHealth;
         coinsText.text = "Coins " + startNumberOfCoins;
 
@@ -89,7 +92,7 @@ public class UIManager : MonoBehaviour
 
     public void SellTower()
     {
-        float sellingCost = towerToSell.GetComponent<Tower>().TowerType.BuildPrice / 2;
+        float sellingCost = towerToSell.GetComponent<Tower>().GetBuildPrice() / 2;
         coins += Mathf.Round(sellingCost);
         coinsText.text = "Coins " + coins;
 

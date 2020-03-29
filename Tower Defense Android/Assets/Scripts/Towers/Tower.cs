@@ -13,19 +13,19 @@ public class Tower : MonoBehaviour
     float timeSinceLastShot = Mathf.Infinity;
 
     LayerMask enemyMask;    
-    Transform castlePoint;
+    Transform lastWayPoint;
     GameObject bulletPrefab;   
     Transform target;
     Transform myTransform;
 
-    public TowerSettings TowerType => towerType;
+    //public TowerSettings TowerType => towerType;
 
     private void Awake()
     {
         range = towerType.Range;
         shootInterval = towerType.ShootInterval;
         enemyMask = towerType.EnemyMask;
-        castlePoint = towerType.CastlePoint;
+        //castlePoint = towerType.CastlePoint;
         bulletPrefab = towerType.Bullet;
 
         myTransform = GetComponent<Transform>();
@@ -56,7 +56,7 @@ public class Tower : MonoBehaviour
     {
         Vector2 dir = target.position - myTransform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
+        myTransform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
     }
 
     private void FindNewTarget()
@@ -66,9 +66,9 @@ public class Tower : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
         foreach (Collider2D enemy in colliders)
         {
-            if (Vector2.Distance(castlePoint.position, enemy.transform.position) < distance)
+            if (Vector2.Distance(GameManager.GetLastPathPoint().position, enemy.transform.position) < distance)
             {
-                distance = Vector2.Distance(castlePoint.position, enemy.transform.position);
+                distance = Vector2.Distance(GameManager.GetLastPathPoint().position, enemy.transform.position);
                 target = enemy.transform;
             }
         }
@@ -86,25 +86,30 @@ public class Tower : MonoBehaviour
         timeSinceLastShot += Time.deltaTime;
     }
 
-    private Quaternion SmoothRotation(Transform target)
-    {
-        if (myTransform.position == target.position)
-            return myTransform.rotation;
+    //private Quaternion SmoothRotation(Transform target)
+    //{
+    //    if (myTransform.position == target.position)
+    //        return myTransform.rotation;
 
-        Quaternion currentRotation = myTransform.rotation;
+    //    Quaternion currentRotation = myTransform.rotation;
 
-        Vector2 dir = target.position - myTransform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - 90);
+    //    Vector2 dir = target.position - myTransform.position;
+    //    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+    //    Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - 90);
 
-        return Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * 10f);
-    }
+    //    return Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * 10f);
+    //}
 
     private void OnMouseDown()
     {
-        UIManager uIManager = FindObjectOfType<UIManager>();
+        //UIManager uIManager = FindObjectOfType<UIManager>();
         
-        uIManager.ShowSellPanel();
-        uIManager.towerToSell = gameObject;
+        UIManager.Instance.ShowSellPanel();
+        UIManager.Instance.towerToSell = gameObject;
+    }
+
+    public float GetBuildPrice()
+    {
+        return towerType.BuildPrice;
     }
 }
