@@ -19,4 +19,19 @@ public class WaveSettings : ScriptableObject
         int numberOfEnemy = Random.Range(0, listOfEnemies.Count);
         return listOfEnemies[numberOfEnemy];
     }
+
+    public List<Enemy> GetAllWaveEnemies()
+    {
+        List<Enemy> enemies = new List<Enemy>();
+        int numberOfEnemies = (int)(duration * 1/timeBetweenSpawns)+1;
+        
+        for(int i=0; i<numberOfEnemies; i++)
+        {
+            Enemy enemy = Instantiate(GetEnemy());
+            enemy.gameObject.SetActive(false);
+            enemies.Add(enemy);
+        }
+
+        return enemies;
+    }
 }

@@ -31,6 +31,11 @@ public class Tower : MonoBehaviour
         myTransform = GetComponent<Transform>();
     }
 
+    private void Start()
+    {
+        lastWayPoint = GameManager.GetLastPathPoint();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -40,7 +45,8 @@ public class Tower : MonoBehaviour
         }
         else
         {
-            if (Vector2.Distance(myTransform.position, target.transform.position) > range)
+            //if (Vector2.Distance(myTransform.position, target.transform.position) > range)
+            if(Vector2.SqrMagnitude(target.transform.position-myTransform.position)>range)
             {
                 FindNewTarget();
             }
@@ -66,9 +72,9 @@ public class Tower : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
         foreach (Collider2D enemy in colliders)
         {
-            if (Vector2.Distance(GameManager.GetLastPathPoint().position, enemy.transform.position) < distance)
+            if (Vector2.Distance(lastWayPoint.position, enemy.transform.position) < distance)
             {
-                distance = Vector2.Distance(GameManager.GetLastPathPoint().position, enemy.transform.position);
+                distance = Vector2.Distance(lastWayPoint.position, enemy.transform.position);
                 target = enemy.transform;
             }
         }

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     [SerializeField] List<Transform> paths;
-    [SerializeField] float numberOfLevels = 5f;
+    [SerializeField] int numberOfLevels = 5;
 
     private int currentLevel = 1;
     private List<Transform> wayPoints;
@@ -35,5 +35,15 @@ public class GameManager : MonoBehaviour
         }
 
         return instance.wayPoints[numberOfWayPoints-1];
+    }
+
+    public static int GetNumberOfLevels()
+    {
+        return instance.numberOfLevels;
+    }
+
+    public static void LevelAccomplished()
+    {
+        instance.currentLevel++;
     }
 }
