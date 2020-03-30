@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using System;
+using UnityEngine.Profiling;
 
 public class Enemy : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
     Transform myTransform;
 
+    public event Action<float> onDamageTaken;
+    public HealthBar HealthBar { private get; set; }
+    
+
     private void Awake()
     {
         _health = enemyType.Health;
@@ -31,6 +36,17 @@ public class Enemy : MonoBehaviour
         myTransform = GetComponent<Transform>();
         wayPoints = CreateListOfWayPoint();
         currentTarget = wayPoints[_wayPointNumber];
+    }
+
+    //private void Start()
+    //{
+    //    HealthBar.Activate();
+    //}
+
+    private void OnBecameVisible()
+    {
+        HealthBar.SetMaxValue(_health);
+        //HealthBar.Activate();
     }
 
     private List<Transform> CreateListOfWayPoint()
@@ -47,7 +63,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        float distance = Vector2.Distance(myTransform.position, currentTarget.position);
+        float distance = Vector2.SqrMagnitude(currentTarget.position-myTransform.position);
 
         if (Mathf.Approximately(distance, 0))
         {
@@ -58,12 +74,16 @@ public class Enemy : MonoBehaviour
             else
             {
                 UIManager.Instance.GetDamage(_damage);
-                Destroy(gameObject);
+                HealthBar.Deactivate();
+                gameObject.SetActive(false);
             }
         }
         else
         {
-            Move();           
+            Profiler.BeginSample("FOLLOW");
+            Move();
+            HealthBar.FollowEnemy(myTransform);
+            Profiler.EndSample();
         }
     }
 
@@ -98,16 +118,21 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _health = Mathf.Max(_health - damage, 0);
+        //onDamageTaken(_health);
+        HealthBar.ChangeSliderValue(_health);
+
         if (_health == 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+            HealthBar.Deactivate();
 
             UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());
         }
     }
 
-    public float GetHealth()
-    {
-        return _health;
-    }
+    //public float GetHealth()
+    //{
+    //    return _health;
+    //}
 }

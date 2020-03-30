@@ -45,8 +45,8 @@ public class Tower : MonoBehaviour
         }
         else
         {
-            //if (Vector2.Distance(myTransform.position, target.transform.position) > range)
-            if(Vector2.SqrMagnitude(target.transform.position-myTransform.position)>range)
+            if (Vector2.Distance(myTransform.position, target.transform.position) > range)
+            //if(Vector2.SqrMagnitude(target.transform.position-myTransform.position)>range)//??????
             {
                 FindNewTarget();
             }

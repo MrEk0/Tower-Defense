@@ -14,13 +14,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject towerPanel;
     [SerializeField] GameObject sellPanel;
     [SerializeField] GameObject gameoverPanel;
-    [SerializeField] GameObject healthBarPrefab;
+    [SerializeField] HealthBar healthBarPrefab;
     [SerializeField] Transform healthBarParent;
     [SerializeField] float startNumberOfCoins;
     [SerializeField] float startAmountOfHealth;
 
     float coins;
     float lives;
+    List<HealthBar> healthBars;
+    Camera mainCamera;
+    int numberOfHealthBar = 0;
 
     public GameObject towerToSell { private get; set; }
 
@@ -38,6 +41,8 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
 
+        mainCamera = Camera.main;
+
         livesText.text = "Health " + startAmountOfHealth;
         coinsText.text = "Coins " + startNumberOfCoins;
 
@@ -45,6 +50,21 @@ public class UIManager : MonoBehaviour
         lives = startAmountOfHealth;
 
         Time.timeScale = 1f;
+
+        SetUpHealthBars();
+    }
+
+    private void SetUpHealthBars()
+    {
+        healthBars = new List<HealthBar>();
+        int numberOfEnemies = WaveManager.Instance.GetNumberOfAllEnemies;
+
+        for (int i=0; i<numberOfEnemies; i++)
+        {
+            HealthBar healthBar = Instantiate(healthBarPrefab, healthBarParent, false);
+            healthBar.gameObject.SetActive(false);
+            healthBars.Add(healthBar);
+        }
     }
 
     public void ChangeNumberOfCoins(float cost)
@@ -106,16 +126,20 @@ public class UIManager : MonoBehaviour
 
         sellPanel.SetActive(true);
 
-        Vector2 screenPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 screenPoint = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 roundMousePos = new Vector2(Mathf.RoundToInt(screenPoint.x), Mathf.RoundToInt(screenPoint.y));
 
-        Vector2 pointToMove = Camera.main.WorldToScreenPoint(roundMousePos);
+        Vector2 pointToMove = mainCamera.WorldToScreenPoint(roundMousePos);
         sellPanel.GetComponent<RectTransform>().position = pointToMove;
     }
 
-    public void CreateHealthBar(Enemy enemy)
+    public void InitializeHealthBar(Enemy enemy)
     {
-        GameObject healthBar = Instantiate(healthBarPrefab, healthBarParent, false);
-        healthBar.GetComponent<HealthBar>().enemy = enemy;
+        HealthBar healthBar = healthBars[numberOfHealthBar];
+        //healthBar.Enemy = enemy;
+        enemy.HealthBar = healthBar;
+        //healthBar.gameObject.SetActive(true);
+
+        numberOfHealthBar++;
     }
 }

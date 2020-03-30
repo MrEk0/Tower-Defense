@@ -23,6 +23,7 @@ public class WaveManager : MonoBehaviour
 
     int waveNumber = 0;
     int enemyNumberInWave = 0;
+    int numberOfEnemies = 0;
     bool canSpawn = true;
     Dictionary< int, List<Enemy>> waveOfEnemies = new Dictionary<int, List<Enemy>>();
 
@@ -32,10 +33,6 @@ public class WaveManager : MonoBehaviour
     {
         Instance = this;
 
-        //currentWave = waves[waveNumber];
-        //duration = currentWave.Duration;
-        //startTime = currentWave.StartSpawnTime;
-        //timeBetweenSpawns = currentWave.TimeBetweenSpawns;
         SetUpAllWaves();
         SetUpWaveSettings();
     }
@@ -45,6 +42,7 @@ public class WaveManager : MonoBehaviour
         for(int i=0; i<waves.Count; i++)
         {
             List<Enemy> enemies=waves[i].GetAllWaveEnemies();
+            numberOfEnemies += enemies.Count;
             waveOfEnemies.Add(i, enemies);
         }
     }
@@ -63,6 +61,7 @@ public class WaveManager : MonoBehaviour
             else
             {
                 canSpawn = false;
+                //gameover
             }
         }
 
@@ -75,7 +74,7 @@ public class WaveManager : MonoBehaviour
                 EnemyInstantiation(enemy);
                 Profiler.EndSample();
 
-                //UIManager.Instance.CreateHealthBar(enemy);
+                UIManager.Instance.InitializeHealthBar(enemy);
 
                 enemyNumberInWave++;
                 timeSinceEnemyDropped = 0f;
@@ -85,13 +84,15 @@ public class WaveManager : MonoBehaviour
         timeSinceEnemyDropped += Time.deltaTime;
     }
 
+    public int GetNumberOfAllEnemies => numberOfEnemies;
+
     private void EnemyInstantiation(Enemy enemy)
     {
         Transform enemyTransform = enemy.gameObject.transform;
-        enemyTransform.gameObject.SetActive(true);
         enemyTransform.position = startPoint.position;
         enemyTransform.rotation = Quaternion.identity;
         enemyTransform.parent = transform;
+        enemyTransform.gameObject.SetActive(true);
     }
 
     private void UpdateWave()

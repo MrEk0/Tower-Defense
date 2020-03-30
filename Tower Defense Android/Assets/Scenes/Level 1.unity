@@ -445,7 +445,7 @@ PrefabInstance:
     - target: {fileID: 1834393291080997908, guid: 65219a6dd4e81814f84510ce0abd94b7,
         type: 3}
       propertyPath: waves.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1834393291080997908, guid: 65219a6dd4e81814f84510ce0abd94b7,
         type: 3}
@@ -469,6 +469,12 @@ PrefabInstance:
       propertyPath: waves.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: 6a7805d2ace9514438cf6585a6a84ecf,
+        type: 2}
+    - target: {fileID: 1834393291080997908, guid: 65219a6dd4e81814f84510ce0abd94b7,
+        type: 3}
+      propertyPath: waves.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8801a59591de1c3419a49e36e930d676,
         type: 2}
     - target: {fileID: 1834393291080997909, guid: 65219a6dd4e81814f84510ce0abd94b7,
         type: 3}
@@ -870,6 +876,12 @@ PrefabInstance:
       propertyPath: healthBarParent
       value: 
       objectReference: {fileID: 1530126288}
+    - target: {fileID: 4880126324440369548, guid: bfd2d13796a163141b079afe2eb71d13,
+        type: 3}
+      propertyPath: healthBarPrefab
+      value: 
+      objectReference: {fileID: 6052853814195576624, guid: 8755e6d56acddf84ca7b33e0ddeae499,
+        type: 3}
     - target: {fileID: 4880126324440369549, guid: bfd2d13796a163141b079afe2eb71d13,
         type: 3}
       propertyPath: m_Name
