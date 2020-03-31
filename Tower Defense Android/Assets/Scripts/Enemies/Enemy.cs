@@ -7,7 +7,7 @@ using UnityEngine.Profiling;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemySettings enemyType;
-    [SerializeField] Transform path;
+    //[SerializeField] Transform path;
     [SerializeField] float rotationSpeed=10f;
 
     private float _health;
@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     private float _angleOffset=180f;
     private int _wayPointNumber = 0;
 
+    Transform path;
     List<Transform> wayPoints;
     Vector2 newPos;
     Transform currentTarget;    
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
+
         wayPoints = CreateListOfWayPoint();
         currentTarget = wayPoints[_wayPointNumber];
     }
@@ -51,6 +53,7 @@ public class Enemy : MonoBehaviour
 
     private List<Transform> CreateListOfWayPoint()
     {
+        path = GameManager.GetCurrentPath();
         List<Transform> wayPoints = new List<Transform>();
 
         foreach(Transform transform in path)

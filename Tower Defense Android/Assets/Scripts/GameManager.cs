@@ -7,10 +7,11 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     [SerializeField] List<Transform> paths;
-    [SerializeField] int numberOfLevels = 5;
+    [SerializeField] int numberOfLevels = 20;
 
-    private int currentLevel = 1;
+    private int currentLevel = 0;
     private List<Transform> wayPoints;
+    private Transform pathLastPoint;
 
     private void Awake()
     {
@@ -21,9 +22,11 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        FindLastPathPoint();
     }
 
-    public static Transform GetLastPathPoint()
+    private static void FindLastPathPoint()
     {
         instance.wayPoints = new List<Transform>();
         Transform currentPath = instance.paths[instance.currentLevel];
@@ -34,7 +37,17 @@ public class GameManager : MonoBehaviour
             instance.wayPoints.Add(child);
         }
 
-        return instance.wayPoints[numberOfWayPoints-1];
+        instance.pathLastPoint=instance.wayPoints[numberOfWayPoints-1];
+    }
+
+    public static Transform GetLastPathPoint()
+    {
+        return instance.pathLastPoint;
+    }
+
+    public static Transform GetCurrentPath()
+    {
+        return instance.paths[instance.currentLevel];
     }
 
     public static int GetNumberOfLevels()
@@ -45,5 +58,6 @@ public class GameManager : MonoBehaviour
     public static void LevelAccomplished()
     {
         instance.currentLevel++;
+        FindLastPathPoint();
     }
 }

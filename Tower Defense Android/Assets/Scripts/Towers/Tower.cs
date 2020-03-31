@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using TMPro;
+using UnityEngine.Profiling;
 
 public class Tower : MonoBehaviour
 {
@@ -39,9 +38,12 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
+        
+        if (target == null || !target.gameObject.activeInHierarchy)
         {
+            Profiler.BeginSample("FONDTARGET");
             FindNewTarget();
+            Profiler.EndSample();
         }
         else
         {
@@ -67,15 +69,16 @@ public class Tower : MonoBehaviour
 
     private void FindNewTarget()
     {
-        float distance = Mathf.Infinity;
+        float distanceToEnemy = Mathf.Infinity;
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
-        foreach (Collider2D enemy in colliders)
+        for(int i=0; i<colliders.Length; i++)
         {
-            if (Vector2.Distance(lastWayPoint.position, enemy.transform.position) < distance)
+            float currentDistance = Vector2.Distance(lastWayPoint.position, colliders[i].transform.position);
+            if (currentDistance < distanceToEnemy)
             {
-                distance = Vector2.Distance(lastWayPoint.position, enemy.transform.position);
-                target = enemy.transform;
+                distanceToEnemy = currentDistance;
+                target = colliders[i].transform;
             }
         }
     }
