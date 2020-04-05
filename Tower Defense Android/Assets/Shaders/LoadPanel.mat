@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LoadPanel
+  m_Shader: {fileID: -6465566751694194690, guid: 6052b08e3d8dcac4dbd6077d65cc20ce,
+    type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 15a255283ec1261458ee36e2ff096a08, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondTex:
+        m_Texture: {fileID: 2800000, guid: 0fefa5ee7f5048e4991db5a4cb5026c1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BoundSlider: 0
+    - _CircleSlider: 1
+    - _FormSlider: 0
+    - _RoundSlider: 0.5
+    - _SquareSlider: 0.5
+    m_Colors:
+    - Color_251180E7: {r: 0.62909395, g: 0.63127804, b: 0.6320754, a: 0}
+    - Color_2F7A1D75: {r: 0.92549026, g: 0.8588236, b: 0.7294118, a: 1}
+    - _BounColor: {r: 0.9568628, g: 0.89019614, b: 0.7607844, a: 1}

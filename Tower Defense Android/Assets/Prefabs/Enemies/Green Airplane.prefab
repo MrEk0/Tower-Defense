@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5069047871841983065}
   - component: {fileID: 5069047871841983064}
   m_Layer: 12
-  m_Name: 'Gree Airplane '
+  m_Name: Green Airplane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
