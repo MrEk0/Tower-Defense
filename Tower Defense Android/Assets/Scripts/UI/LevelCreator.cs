@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LevelCreator : MonoBehaviour
 {
-    //[SerializeField] LevelButtonsBehaviour levelButtonsBehaviour;
+    [SerializeField] LevelButtonsBehaviour levelButtonsBehaviour;
     [SerializeField] GameObject levelButtonPrefab;
     [SerializeField] GameObject buttonPanelPrefab;
     [SerializeField] GameObject canvas;
@@ -39,13 +39,12 @@ public class LevelCreator : MonoBehaviour
 
         panelRect = panelCloneRect.rect;
         GridLayoutGroup gridLayout = buttonPanelPrefab.GetComponent<GridLayoutGroup>();
-        Vector2 levelButtonSize = /*levelButtonPrefab.GetComponent<RectTransform>().rect;*/gridLayout.cellSize;
+        Vector2 levelButtonSize = gridLayout.cellSize;
         Vector2 spacing = gridLayout.spacing;
 
         int maxInARow = Mathf.FloorToInt((panelRect.width + spacing.x) / (levelButtonSize.x + spacing.x));
         int maxInAColumn = Mathf.FloorToInt((panelRect.height + spacing.y) / (levelButtonSize.y + spacing.y));
         numberPerPage = maxInARow * maxInAColumn;
-        Debug.Log(numberPerPage);
         int numberOfPages = Mathf.CeilToInt((float)numberOfLevels / numberPerPage);
         GetComponent<LevelSelector>().NumberOfPages = numberOfPages;
         LoadPanels(numberOfPages);
@@ -62,8 +61,10 @@ public class LevelCreator : MonoBehaviour
         panelCloneRect = panelClone.GetComponent<RectTransform>();
         RectTransform thisRect = GetComponent<RectTransform>();
 
-        RectTransformExtensions.SetLeft(panelCloneRect, thisRect.offsetMax.x);
-        RectTransformExtensions.SetRight(panelCloneRect, thisRect.offsetMax.x);
+        //RectTransformExtensions.SetLeft(panelCloneRect, thisRect.offsetMax.x);
+        //RectTransformExtensions.SetRight(panelCloneRect, thisRect.offsetMax.x);
+        panelCloneRect.SetLeft(thisRect.offsetMax.x);
+        panelCloneRect.SetRight( thisRect.offsetMax.x);
     }
 
     private void LoadPanels(int numberOfPages)
@@ -76,8 +77,10 @@ public class LevelCreator : MonoBehaviour
 
             RectTransform panelCloneRect = panel.GetComponent<RectTransform>();
 
-            RectTransformExtensions.SetLeft(panelCloneRect, thisRect.offsetMax.x);
-            RectTransformExtensions.SetRight(panelCloneRect, thisRect.offsetMax.x);
+            //RectTransformExtensions.SetLeft(panelCloneRect, thisRect.offsetMax.x);
+            //RectTransformExtensions.SetRight(panelCloneRect, thisRect.offsetMax.x);
+            panelCloneRect.SetLeft(thisRect.offsetMax.x);
+            panelCloneRect.SetRight(thisRect.offsetMax.x);
 
             panel.GetComponent<RectTransform>().localPosition = new Vector2(panelRect.width * (i), 0);
 
@@ -97,7 +100,7 @@ public class LevelCreator : MonoBehaviour
 
             button.transform.SetParent(canvas.transform, false);
             button.transform.SetParent(parent.transform);
-            //button.GetComponent<LevelButton>().InstantiateButton(levelCount, levelButtonsBehaviour);
+            button.GetComponent<LevelButton>().InstantiateButton(levelCount, levelButtonsBehaviour);
         }
     }
 }

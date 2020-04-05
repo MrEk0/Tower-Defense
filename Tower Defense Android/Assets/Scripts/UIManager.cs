@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
@@ -11,9 +12,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI livesText;
     [SerializeField] TextMeshProUGUI coinsText;
     [SerializeField] TextMeshProUGUI wavesText;
+    [SerializeField] CanvasScaler canvasScaler;
     [SerializeField] GameObject towerPanel;
     [SerializeField] GameObject sellPanel;
     [SerializeField] GameObject gameoverPanel;
+    [SerializeField] GameObject ignoreRaycastPanel;
     [SerializeField] HealthBar healthBarPrefab;
     [SerializeField] Transform healthBarParent;
     [SerializeField] float startNumberOfCoins;
@@ -23,6 +26,7 @@ public class UIManager : MonoBehaviour
     float lives;
     List<HealthBar> healthBars;
     Camera mainCamera;
+    Vector2 sellPanelScreenBounds;
     int numberOfHealthBar = 0;
 
     public GameObject towerToSell { private get; set; }
@@ -49,9 +53,14 @@ public class UIManager : MonoBehaviour
         coins = startNumberOfCoins;
         lives = startAmountOfHealth;
 
-        Time.timeScale = 1f;
+        Time.timeScale = 1f;//????
 
         SetUpHealthBars();
+        sellPanelScreenBounds = RectTransformExtensions.CalculateScreenBounds(sellPanel, canvasScaler);
+
+        //int screeWidht = Screen.width;
+        //int screenHeight = Screen.height;
+        //Debug.Log(screenHeight);
     }
 
     private void SetUpHealthBars()
@@ -124,13 +133,16 @@ public class UIManager : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
+        ignoreRaycastPanel.SetActive(true);
         sellPanel.SetActive(true);
-
+      
         Vector2 screenPoint = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 roundMousePos = new Vector2(Mathf.RoundToInt(screenPoint.x), Mathf.RoundToInt(screenPoint.y));
 
         Vector2 pointToMove = mainCamera.WorldToScreenPoint(roundMousePos);
         sellPanel.GetComponent<RectTransform>().position = pointToMove;
+
+        RectTransformExtensions.CheckScreenPosition(sellPanel, sellPanelScreenBounds.x, sellPanelScreenBounds.y);
     }
 
     public void InitializeHealthBar(Enemy enemy)

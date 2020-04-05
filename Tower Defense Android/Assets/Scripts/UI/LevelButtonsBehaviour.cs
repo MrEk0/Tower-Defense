@@ -7,19 +7,24 @@ using System;
 
 public class LevelButtonsBehaviour : MonoBehaviour
 {
-    [SerializeField] float timeToLoad = 2f;
+    [SerializeField] float finishSceneTime = 1f;
 
-    Animator animator;
+    //Animator animator;
+    LoadPanelShader loadPanel;
+    private float _timeToLoad;
     int numberOfLevels;
 
     private void Awake()
     {
         //animator = GetComponent<Animator>();
+        loadPanel = GetComponent<LoadPanelShader>();
+        _timeToLoad = loadPanel.GetLoadingTime()+finishSceneTime;
     }
 
     private void Start()
     {
         //numberOfLevels = GameManager.GetLevelNumber();
+        loadPanel.StartScene();
     }
 
     public void ClickPlayButton()
@@ -30,33 +35,21 @@ public class LevelButtonsBehaviour : MonoBehaviour
         //StartCoroutine(LoadLevel(sceneIndex));
     }
 
-    public void GoToTheNextLevel()
+    public void LoadNextLevel()
     {
-        //AudioManager.PlayUIButtonAudio();
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(nextSceneIndex);
-        //if (numberOfLevels >= nextSceneIndex)
-        //{
-        //    StartCoroutine(LoadLevel(nextSceneIndex));
-        //}
-        //else
-        //{
-        //    StartCoroutine(LoadLevel(0));
-        //}
+
+        loadPanel.gameObject.SetActive(true);
+        StartCoroutine(LoadLevel(nextSceneIndex));
     }
 
-    IEnumerator LoadLevel(int nextSceneIndex)
+    IEnumerator LoadLevel(int sceneIndex)
     {
         //GameManager.PauseGame();
-
-        animator.SetTrigger("LoadLevel");
-        yield return new WaitForSeconds(timeToLoad);
-        SceneManager.LoadScene(nextSceneIndex);
-
-        if (nextSceneIndex != 0)
-        {
-            //AudioManager.PlayReadyGoAudio(); ;
-        }
+      
+        loadPanel.FinishScene();
+        yield return new WaitForSeconds(_timeToLoad);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     //public void LoadMainMenu()
@@ -102,10 +95,10 @@ public class LevelButtonsBehaviour : MonoBehaviour
     //    Application.Quit();
     //}
 
-    //public void LoadSpecificLevel(int levelIndex)
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    StartCoroutine(LoadLevel(levelIndex));
-    //}
+    public void LoadSpecificLevel(int levelIndex)
+    {
+        //AudioManager.PlayUIButtonAudio();
+        StartCoroutine(LoadLevel(levelIndex));
+    }
 }
 
