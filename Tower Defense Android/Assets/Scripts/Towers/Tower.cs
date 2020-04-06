@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
+using System.Linq;
 
 public class Tower : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Tower : MonoBehaviour
     GameObject bulletPrefab;   
     Transform target;
     Transform myTransform;
+    List<GameObject> bullets;
 
     //public TowerSettings TowerType => towerType;
 
@@ -28,6 +30,8 @@ public class Tower : MonoBehaviour
         bulletPrefab = towerType.Bullet;
 
         myTransform = GetComponent<Transform>();
+
+        CreateListOfBullets();
     }
 
     private void Start()
@@ -56,8 +60,34 @@ public class Tower : MonoBehaviour
             {
                 Rotate();
                 Shoot();
+            
             }
         }
+    }
+
+    private void CreateListOfBullets()
+    {
+        bullets = new List<GameObject>();
+        int numberOfBullets = GetNumberOfActiveBullets();
+        
+        for (int i = 0; i < numberOfBullets; i++)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, myTransform.position, Quaternion.identity, myTransform);
+            bullet.GetComponent<Bullet>().SetParameters(towerType.BulletSpeed, towerType.Damage);
+            bullet.SetActive(false);
+            bullets.Add(bullet);
+        }
+    }
+
+    private int GetNumberOfActiveBullets()
+    {
+        float timeToGetRange = range / towerType.BulletSpeed;
+        return Mathf.CeilToInt(timeToGetRange);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 
     private void Rotate()
@@ -87,8 +117,12 @@ public class Tower : MonoBehaviour
     {
         if (timeSinceLastShot > shootInterval)
         {
-            GameObject bullet = Instantiate(bulletPrefab, myTransform.position, myTransform.rotation, myTransform);
+            GameObject bullet = bullets.First(b => !b.activeInHierarchy);
+            bullet.transform.position = myTransform.position;
+            bullet.transform.rotation = myTransform.rotation;
             bullet.GetComponent<Bullet>().target = target;
+            bullet.SetActive(true);
+
             timeSinceLastShot = 0f;
         }
 
@@ -110,9 +144,7 @@ public class Tower : MonoBehaviour
     //}
 
     private void OnMouseDown()
-    {
-        //UIManager uIManager = FindObjectOfType<UIManager>();
-        
+    {   
         UIManager.Instance.ShowSellPanel();
         UIManager.Instance.towerToSell = gameObject;
     }

@@ -12,14 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21dfef37f304d24987bbc95f3b568e9, type: 3}
   m_Name: GreenTower
   m_EditorClassIdentifier: 
-  buildPrice: 50
+  buildPrice: 200
   range: 3
   shootInterval: 0.5
   damage: 10
   bulletSpeed: 10
   bullet: {fileID: 2788015215729615249, guid: 5498a9e6eb1f1714594cbbfc14f54319, type: 3}
-  castlePoint: {fileID: 3367311543862939660, guid: 7957faab4167c964cae6ef7d4c7fbebe,
-    type: 3}
   enemyMask:
     serializedVersion: 2
     m_Bits: 4096

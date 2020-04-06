@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.Profiling;
 
 public class Enemy : MonoBehaviour
@@ -23,7 +21,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
     Transform myTransform;
 
-    public event Action<float> onDamageTaken;
+    //public event Action<float> onDamageTaken;
     public HealthBar HealthBar { private get; set; }
     
 
@@ -66,11 +64,24 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        float distance = Vector2.SqrMagnitude(currentTarget.position-myTransform.position);
+        ReachedWaypointBehaviour();
+    }
+
+    private void FixedUpdate()
+    {
+        Profiler.BeginSample("FOLLOW");
+        Move();
+        Profiler.EndSample();
+        HealthBar.FollowEnemy(myTransform);
+    }
+
+    private void ReachedWaypointBehaviour()
+    {
+        float distance = Vector2.SqrMagnitude(currentTarget.position - myTransform.position);
 
         if (Mathf.Approximately(distance, 0))
         {
-            if (_wayPointNumber < wayPoints.Count-1)
+            if (_wayPointNumber < wayPoints.Count - 1)
             {
                 UpdateMovement();
             }
@@ -80,13 +91,6 @@ public class Enemy : MonoBehaviour
                 HealthBar.Deactivate();
                 gameObject.SetActive(false);
             }
-        }
-        else
-        {
-            Profiler.BeginSample("FOLLOW");
-            Move();
-            HealthBar.FollowEnemy(myTransform);
-            Profiler.EndSample();
         }
     }
 
@@ -98,7 +102,7 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
-        newPos = Vector2.MoveTowards(myTransform.position, currentTarget.position, _speed * Time.deltaTime);
+        newPos = Vector2.MoveTowards(myTransform.position, currentTarget.position, _speed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
 
         myTransform.rotation = SmoothRotation(currentTarget);
@@ -121,21 +125,14 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         _health = Mathf.Max(_health - damage, 0);
-        //onDamageTaken(_health);
         HealthBar.ChangeSliderValue(_health);
 
         if (_health == 0)
         {
-            //Destroy(gameObject);
             gameObject.SetActive(false);
             HealthBar.Deactivate();
 
             UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());
         }
     }
-
-    //public float GetHealth()
-    //{
-    //    return _health;
-    //}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] TowerSettings towerType;
+    //[SerializeField] TowerSettings towerType;
 
     float speed;
     float damage;
@@ -12,20 +12,29 @@ public class Bullet : MonoBehaviour
     Transform myTransform;
 
     public Transform target { private get; set; }
+    //public float Speed { private get; set; }
+    //public float Damage { private get; set; }
+
     private void Awake()
     {
-        speed = towerType.BulletSpeed;
-        damage = towerType.Damage;
+        //speed = towerType.BulletSpeed;
+        //damage = towerType.Damage;
 
         rb = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
+    }
+
+    public void SetParameters(float speed, float damage)
+    {
+        this.speed = speed;
+        this.damage = damage;
     }
 
     private void Update()
     {
         if (target == null)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         else
         {
@@ -37,13 +46,12 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.GetComponent<Enemy>()!=null)
         {
             collision.GetComponent<Enemy>().TakeDamage(damage);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -51,7 +51,7 @@ public static class RectTransformExtensions
             float newPosY = currentPosY > 0 ? windowMinPosY : -windowMinPosY;
             windowRectTransform.localPosition = new Vector3(currentPosX, newPosY);
         }
-        else if (Mathf.Abs(currentPosX) > windowMinPosY)
+        else if (Mathf.Abs(currentPosX) > windowMinPosX)
         {
             float newPosX = currentPosX > 0 ? windowMinPosX : -windowMinPosX;
             windowRectTransform.localPosition = new Vector3(newPosX, currentPosY);
