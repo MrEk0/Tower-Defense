@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
+[DefaultExecutionOrder(-50)]
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
@@ -14,7 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI wavesText;
     [SerializeField] CanvasScaler canvasScaler;
     [SerializeField] GameObject towerPanel;
-    [SerializeField] GameObject sellPanel;
+    [SerializeField] GameObject updatePanel;
     [SerializeField] GameObject gameoverPanel;
     [SerializeField] GameObject ignoreRaycastPanel;
     [SerializeField] HealthBar healthBarPrefab;
@@ -29,16 +30,18 @@ public class UIManager : MonoBehaviour
     Vector2 sellPanelScreenBounds;
     int numberOfHealthBar = 0;
 
-    public GameObject towerToSell { private get; set; }
+    public GameObject TowerToWork { private get; set; }
+    public event Action onTowerUpdated;
+    public event Action<float> onUpdatePanelShowed;
 
     private void OnEnable()
     {
-        WaveManager.Instance.onWaveChanged += ChangeWave;
+        WaveManager.Instance.onWaveChanged += ChangeWaveText;
     }
 
     private void OnDisable()
     {
-        WaveManager.Instance.onWaveChanged -= ChangeWave;
+        WaveManager.Instance.onWaveChanged -= ChangeWaveText;
     }
 
     private void Awake()
@@ -56,7 +59,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1f;//????
 
         SetUpHealthBars();
-        sellPanelScreenBounds = RectTransformExtensions.CalculateScreenBounds(sellPanel, canvasScaler);
+        sellPanelScreenBounds = RectTransformExtensions.CalculateScreenBounds(towerPanel, canvasScaler);
 
         //int screeWidht = Screen.width;
         //int screenHeight = Screen.height;
@@ -99,7 +102,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ChangeWave(int waveNumber, int wavesCount)
+    private void ChangeWaveText(int waveNumber, int wavesCount)
     {
         wavesText.text = "Wave " + (waveNumber + 1) + "/" + wavesCount;
     }
@@ -109,7 +112,7 @@ public class UIManager : MonoBehaviour
         float cost = tower.BuildPrice;
 
         coins -= cost;
-        if (coins>=0)
+        if (coins >= 0)
         {
             coinsText.text = "Coins " + coins;
         }
@@ -121,28 +124,43 @@ public class UIManager : MonoBehaviour
 
     public void SellTower()
     {
-        float sellingCost = towerToSell.GetComponent<Tower>().GetBuildPrice() / 2;
+        float sellingCost = TowerToWork.GetComponent<Tower>().GetBuildPrice() / 2;
         coins += Mathf.Round(sellingCost);
         coinsText.text = "Coins " + coins;
 
-        Destroy(towerToSell);
+        Destroy(TowerToWork);//????
     }
 
-    public void ShowSellPanel()
+    public void UpdateTowerButton()
+    {
+        float price = TowerToWork.GetComponent<Tower>().GetUpdatePrice();
+
+        if (coins >= price)
+        {
+            coins -= price;
+            coinsText.text = "Coins " + coins;//method
+            onTowerUpdated();
+        }
+    }
+
+    public void ShowUpdatePanel()
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
         ignoreRaycastPanel.SetActive(true);
-        sellPanel.SetActive(true);
+        updatePanel.SetActive(true);
       
         Vector2 screenPoint = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 roundMousePos = new Vector2(Mathf.RoundToInt(screenPoint.x), Mathf.RoundToInt(screenPoint.y));
 
         Vector2 pointToMove = mainCamera.WorldToScreenPoint(roundMousePos);
-        sellPanel.GetComponent<RectTransform>().position = pointToMove;
+        updatePanel.GetComponent<RectTransform>().position = pointToMove;
 
-        RectTransformExtensions.CheckScreenPosition(sellPanel, sellPanelScreenBounds.x, sellPanelScreenBounds.y);
+        RectTransformExtensions.CheckScreenPosition(towerPanel, sellPanelScreenBounds.x, sellPanelScreenBounds.y);
+
+        float updatePrice = TowerToWork.GetComponent<Tower>().GetUpdatePrice();
+        onUpdatePanelShowed(updatePrice);
     }
 
     public void InitializeHealthBar(Enemy enemy)

@@ -46,10 +46,12 @@ MonoBehaviour:
   livesText: {fileID: 0}
   coinsText: {fileID: 0}
   wavesText: {fileID: 0}
+  canvasScaler: {fileID: 0}
   towerPanel: {fileID: 0}
-  sellPanel: {fileID: 0}
+  updatePanel: {fileID: 0}
   gameoverPanel: {fileID: 0}
-  healthBarPrefab: {fileID: 1963006389047366699, guid: 8755e6d56acddf84ca7b33e0ddeae499,
+  ignoreRaycastPanel: {fileID: 0}
+  healthBarPrefab: {fileID: 6052853814195576624, guid: 8755e6d56acddf84ca7b33e0ddeae499,
     type: 3}
   healthBarParent: {fileID: 0}
   startNumberOfCoins: 200

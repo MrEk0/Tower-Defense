@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    //[SerializeField] TowerSettings towerType;
-
     float speed;
     float damage;
     Rigidbody2D rb;
     Transform myTransform;
 
     public Transform target { private get; set; }
-    //public float Speed { private get; set; }
-    //public float Damage { private get; set; }
 
     private void Awake()
     {
-        //speed = towerType.BulletSpeed;
-        //damage = towerType.Damage;
-
         rb = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
     }

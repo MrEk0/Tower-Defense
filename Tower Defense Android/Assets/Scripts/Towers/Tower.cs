@@ -7,9 +7,13 @@ using System.Linq;
 public class Tower : MonoBehaviour
 {
     [SerializeField] TowerSettings towerType;
+    [SerializeField] TowerClass towerClass;
+    [SerializeField] TowerUpdate towerUpdate;
 
+    int currentLevel = 1;
     float range;
     float shootInterval;
+    float damage;
     float timeSinceLastShot = Mathf.Infinity;
 
     LayerMask enemyMask;    
@@ -19,14 +23,10 @@ public class Tower : MonoBehaviour
     Transform myTransform;
     List<GameObject> bullets;
 
-    //public TowerSettings TowerType => towerType;
-
     private void Awake()
     {
-        range = towerType.Range;
-        shootInterval = towerType.ShootInterval;
+        UpdateParameters();
         enemyMask = towerType.EnemyMask;
-        //castlePoint = towerType.CastlePoint;
         bulletPrefab = towerType.Bullet;
 
         myTransform = GetComponent<Transform>();
@@ -34,12 +34,21 @@ public class Tower : MonoBehaviour
         CreateListOfBullets();
     }
 
+    private void OnEnable()
+    {
+        UIManager.Instance.onTowerUpdated += UpdateTower;
+    }
+
+    private void OnDisable()
+    {
+        UIManager.Instance.onTowerUpdated -= UpdateTower;
+    }
+
     private void Start()
     {
         lastWayPoint = GameManager.GetLastPathPoint();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -65,6 +74,13 @@ public class Tower : MonoBehaviour
         }
     }
 
+    private void UpdateParameters()
+    {
+        range = towerUpdate.GetRange(towerClass, currentLevel);
+        shootInterval = towerUpdate.GetShotInterval(towerClass, currentLevel);
+        damage = towerUpdate.GetDamage(towerClass, currentLevel);
+    }
+
     private void CreateListOfBullets()
     {
         bullets = new List<GameObject>();
@@ -72,11 +88,15 @@ public class Tower : MonoBehaviour
         
         for (int i = 0; i < numberOfBullets; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab, myTransform.position, Quaternion.identity, myTransform);
-            bullet.GetComponent<Bullet>().SetParameters(towerType.BulletSpeed, towerType.Damage);
-            bullet.SetActive(false);
-            bullets.Add(bullet);
+            CreateABullet();
         }
+    }
+
+    private void CreateABullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, myTransform.position, Quaternion.identity, myTransform);
+        bullet.SetActive(false);
+        bullets.Add(bullet);
     }
 
     private int GetNumberOfActiveBullets()
@@ -85,16 +105,9 @@ public class Tower : MonoBehaviour
         return Mathf.CeilToInt(timeToGetRange);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmos()//delete
     {
         Gizmos.DrawWireSphere(transform.position, range);
-    }
-
-    private void Rotate()
-    {
-        Vector2 dir = target.position - myTransform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        myTransform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
     }
 
     private void FindNewTarget()
@@ -102,7 +115,7 @@ public class Tower : MonoBehaviour
         float distanceToEnemy = Mathf.Infinity;
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
-        for(int i=0; i<colliders.Length; i++)
+        for (int i = 0; i < colliders.Length; i++)
         {
             float currentDistance = Vector2.Distance(lastWayPoint.position, colliders[i].transform.position);
             if (currentDistance < distanceToEnemy)
@@ -113,11 +126,21 @@ public class Tower : MonoBehaviour
         }
     }
 
+    private void Rotate()
+    {
+        Vector2 dir = target.position - myTransform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        myTransform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
+    }
+
+
+
     private void Shoot()
     {
         if (timeSinceLastShot > shootInterval)
         {
             GameObject bullet = bullets.First(b => !b.activeInHierarchy);
+            bullet.GetComponent<Bullet>().SetParameters(towerType.BulletSpeed, damage);
             bullet.transform.position = myTransform.position;
             bullet.transform.rotation = myTransform.rotation;
             bullet.GetComponent<Bullet>().target = target;
@@ -129,28 +152,38 @@ public class Tower : MonoBehaviour
         timeSinceLastShot += Time.deltaTime;
     }
 
-    //private Quaternion SmoothRotation(Transform target)
-    //{
-    //    if (myTransform.position == target.position)
-    //        return myTransform.rotation;
-
-    //    Quaternion currentRotation = myTransform.rotation;
-
-    //    Vector2 dir = target.position - myTransform.position;
-    //    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-    //    Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - 90);
-
-    //    return Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * 10f);
-    //}
-
     private void OnMouseDown()
-    {   
-        UIManager.Instance.ShowSellPanel();
-        UIManager.Instance.towerToSell = gameObject;
+    {       
+        UIManager.Instance.TowerToWork = gameObject;
+        UIManager.Instance.ShowUpdatePanel();
+    }
+
+    private void UpdateTower()
+    {
+        currentLevel++;
+
+        UpdateParameters();
+        CheckBulletList();
+
+    }
+
+    private void CheckBulletList()
+    {
+        int numberOfBulles = GetNumberOfActiveBullets();
+
+        if(numberOfBulles>bullets.Count)
+        {
+            CreateABullet();
+        }
     }
 
     public float GetBuildPrice()
     {
         return towerType.BuildPrice;
+    }
+
+    public float GetUpdatePrice()
+    {
+        return towerUpdate.GetUpdatePrice(towerClass, currentLevel);
     }
 }

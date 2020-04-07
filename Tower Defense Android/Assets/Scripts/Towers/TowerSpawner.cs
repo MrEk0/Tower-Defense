@@ -9,8 +9,10 @@ public class TowerSpawner : MonoBehaviour
 
     public void SpawnTower(GameObject typeOfTower)
     {
-        if(canSpawn)
-        Instantiate(typeOfTower, spawnPos, Quaternion.identity);
+        if (canSpawn)
+        {
+            Instantiate(typeOfTower, spawnPos, Quaternion.identity);
+        }
     }
 
 }
