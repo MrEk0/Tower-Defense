@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class PlayerData : MonoBehaviour
+public class PlayerData
 {
     public float soundVolume;
     public float musicVolume;

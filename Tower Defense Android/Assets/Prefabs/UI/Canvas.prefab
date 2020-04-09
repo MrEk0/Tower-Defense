@@ -1266,50 +1266,75 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5661195854889861188, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8503228293128249254}
+    - target: {fileID: 5661195854889861188, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAgain
+      objectReference: {fileID: 0}
     - target: {fileID: 7568793290508900122, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7568793290508900122, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7568793290508900122, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7568793290508900122, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568793290508900122, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
+        type: 3}
+      propertyPath: m_text
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568793290508900122, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8161335603463934334, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8161335603463934334, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8161335603463934334, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8161335603463934334, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8161335603463934334, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423711378725246454, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
+        type: 3}
+      propertyPath: m_Name
+      value: Main Menu Button
       objectReference: {fileID: 0}
     - target: {fileID: 8855341725203361073, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
@@ -1319,7 +1344,7 @@ PrefabInstance:
     - target: {fileID: 8855341725203361073, guid: f0b14cdc420ed5e4b91dda86d6875a4e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0b14cdc420ed5e4b91dda86d6875a4e, type: 3}
@@ -1465,6 +1490,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3961712987366799389}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8503228293128249254 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4682439507083618235, guid: 1e11f45cb48ce6c4a97fa79b69facb39,
+    type: 3}
+  m_PrefabInstance: {fileID: 3961712987366799389}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8503228293128249252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31da414d526699b4ab85239c70a27eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4180422736426726004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1472,6 +1509,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3961712986666396672}
     m_Modifications:
+    - target: {fileID: 399968562665618740, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 399968562665618740, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 399968562665618740, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: aa2277fa6c631bc448a5f59ac35bbf41,
+        type: 2}
+    - target: {fileID: 399968562665618740, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: TowerSettings, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1280221678679353196, guid: 327bc514e7a49f74f9196853515952f5,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1511,6 +1569,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929496247617128530, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929496247617128530, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929496247617128530, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: fc05b715320f4664eaaae43532631231,
+        type: 2}
+    - target: {fileID: 2929496247617128530, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: TowerSettings, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3327475307875076042, guid: 327bc514e7a49f74f9196853515952f5,
         type: 3}
@@ -1572,6 +1651,48 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5083830104328738035, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083830104328738035, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083830104328738035, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: cfd1e01ae30cc02408d8827cc7f249fc,
+        type: 2}
+    - target: {fileID: 5083830104328738035, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: TowerSettings, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802070756170819082, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802070756170819082, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802070756170819082, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: d3f5f3c70b698fc409f7c4ef6f65dd2e,
+        type: 2}
+    - target: {fileID: 6802070756170819082, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: TowerSettings, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8024923700286966848, guid: 327bc514e7a49f74f9196853515952f5,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -1591,6 +1712,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113626203352260054, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113626203352260054, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113626203352260054, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 1ab50bdb4d96f364f9ae3ebc1d3065c1,
+        type: 2}
+    - target: {fileID: 8113626203352260054, guid: 327bc514e7a49f74f9196853515952f5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: TowerSettings, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8113626203818020794, guid: 327bc514e7a49f74f9196853515952f5,
         type: 3}
@@ -1741,6 +1883,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HomePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3096043735135544411, guid: 9f2ed07e22846c947a29bd43edaf6ef9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5893845216559487257, guid: 9f2ed07e22846c947a29bd43edaf6ef9,
         type: 3}

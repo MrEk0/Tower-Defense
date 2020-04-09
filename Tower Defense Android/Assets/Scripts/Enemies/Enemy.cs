@@ -2,9 +2,20 @@
 using UnityEngine;
 using UnityEngine.Profiling;
 
+
+public enum EnemyClass
+{
+    Soldier,
+    DesertSoldier,
+    Stormtrooper,
+    Tank,
+    GreyAirplane,
+    GreenAirplane
+}
 public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemySettings enemyType;
+    [SerializeField] EnemyClass enemyClass; 
     [SerializeField] Transform path;
     [SerializeField] float rotationSpeed=10f;
 
@@ -38,15 +49,41 @@ public class Enemy : MonoBehaviour
         currentTarget = wayPoints[_wayPointNumber];
     }
 
-    //private void Start()
-    //{
-    //    HealthBar.Activate();
-    //}
+    private void Start()
+    {
+        //HealthBar.Activate();
+        SetUpAudio();
+    }
 
     private void OnBecameVisible()
     {
         HealthBar.SetMaxValue(_health);
         //HealthBar.Activate();
+    }
+
+    private void SetUpAudio()
+    {
+        switch(enemyClass)
+        {
+            case EnemyClass.DesertSoldier:
+                AudioManager.PlayDesertSoldierAudio();
+                break;
+            case EnemyClass.GreenAirplane:
+                AudioManager.PlayGreenAirplaneAudio();
+                break;
+            case EnemyClass.GreyAirplane:
+                AudioManager.PlayGreyAirplaneAudio();
+                break;
+            case EnemyClass.Soldier:
+                AudioManager.PlaySoldierAudio();
+                break;
+            case EnemyClass.Stormtrooper:
+                AudioManager.PlayStormtrooperAudio();
+                break;
+            case EnemyClass.Tank:
+                AudioManager.PlayTankAudio();
+                break;
+        }
     }
 
     private List<Transform> CreateListOfWayPoint()
@@ -126,13 +163,40 @@ public class Enemy : MonoBehaviour
     {
         _health = Mathf.Max(_health - damage, 0);
         HealthBar.ChangeSliderValue(_health);
+        SetUpHitAudio();
 
         if (_health == 0)
         {
             gameObject.SetActive(false);
             HealthBar.Deactivate();
 
+            AudioManager.PlayEnemyExplosionAudio();
             UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());
+        }
+    }
+
+    private void SetUpHitAudio()
+    {
+        switch(enemyClass)
+        {
+            case EnemyClass.DesertSoldier:
+                AudioManager.PlayBodyHitAudio();
+                break;
+            case EnemyClass.Soldier:
+                AudioManager.PlayBodyHitAudio();
+                break;
+            case EnemyClass.Stormtrooper:
+                AudioManager.PlayBodyHitAudio();
+                break;
+            case EnemyClass.Tank:
+                AudioManager.PlayBodyHitAudio();
+                break;
+            case EnemyClass.GreyAirplane:
+                AudioManager.PlayEnemyMetalHitAudio();
+                break;
+            case EnemyClass.GreenAirplane:
+                AudioManager.PlayEnemyMetalHitAudio();
+                break;
         }
     }
 }

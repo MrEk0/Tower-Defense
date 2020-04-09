@@ -27,7 +27,7 @@ public class DataSaver
         BinaryFormatter formatter = new BinaryFormatter();
         string path = GetFilePath();
 
-        FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
+        FileStream stream = new FileStream(path, FileMode.Create);
         PlayerData playerData = new PlayerData(/*soundVolume, musicVolume,*/ levelProgress);
 
         formatter.Serialize(stream, playerData);
@@ -38,6 +38,7 @@ public class DataSaver
     public static PlayerData LoadData()
     {
         string path = GetFilePath();
+        Debug.Log(path);
         if(File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -56,7 +57,7 @@ public class DataSaver
 
     private static string GetFilePath()
     {
-        string filePath = Path.Combine(Application.persistentDataPath + FILENAME);
+        string filePath = Path.Combine(Application.persistentDataPath, FILENAME);
         return filePath;
     }
 }

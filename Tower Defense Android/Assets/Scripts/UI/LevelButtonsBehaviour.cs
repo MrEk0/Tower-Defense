@@ -29,18 +29,20 @@ public class LevelButtonsBehaviour : MonoBehaviour
 
     public void ClickPlayButton()
     {
-        //AudioManager.PlayUIButtonAudio();
+        AudioManager.PlayUIButtonAudio();
 
-        //int sceneIndex = GameManager.NumberOfOpenedLevels + 1;
-        //StartCoroutine(LoadLevel(sceneIndex));
+        int sceneIndex = GameManager.GetCurrentLevel() + 1;
+        StartCoroutine(LoadLevel(sceneIndex));
     }
 
     public void LoadNextLevel()
     {
+        AudioManager.PlayUIButtonAudio();
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
         loadPanel.gameObject.SetActive(true);
         StartCoroutine(LoadLevel(nextSceneIndex));
+        GameManager.LevelAccomplished();
     }
 
     IEnumerator LoadLevel(int sceneIndex)
@@ -52,52 +54,52 @@ public class LevelButtonsBehaviour : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
-    //public void LoadMainMenu()
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    StartCoroutine(LoadLevel(0));
-    //}
+    public void LoadMainMenu()
+    {
+        AudioManager.PlayUIButtonAudio();
+        StartCoroutine(LoadLevel(0));
+    }
 
-    //public void PlayAgain()
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    GameManager.ShowAds();
-    //    int levelIndex = SceneManager.GetActiveScene().buildIndex;
-    //    StartCoroutine(LoadLevel(levelIndex));
-    //}
+    public void PlayAgain()
+    {
+        AudioManager.PlayUIButtonAudio();
+        //GameManager.ShowAds();
+        int levelIndex = SceneManager.GetActiveScene().buildIndex;
+        StartCoroutine(LoadLevel(levelIndex));
+    }
 
     //public void PlayPause()
     //{
     //    GameManager.PauseGame();
     //}
 
-    //public void OpenSettingsPanel()
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    AudioManager.LoadVolume();
-    //}
+    public void OpenSettingsPanel()
+    {
+        AudioManager.PlayUIButtonAudio();
+        AudioManager.LoadVolume();
+    }
 
-    //public void CloseSettingButton()
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    GameManager.SaveProgress();
-    //}
+    public void CloseSettingButton()
+    {
+        AudioManager.PlayUIButtonAudio();
+        //GameManager.SaveProgress();
+    }
 
-    //public void ResumeGame()
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    GameManager.ResumeGame();
-    //}
+    public void ResumeGame()
+    {
+        AudioManager.PlayUIButtonAudio();
+        //GameManager.ResumeGame();
+    }
 
-    //public void Quit()
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    Application.Quit();
-    //}
+    public void Quit()
+    {
+        AudioManager.PlayUIButtonAudio();
+        Application.Quit();
+    }
 
     public void LoadSpecificLevel(int levelIndex)
     {
-        //AudioManager.PlayUIButtonAudio();
+        AudioManager.PlayUIButtonAudio();
         StartCoroutine(LoadLevel(levelIndex));
     }
 }

@@ -29,7 +29,7 @@ using UnityEngine.EventSystems;
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            //AudioManager.PlayUISwipeAudio();
+            AudioManager.PlayUISwipeAudio();
 
             float touchDifference = (eventData.pressPosition.x - eventData.position.x) / levelPanel.rect.width;
             if (Mathf.Abs(touchDifference) >= swipeThreshold)

@@ -139,17 +139,45 @@ public class Tower : MonoBehaviour
     {
         if (timeSinceLastShot > shootInterval)
         {
-            GameObject bullet = bullets.First(b => !b.activeInHierarchy);
-            bullet.GetComponent<Bullet>().SetParameters(towerType.BulletSpeed, damage);
-            bullet.transform.position = myTransform.position;
-            bullet.transform.rotation = myTransform.rotation;
-            bullet.GetComponent<Bullet>().target = target;
-            bullet.SetActive(true);
+            SetUpBullet();
+            SetUpAudio();
 
             timeSinceLastShot = 0f;
         }
 
         timeSinceLastShot += Time.deltaTime;
+    }
+
+    private void SetUpBullet()
+    {
+        GameObject bullet = bullets.First(b => !b.activeInHierarchy);
+        bullet.GetComponent<Bullet>().SetParameters(towerType.BulletSpeed, damage);
+        bullet.transform.position = myTransform.position;
+        bullet.transform.rotation = myTransform.rotation;
+        bullet.GetComponent<Bullet>().target = target;
+        bullet.SetActive(true);
+    }
+
+    private void SetUpAudio()
+    {
+        switch(towerClass)
+        {
+            case TowerClass.ClosedDoubleRocket:
+                AudioManager.PlayRocketTowerFireAudio();
+                break;
+            case TowerClass.DoubleRocket:
+                AudioManager.PlayRocketTowerFireAudio();
+                break;
+            case TowerClass.Green:
+                AudioManager.PlayBulletTowerFireAudio();
+                break;
+            case TowerClass.Red:
+                AudioManager.PlayBulletTowerFireAudio();
+                break;
+            case TowerClass.Rocket:
+                AudioManager.PlayRocketTowerFireAudio();
+                break;
+        }
     }
 
     private void OnMouseDown()

@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     public static void SaveProgress()
     {
-        DataSaver.SaveData(instance.currentLevel);
+        //DataSaver.SaveData(instance.currentLevel);
     }
 
     public static void LoadProgress()
@@ -88,9 +88,15 @@ public class GameManager : MonoBehaviour
         return instance.numberOfLevels;
     }
 
+    public static int GetCurrentLevel()
+    {
+        return instance.currentLevel;
+    }
+
     public static void LevelAccomplished()
     {
         instance.currentLevel++;
         FindLastPathPoint();
+        SaveProgress();
     }
 }

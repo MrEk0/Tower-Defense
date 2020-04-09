@@ -83,6 +83,7 @@ public class UIManager : MonoBehaviour
     {
         coins += cost;
         coinsText.text = "Coins " + coins;
+        AudioManager.PlayPickUpAudio();
     }
 
     public void GetDamage(float amount)
@@ -96,7 +97,7 @@ public class UIManager : MonoBehaviour
         else
         {
             livesText.text = "Health 0";
-
+            AudioManager.PlayGameOverAudio();
             gameoverPanel.SetActive(true);
             Time.timeScale = 0f;
         }
