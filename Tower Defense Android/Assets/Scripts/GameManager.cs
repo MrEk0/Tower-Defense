@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     private int currentLevel = 0;
     private List<Transform> wayPoints;
     private Transform pathLastPoint;
+
+    public static event Action<int> onProgressLoaded;
 
     private void Awake()
     {
@@ -26,6 +29,11 @@ public class GameManager : MonoBehaviour
         FindLastPathPoint();
     }
 
+    //private void Start()
+    //{
+    //    LoadProgress();  
+    //}
+
     private static void FindLastPathPoint()
     {
         instance.wayPoints = new List<Transform>();
@@ -39,6 +47,31 @@ public class GameManager : MonoBehaviour
 
         instance.pathLastPoint=instance.wayPoints[numberOfWayPoints-1];
     }
+
+    public static void SaveProgress()
+    {
+        DataSaver.SaveData(instance.currentLevel);
+    }
+
+    public static void LoadProgress()
+    {
+        PlayerData progress = DataSaver.LoadData();
+
+        if(progress!=null)
+        {
+            instance.currentLevel = progress.levelProgress;
+            //onProgressLoaded(instance.currentLevel);
+        }
+        onProgressLoaded(instance.currentLevel);
+    }
+
+    //public static void OpenAvailableLevels()
+    //{
+    //    for (int i = 0; i < instance.currentLevel; i++)
+    //    {
+
+    //    }
+    //}
 
     public static Transform GetLastPathPoint()
     {

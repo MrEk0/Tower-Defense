@@ -23,6 +23,16 @@ public class LevelCreator : MonoBehaviour
         thisRect = GetComponent<RectTransform>();
     }
 
+    private void OnEnable()
+    {
+        GameManager.onProgressLoaded += OpenAvailableLevels;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.onProgressLoaded -= OpenAvailableLevels;
+    }
+
     private void Start()
     {
         numberOfLevels = GameManager.GetNumberOfLevels();
@@ -101,6 +111,14 @@ public class LevelCreator : MonoBehaviour
             button.transform.SetParent(canvas.transform, false);
             button.transform.SetParent(parent.transform);
             button.GetComponent<LevelButton>().InstantiateButton(levelCount, levelButtonsBehaviour);
+        }
+    }
+
+    private void OpenAvailableLevels(int numberOfLevels)
+    {
+        for(int i=0; i<=numberOfLevels; i++)
+        {
+            buttons[i].GetComponent<LevelButton>().RevealButton();
         }
     }
 }

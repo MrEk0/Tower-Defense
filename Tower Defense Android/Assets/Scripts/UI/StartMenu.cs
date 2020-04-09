@@ -48,7 +48,7 @@ using UnityEngine;
 
         public void PushLevelButton()
         {
-            //GameManager.LoadProgress();
+            GameManager.LoadProgress();
             //AudioManager.PlayUIButtonAudio();
             animator.ResetTrigger(ids[1]);
             animator.SetTrigger(ids[0]);
