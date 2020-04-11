@@ -12,7 +12,7 @@ public class Tower : MonoBehaviour
 
     int currentLevel = 1;
     float range;
-    float shootInterval;
+    float shotInterval;
     float damage;
     float timeSinceLastShot = Mathf.Infinity;
 
@@ -77,7 +77,7 @@ public class Tower : MonoBehaviour
     private void UpdateParameters()
     {
         range = towerUpdate.GetRange(towerClass, currentLevel);
-        shootInterval = towerUpdate.GetShotInterval(towerClass, currentLevel);
+        shotInterval = towerUpdate.GetShotInterval(towerClass, currentLevel);
         damage = towerUpdate.GetDamage(towerClass, currentLevel);
     }
 
@@ -102,7 +102,8 @@ public class Tower : MonoBehaviour
     private int GetNumberOfActiveBullets()
     {
         float timeToGetRange = range / towerType.BulletSpeed;
-        return Mathf.CeilToInt(timeToGetRange);
+        Debug.Log(Mathf.CeilToInt(timeToGetRange / shotInterval));
+        return Mathf.CeilToInt(timeToGetRange/shotInterval);
     }
 
     private void OnDrawGizmos()//delete
@@ -137,7 +138,7 @@ public class Tower : MonoBehaviour
 
     private void Shoot()
     {
-        if (timeSinceLastShot > shootInterval)
+        if (timeSinceLastShot > shotInterval)
         {
             SetUpBullet();
             SetUpAudio();

@@ -110,10 +110,10 @@ public class UIManager : MonoBehaviour
     public void BuyTower(TowerSettings tower)
     {
         float cost = tower.BuildPrice;
-
-        coins -= cost;
-        if (coins >= 0)
+    
+        if (coins >= cost)
         {
+            coins -= cost;
             coinsText.text = "Coins " + coins;
         }
         else

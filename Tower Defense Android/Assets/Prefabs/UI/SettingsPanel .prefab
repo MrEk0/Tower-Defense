@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliderType: 1
   soundImage: {fileID: 2465696225509285745}
-  soundOnSprite: {fileID: 21300000, guid: 9994bfffb296ac24b996d3d9a12ca661, type: 3}
   soundOffSprite: {fileID: 21300000, guid: 0c9b8ad4d452b3e45bf4234492e38967, type: 3}
 --- !u!1 &2666635586581195136
 GameObject:
@@ -577,7 +576,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sliderType: 0
   soundImage: {fileID: 2666635586586703744}
-  soundOnSprite: {fileID: 21300000, guid: 9994bfffb296ac24b996d3d9a12ca661, type: 3}
   soundOffSprite: {fileID: 21300000, guid: 0c9b8ad4d452b3e45bf4234492e38967, type: 3}
 --- !u!1001 &1916549616934607656
 PrefabInstance:
@@ -1058,6 +1056,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327884901101905160, guid: 5826a6665c402244aa73ba4ebaa80d27,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -6.4674683
       objectReference: {fileID: 0}
     - target: {fileID: 5327884901725268211, guid: 5826a6665c402244aa73ba4ebaa80d27,
         type: 3}

@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        if (target == null)
+        if (target.gameObject.activeInHierarchy == false)//improve. if target becomes invisible we disable bullet
         {
             gameObject.SetActive(false);
         }
