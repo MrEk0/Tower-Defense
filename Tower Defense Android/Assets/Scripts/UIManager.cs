@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject towerPanel;
     [SerializeField] GameObject updatePanel;
     [SerializeField] GameObject gameoverPanel;
+    [SerializeField] GameObject winPanel;
     [SerializeField] GameObject ignoreRaycastPanel;
     [SerializeField] HealthBar healthBarPrefab;
     [SerializeField] Transform healthBarParent;
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
 
     float coins;
     float lives;
+    //float numberOfWaves;
     List<HealthBar> healthBars;
     Camera mainCamera;
     Vector2 sellPanelScreenBounds;
@@ -55,21 +57,18 @@ public class UIManager : MonoBehaviour
 
         coins = startNumberOfCoins;
         lives = startAmountOfHealth;
+        //numberOfWaves = WaveManager.Instance.GetNumberOfWaves();
 
         Time.timeScale = 1f;//????
 
         SetUpHealthBars();
         sellPanelScreenBounds = RectTransformExtensions.CalculateScreenBounds(towerPanel, canvasScaler);
-
-        //int screeWidht = Screen.width;
-        //int screenHeight = Screen.height;
-        //Debug.Log(screenHeight);
     }
 
     private void SetUpHealthBars()
     {
         healthBars = new List<HealthBar>();
-        int numberOfEnemies = WaveManager.Instance.GetNumberOfAllEnemies;
+        int numberOfEnemies = WaveManager.Instance.GetNumberOfAllEnemies();
 
         for (int i=0; i<numberOfEnemies; i++)
         {
@@ -103,9 +102,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ChangeWaveText(int waveNumber, int wavesCount)
+    private void ChangeWaveText(int waveNumber, int numberOfWaves)
     {
-        wavesText.text = "Wave " + (waveNumber + 1) + "/" + wavesCount;
+        wavesText.text = "Wave " + (waveNumber + 1) + "/" + numberOfWaves;
     }
 
     public void BuyTower(TowerSettings tower)
@@ -172,5 +171,12 @@ public class UIManager : MonoBehaviour
         //healthBar.gameObject.SetActive(true);
 
         numberOfHealthBar++;
+    }
+
+    public void ShowWinPanel()
+    {
+        ignoreRaycastPanel.SetActive(true);
+        winPanel.SetActive(true);
+        AudioManager.PlayCongratulationsAudio();
     }
 }

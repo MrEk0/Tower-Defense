@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemySettings enemyType;
     [SerializeField] EnemyClass enemyClass; 
-    [SerializeField] Transform path;
+    //[SerializeField] Transform path;
     [SerializeField] float rotationSpeed=10f;
 
     private float _health;
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private float _angleOffset=180f;
     private int _wayPointNumber = 0;
 
-    //Transform path;
+    Transform path;
     List<Transform> wayPoints;
     Vector2 newPos;
     Transform currentTarget;    
@@ -62,10 +62,10 @@ public class Enemy : MonoBehaviour
         //HealthBar.Activate();
     }
 
-    private void OnBecameInvisible()
-    {
+    //private void OnBecameInvisible()
+    //{
         
-    }
+    //}
 
     private void SetUpAudio()
     {
@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
 
     private List<Transform> CreateListOfWayPoint()
     {
-        //path = GameManager.GetCurrentPath();
+        path = GameManager.GetCurrentPath();
         List<Transform> wayPoints = new List<Transform>();
 
         foreach(Transform transform in path)
@@ -132,7 +132,9 @@ public class Enemy : MonoBehaviour
             {
                 UIManager.Instance.GetDamage(_damage);
                 HealthBar.Deactivate();
-                gameObject.SetActive(false);
+                //wavemanager deactivate
+                WaveManager.Instance.DeactivateEnemies(gameObject);
+                //gameObject.SetActive(false);
             }
         }
     }
@@ -173,7 +175,9 @@ public class Enemy : MonoBehaviour
 
         if (_health == 0)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            //wave manager deactivate
+            WaveManager.Instance.DeactivateEnemies(gameObject);
             HealthBar.Deactivate();
 
             AudioManager.PlayEnemyExplosionAudio();

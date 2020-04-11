@@ -37,6 +37,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
         AudioManager.PlayUIButtonAudio();
 
         int sceneIndex = GameManager.GetCurrentLevel() + 1;
+        loadPanel.gameObject.SetActive(true);
         StartCoroutine(LoadLevel(sceneIndex));
         GameManager.Save();
     }

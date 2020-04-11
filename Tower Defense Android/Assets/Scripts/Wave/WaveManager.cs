@@ -15,15 +15,18 @@ public class WaveManager : MonoBehaviour
     WaveSettings currentWave;
     List<Enemy> currentEnemyList;
 
-    float duration;
+    float waveDuration;
     float startTime;
+    float waveTime;
     float timeBetweenSpawns;
     float timeSinceWaveStarted = 0f;
     float timeSinceEnemyDropped = Mathf.Infinity;
 
     int waveNumber = 0;
+    int numberOfWaves;
     int enemyNumberInWave = 0;
     int numberOfEnemies = 0;
+    int numberOfDeactivatedEnemies = 0;
     bool canSpawn = true;
     Dictionary< int, List<Enemy>> waveOfEnemies = new Dictionary<int, List<Enemy>>();
 
@@ -35,6 +38,13 @@ public class WaveManager : MonoBehaviour
 
         SetUpAllWaves();
         SetUpWaveSettings();
+
+        numberOfWaves = waves.Count;
+    }
+
+    private void Start()
+    {
+        onWaveChanged(waveNumber, numberOfWaves);
     }
 
     private void SetUpAllWaves()
@@ -49,13 +59,19 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+        CheckWaveTime();
+
+        ActivateEnemies();
+    }
+
+    private void CheckWaveTime()
+    {
         timeSinceWaveStarted += Time.deltaTime;
 
-        if (timeSinceWaveStarted > duration+startTime)
+        if (timeSinceWaveStarted > waveTime)
         {
-            if (waveNumber < waves.Count-1)
+            if (waveNumber < numberOfWaves - 1)
             {
-                waveNumber++;
                 UpdateWave();
             }
             else
@@ -64,8 +80,11 @@ public class WaveManager : MonoBehaviour
                 //gameover
             }
         }
+    }
 
-        if (timeSinceWaveStarted >= startTime && canSpawn) 
+    private void ActivateEnemies()
+    {
+        if (timeSinceWaveStarted >= startTime && canSpawn)
         {
             if (timeSinceEnemyDropped > timeBetweenSpawns)
             {
@@ -84,7 +103,27 @@ public class WaveManager : MonoBehaviour
         timeSinceEnemyDropped += Time.deltaTime;
     }
 
-    public int GetNumberOfAllEnemies => numberOfEnemies;
+    public void DeactivateEnemies(GameObject enemy)
+    {
+        enemy.SetActive(false);
+        numberOfDeactivatedEnemies++;
+        //Debug.Log(numberOfEnemies);
+        //Debug.Log(numberOfDeactivatedEnemies);
+        if(numberOfDeactivatedEnemies==numberOfEnemies)
+        {
+            UIManager.Instance.ShowWinPanel();
+        }
+    }
+
+    public int GetNumberOfWaves()
+    {
+        return numberOfWaves;
+    }
+
+    public int GetNumberOfAllEnemies()
+    {
+        return numberOfEnemies;
+    }
 
     private void EnemyInstantiation(Enemy enemy)
     {
@@ -97,9 +136,10 @@ public class WaveManager : MonoBehaviour
 
     private void UpdateWave()
     {
-        SetUpWaveSettings();
+        waveNumber++;
+        onWaveChanged(waveNumber, numberOfWaves);
 
-        onWaveChanged(waveNumber, waves.Count);
+        SetUpWaveSettings();
 
         timeSinceWaveStarted = 0f;
         enemyNumberInWave = 0;
@@ -110,8 +150,9 @@ public class WaveManager : MonoBehaviour
         currentWave = waves[waveNumber];
         currentEnemyList = waveOfEnemies[waveNumber];
 
-        duration = currentWave.Duration;
+        waveDuration = currentWave.Duration;
         startTime = currentWave.StartSpawnTime;
+        waveTime = waveDuration + startTime;
         timeBetweenSpawns = currentWave.TimeBetweenSpawns;
     }
 }
