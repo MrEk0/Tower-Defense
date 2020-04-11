@@ -19,13 +19,18 @@ public class LevelButtonsBehaviour : MonoBehaviour
         //animator = GetComponent<Animator>();
         loadPanel = GetComponent<LoadPanelShader>();
         _timeToLoad = loadPanel.GetLoadingTime()+finishSceneTime;
+
+        GameManager.LoadProgress();
+        AudioManager.LoadVolume();
     }
 
     private void Start()
     {
         //numberOfLevels = GameManager.GetLevelNumber();
         loadPanel.StartScene();
-    }
+        //GameManager.LoadProgress();
+        //AudioManager.LoadVolume();
+}
 
     public void ClickPlayButton()
     {
@@ -33,6 +38,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
 
         int sceneIndex = GameManager.GetCurrentLevel() + 1;
         StartCoroutine(LoadLevel(sceneIndex));
+        GameManager.Save();
     }
 
     public void LoadNextLevel()
@@ -76,12 +82,14 @@ public class LevelButtonsBehaviour : MonoBehaviour
     public void OpenSettingsPanel()
     {
         AudioManager.PlayUIButtonAudio();
-        AudioManager.LoadVolume();
+        //AudioManager.LoadVolume();
+        //GameManager.LoadProgress();
     }
 
     public void CloseSettingButton()
     {
         AudioManager.PlayUIButtonAudio();
+        //GameManager.Save();
         //GameManager.SaveProgress();
     }
 

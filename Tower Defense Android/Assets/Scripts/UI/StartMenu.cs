@@ -1,11 +1,9 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class StartMenu : MonoBehaviour
 {
+    [SerializeField] GameObject settingPanel;
+
     Animator animator;
 
     const string ClickLevelButton = "ClickLevelButton";
@@ -30,7 +28,8 @@ public class StartMenu : MonoBehaviour
 
     public void PushSettingsButton()
     {
-        AudioManager.LoadVolume();
+        //GameManager.Load();
+        //settingPanel.SetActive(true);
         AudioManager.PlayUIButtonAudio();
 
         animator.ResetTrigger(ids[3]);
@@ -40,8 +39,7 @@ public class StartMenu : MonoBehaviour
     public void PushBackSettings()
     {
         AudioManager.PlayUIButtonAudio();
-        //GameManager.SaveProgress();
-        AudioManager.SaveVolume();
+        //GameManager.Save();
 
         animator.ResetTrigger(ids[2]);
         animator.SetTrigger(ids[3]);
@@ -49,7 +47,7 @@ public class StartMenu : MonoBehaviour
 
     public void PushLevelButton()
     {
-        GameManager.LoadProgress();
+        //GameManager.Load();
         AudioManager.PlayUIButtonAudio();
         animator.ResetTrigger(ids[1]);
         animator.SetTrigger(ids[0]);

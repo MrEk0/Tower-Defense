@@ -59,11 +59,10 @@ public class AudioManager : MonoBehaviour
     //AudioSource rocketSource;
     AudioSource stingSource;
 
-    //public static float MusicVolume { get; private set; }
-    //public static float SoundVolume { get; private set; }
-    private float musicVolume;
-    private float soundVolume;
-    //public static event Action<float, float> onVolumeChanged;
+    public static float MusicVolume { get; private set; }
+    public static float SoundVolume { get; private set; }
+
+    public static event Action<float, float> onAudioLoaded;
 
     private void Awake()
     {
@@ -109,12 +108,12 @@ public class AudioManager : MonoBehaviour
         PlayMainAudio();
     }
 
-    private void Start()
-    {
-        LoadVolume();
-    }
+    //private void Start()
+    //{
+    //    LoadVolume();
+    //}
 
-    private void PlayMainAudio()//yes
+    private void PlayMainAudio()
     {
         if (instance == null)
             return;
@@ -126,9 +125,12 @@ public class AudioManager : MonoBehaviour
 
     public static void StopAllSounds()
     {
-        instance.soundGroup.audioMixer.SetFloat("Sound", 0f);
+        //instance.soundGroup.audioMixer.SetFloat("Sound", 0f);
         //instance.tankPlayerSource.Stop();
+        
     }
+
+
 
     public static void PlayTankAudio()
     {
@@ -190,7 +192,7 @@ public class AudioManager : MonoBehaviour
         instance.desertSoldierSource.Play();
     }
 
-    public static void PlayGameOverAudio()//yes
+    public static void PlayGameOverAudio()
     {
         if (instance == null)
             return;
@@ -201,7 +203,7 @@ public class AudioManager : MonoBehaviour
         instance.voiceSource.Play();
     }
 
-    public static void PlayCongratulationsAudio()//yes
+    public static void PlayCongratulationsAudio()
     {
         if (instance == null)
             return;
@@ -212,7 +214,7 @@ public class AudioManager : MonoBehaviour
         instance.voiceSource.Play();
     }
 
-    public static void PlayUIButtonAudio()//yes
+    public static void PlayUIButtonAudio()
     {
         if (instance == null)
             return;
@@ -221,7 +223,7 @@ public class AudioManager : MonoBehaviour
         instance.stingSource.Play();
     }
 
-    public static void PlayUISwipeAudio()//yes
+    public static void PlayUISwipeAudio()
     {
         if (instance == null)
             return;
@@ -230,7 +232,7 @@ public class AudioManager : MonoBehaviour
         instance.stingSource.Play();
     }
 
-    public static void PlayEnemyExplosionAudio()//yes
+    public static void PlayEnemyExplosionAudio()
     {
         if (instance == null)
             return;
@@ -240,7 +242,7 @@ public class AudioManager : MonoBehaviour
         instance.enemyExplosionSource.Play();
     }
 
-    public static void PlayRocketTowerFireAudio()//yes
+    public static void PlayRocketTowerFireAudio()
     {
         if (instance == null)
             return;
@@ -249,7 +251,7 @@ public class AudioManager : MonoBehaviour
         instance.rocketTowerSource.Play();
     }
 
-    public static void PlayBulletTowerFireAudio()//yes
+    public static void PlayBulletTowerFireAudio()
     {
         if (instance == null)
             return;
@@ -258,7 +260,7 @@ public class AudioManager : MonoBehaviour
         instance.bulletTowerSource.Play();
     }
 
-    public static void PlayEnemyMetalHitAudio()//yes
+    public static void PlayEnemyMetalHitAudio()
     {
         if (instance == null)
             return;
@@ -267,7 +269,7 @@ public class AudioManager : MonoBehaviour
         instance.enemyMetalImpactSource.Play();
     }
 
-    public static void PlayBodyHitAudio()//yes
+    public static void PlayBodyHitAudio()
     {
         if (instance == null)
             return;
@@ -276,7 +278,7 @@ public class AudioManager : MonoBehaviour
         instance.enemyBodyImpactSource.Play();
     }
 
-    public static void PlayPickUpAudio()//yes
+    public static void PlayPickUpAudio()
     {
         if (instance == null)
             return;
@@ -285,21 +287,16 @@ public class AudioManager : MonoBehaviour
         instance.stingSource.Play();
     }
 
-    public /*static */void SetSoundVolume(float volume)
+    public static void SetSoundVolume(float volume)
     {
-        /*instance.*/soundVolume = volume;
-        /*instance.*/soundGroup.audioMixer.SetFloat("Sound", volume);
+        SoundVolume = volume;
+        instance.soundGroup.audioMixer.SetFloat("Sound", volume);
     }
 
-    public /*static*/ void SetMusicVolume(float volume)
+    public static void SetMusicVolume(float volume)
     {
-        /*instance.*/musicVolume = volume;
-        /*instance.*/musicGroup.audioMixer.SetFloat("Music", volume);
-    }
-
-    public static void SaveVolume()
-    {
-        DataSaver.SaveData(instance.soundVolume, instance.musicVolume);
+        MusicVolume = volume;
+        instance.musicGroup.audioMixer.SetFloat("Music", volume);
     }
 
     public static void LoadVolume()
@@ -308,13 +305,10 @@ public class AudioManager : MonoBehaviour
 
         if (data != null)
         {
-            instance.musicVolume = data.musicVolume;
-            instance.soundVolume = data.soundVolume;
 
-            instance.SetMusicVolume(instance.musicVolume);
-            instance.SetSoundVolume(instance.soundVolume);
-
-            //onVolumeChanged(MusicVolume, SoundVolume);
+            SetMusicVolume(data.musicVolume);
+            SetSoundVolume(data.soundVolume);
+            //onAudioLoaded(MusicVolume, SoundVolume);
         }
     }
 }

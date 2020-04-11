@@ -9,12 +9,12 @@ public class DataSaver
 {
     const string FILENAME = "save.data";
 
-    public static void SaveData(float soundVolume, float musicVolume)
+    public static void SaveData(float soundVolume, float musicVolume, int levelProgress)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = GetFilePath();
 
-        FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
+        FileStream stream = new FileStream(path, FileMode.Create);
         PlayerData playerData = new PlayerData(soundVolume, musicVolume);
 
         formatter.Serialize(stream, playerData);
@@ -22,23 +22,23 @@ public class DataSaver
 
     }
 
-    public static void SaveData(/*float soundVolume, float musicVolume,*/ int levelProgress)
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = GetFilePath();
+    //public static void SaveData(/*float soundVolume, float musicVolume,*/ int levelProgress)
+    //{
+    //    BinaryFormatter formatter = new BinaryFormatter();
+    //    string path = GetFilePath();
 
-        FileStream stream = new FileStream(path, FileMode.Create);
-        PlayerData playerData = new PlayerData(/*soundVolume, musicVolume,*/ levelProgress);
+    //    FileStream stream = new FileStream(path, FileMode.Create);
+    //    PlayerData playerData = new PlayerData(/*soundVolume, musicVolume,*/ levelProgress);
 
-        formatter.Serialize(stream, playerData);
-        stream.Close();
+    //    formatter.Serialize(stream, playerData);
+    //    stream.Close();
 
-    }
+    //}
 
     public static PlayerData LoadData()
     {
         string path = GetFilePath();
-        Debug.Log(path);
+
         if(File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

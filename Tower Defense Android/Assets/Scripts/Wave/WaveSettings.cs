@@ -23,7 +23,7 @@ public class WaveSettings : ScriptableObject
     public List<Enemy> GetAllWaveEnemies()
     {
         List<Enemy> enemies = new List<Enemy>();
-        int numberOfEnemies = (int)(duration * 1/timeBetweenSpawns)+1;
+        int numberOfEnemies = (int)(duration / timeBetweenSpawns) + 1;
         
         for(int i=0; i<numberOfEnemies; i++)
         {

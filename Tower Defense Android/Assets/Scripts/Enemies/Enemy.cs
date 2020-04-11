@@ -52,13 +52,19 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         //HealthBar.Activate();
-        SetUpAudio();
+        //SetUpAudio();
     }
 
     private void OnBecameVisible()
     {
         HealthBar.SetMaxValue(_health);
+        SetUpAudio();
         //HealthBar.Activate();
+    }
+
+    private void OnBecameInvisible()
+    {
+        
     }
 
     private void SetUpAudio()

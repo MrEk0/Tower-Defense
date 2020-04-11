@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     private List<Transform> wayPoints;
     private Transform pathLastPoint;
 
-    public static event Action<int> onProgressLoaded;
+    //public static event Action<int> onProgressLoaded;
+    //public static event Action<float, float> onAudioLoaded;
 
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     //private void Start()
     //{
-    //    LoadProgress();  
+    //    LoadProgress();
     //}
 
     private static void FindLastPathPoint()
@@ -48,9 +49,9 @@ public class GameManager : MonoBehaviour
         instance.pathLastPoint=instance.wayPoints[numberOfWayPoints-1];
     }
 
-    public static void SaveProgress()
+    public static void Save()
     {
-        //DataSaver.SaveData(instance.currentLevel);
+        DataSaver.SaveData(AudioManager.SoundVolume, AudioManager.MusicVolume, instance.currentLevel);
     }
 
     public static void LoadProgress()
@@ -60,18 +61,18 @@ public class GameManager : MonoBehaviour
         if(progress!=null)
         {
             instance.currentLevel = progress.levelProgress;
-            //onProgressLoaded(instance.currentLevel);
+            //float soundVol = progress.soundVolume;
+            //float musicVol = progress.musicVolume;
+
+            //AudioManager.SetSoundVolume(soundVol);
+            //AudioManager.SetMusicVolume(musicVol);
+
+            //onAudioLoaded(musicVol, soundVol);
+            //Debug.Log("Load " + soundVol);
         }
-        onProgressLoaded(instance.currentLevel);
+ 
+        //onProgressLoaded(instance.currentLevel);
     }
-
-    //public static void OpenAvailableLevels()
-    //{
-    //    for (int i = 0; i < instance.currentLevel; i++)
-    //    {
-
-    //    }
-    //}
 
     public static Transform GetLastPathPoint()
     {
@@ -97,6 +98,6 @@ public class GameManager : MonoBehaviour
     {
         instance.currentLevel++;
         FindLastPathPoint();
-        SaveProgress();
+        Save();
     }
 }

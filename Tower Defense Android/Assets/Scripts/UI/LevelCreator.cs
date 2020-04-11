@@ -23,21 +23,21 @@ public class LevelCreator : MonoBehaviour
         thisRect = GetComponent<RectTransform>();
     }
 
-    private void OnEnable()
-    {
-        GameManager.onProgressLoaded += OpenAvailableLevels;
-    }
+    //private void OnEnable()
+    //{
+    //    GameManager.onProgressLoaded += OpenAvailableLevels;
+    //}
 
-    private void OnDisable()
-    {
-        GameManager.onProgressLoaded -= OpenAvailableLevels;
-    }
+    //private void OnDisable()
+    //{
+    //    GameManager.onProgressLoaded -= OpenAvailableLevels;
+    //}
 
     private void Start()
     {
         numberOfLevels = GameManager.GetNumberOfLevels();
         CreateLevelPanel();
-
+        OpenAvailableLevels();
         //GameManager.levelButtons = buttons;
     }
 
@@ -114,9 +114,11 @@ public class LevelCreator : MonoBehaviour
         }
     }
 
-    private void OpenAvailableLevels(int numberOfLevels)
+    private void OpenAvailableLevels()
     {
-        for(int i=0; i<=numberOfLevels; i++)
+        float numberOfAvailableLevels=GameManager.GetCurrentLevel();
+
+        for(int i=0; i<=numberOfAvailableLevels; i++)
         {
             buttons[i].GetComponent<LevelButton>().RevealButton();
         }
