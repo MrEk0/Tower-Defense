@@ -59,7 +59,7 @@ public class UIManager : MonoBehaviour
         lives = startAmountOfHealth;
         //numberOfWaves = WaveManager.Instance.GetNumberOfWaves();
 
-        Time.timeScale = 1f;//????
+        //Time.timeScale = 1f;//????
 
         SetUpHealthBars();
         sellPanelScreenBounds = RectTransformExtensions.CalculateScreenBounds(towerPanel, canvasScaler);
@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
     {
         lives -= amount;
 
-        if (lives >= 0)
+        if (lives > 0)
         {
             livesText.text = "Health " + lives;
         }
@@ -98,7 +98,8 @@ public class UIManager : MonoBehaviour
             livesText.text = "Health 0";
             AudioManager.PlayGameOverAudio();
             gameoverPanel.SetActive(true);
-            Time.timeScale = 0f;
+            GameManager.isGameOver = true;
+            //Time.timeScale = 0f;
         }
     }
 
@@ -109,6 +110,8 @@ public class UIManager : MonoBehaviour
 
     public void BuyTower(TowerSettings tower)
     {
+        AudioManager.PlayUIButtonAudio();
+
         float cost = tower.BuildPrice;
     
         if (coins >= cost)
@@ -128,6 +131,7 @@ public class UIManager : MonoBehaviour
         coins += Mathf.Round(sellingCost);
         coinsText.text = "Coins " + coins;
 
+        AudioManager.PlayUIButtonAudio();
         Destroy(TowerToWork);//????
     }
 
@@ -140,6 +144,7 @@ public class UIManager : MonoBehaviour
             coins -= price;
             coinsText.text = "Coins " + coins;//method
             onTowerUpdated();
+            AudioManager.PlayUIButtonAudio();
         }
     }
 

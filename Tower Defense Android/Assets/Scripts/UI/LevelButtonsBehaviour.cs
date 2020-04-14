@@ -28,9 +28,10 @@ public class LevelButtonsBehaviour : MonoBehaviour
     {
         //numberOfLevels = GameManager.GetLevelNumber();
         loadPanel.StartScene();
+        GameManager.ReloadLevel();
         //GameManager.LoadProgress();
         //AudioManager.LoadVolume();
-}
+    }
 
     public void ClickPlayButton()
     {
@@ -64,39 +65,45 @@ public class LevelButtonsBehaviour : MonoBehaviour
     public void LoadMainMenu()
     {
         AudioManager.PlayUIButtonAudio();
+        loadPanel.gameObject.SetActive(true);
         StartCoroutine(LoadLevel(0));
     }
 
     public void PlayAgain()
     {
         AudioManager.PlayUIButtonAudio();
-        //GameManager.ShowAds();
         int levelIndex = SceneManager.GetActiveScene().buildIndex;
+        loadPanel.gameObject.SetActive(true);
         StartCoroutine(LoadLevel(levelIndex));
     }
 
-    //public void PlayPause()
+    public void PlayPause()
+    {
+        AudioManager.PlayUIButtonAudio();
+        AudioManager.StopAllActiveSounds();
+        GameManager.isGamePaused = true;
+        //GameManager.PauseGame();
+    }
+
+    //public void OpenSettingsPanel()
     //{
-    //    GameManager.PauseGame();
+    //    AudioManager.PlayUIButtonAudio();
+    //    //AudioManager.LoadVolume();
+    //    //GameManager.LoadProgress();
     //}
 
-    public void OpenSettingsPanel()
-    {
-        AudioManager.PlayUIButtonAudio();
-        //AudioManager.LoadVolume();
-        //GameManager.LoadProgress();
-    }
-
-    public void CloseSettingButton()
-    {
-        AudioManager.PlayUIButtonAudio();
-        //GameManager.Save();
-        //GameManager.SaveProgress();
-    }
+    //public void CloseSettingButton()
+    //{
+    //    AudioManager.PlayUIButtonAudio();
+    //    //GameManager.Save();
+    //    //GameManager.SaveProgress();
+    //}
 
     public void ResumeGame()
     {
         AudioManager.PlayUIButtonAudio();
+        AudioManager.PlayActiveSounds();
+        GameManager.isGamePaused = false;
         //GameManager.ResumeGame();
     }
 
@@ -109,6 +116,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
     public void LoadSpecificLevel(int levelIndex)
     {
         AudioManager.PlayUIButtonAudio();
+        loadPanel.gameObject.SetActive(true);
         StartCoroutine(LoadLevel(levelIndex));
     }
 }

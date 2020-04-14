@@ -107,11 +107,17 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.isGamePaused || GameManager.isGameOver)
+            return;
+
         ReachedWaypointBehaviour();
     }
 
     private void FixedUpdate()
     {
+        if (GameManager.isGamePaused || GameManager.isGameOver)
+            return;
+
         Profiler.BeginSample("FOLLOW");
         Move();
         Profiler.EndSample();
@@ -134,6 +140,7 @@ public class Enemy : MonoBehaviour
                 HealthBar.Deactivate();
                 //wavemanager deactivate
                 WaveManager.Instance.DeactivateEnemies(gameObject);
+                Debug.Log("finish line");
                 //gameObject.SetActive(false);
             }
         }
@@ -175,9 +182,8 @@ public class Enemy : MonoBehaviour
 
         if (_health == 0)
         {
-            //gameObject.SetActive(false);
-            //wave manager deactivate
             WaveManager.Instance.DeactivateEnemies(gameObject);
+            Debug.Log("health 0");
             HealthBar.Deactivate();
 
             AudioManager.PlayEnemyExplosionAudio();

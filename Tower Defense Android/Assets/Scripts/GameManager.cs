@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour
     private int currentLevel = 0;
     private List<Transform> wayPoints;
     private Transform pathLastPoint;
+    private Transform pathStartPoint;
 
     //public static event Action<int> onProgressLoaded;
     //public static event Action<float, float> onAudioLoaded;
+    public static bool isGamePaused { get; set; } = false;
+    public static bool isGameOver { get; set; } = false;
 
     private void Awake()
     {
@@ -27,15 +30,19 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        FindLastPathPoint();
+        FindLastAndStartPathPoint();
     }
 
     //private void Start()
     //{
     //    LoadProgress();
     //}
+    //public static void GamePause()
+    //{
+    //    isGamePaused = true;
+    //}
 
-    private static void FindLastPathPoint()
+    private static void FindLastAndStartPathPoint()
     {
         instance.wayPoints = new List<Transform>();
         Transform currentPath = instance.paths[instance.currentLevel];
@@ -47,6 +54,7 @@ public class GameManager : MonoBehaviour
         }
 
         instance.pathLastPoint=instance.wayPoints[numberOfWayPoints-1];
+        instance.pathStartPoint = instance.wayPoints[0];
     }
 
     public static void Save()
@@ -79,6 +87,11 @@ public class GameManager : MonoBehaviour
         return instance.pathLastPoint;
     }
 
+    public static Transform GetStartPoint()
+    {
+        return instance.pathStartPoint;
+    }
+
     public static Transform GetCurrentPath()
     {
         return instance.paths[instance.currentLevel];
@@ -97,7 +110,13 @@ public class GameManager : MonoBehaviour
     public static void LevelAccomplished()
     {
         instance.currentLevel++;
-        FindLastPathPoint();
+        FindLastAndStartPathPoint();
         Save();
+    }
+
+    public static void ReloadLevel()
+    {
+        isGamePaused = false;
+        isGameOver = false;
     }
 }

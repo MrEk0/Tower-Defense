@@ -10,10 +10,11 @@ public class WaveManager : MonoBehaviour
     public static WaveManager Instance { get; private set; }
 
     [SerializeField] List<WaveSettings> waves;
-    [SerializeField] Transform startPoint;
+    //[SerializeField] Transform startPoint;
 
     WaveSettings currentWave;
     List<Enemy> currentEnemyList;
+    Transform startPoint;
 
     float waveDuration;
     float startTime;
@@ -40,6 +41,7 @@ public class WaveManager : MonoBehaviour
         SetUpWaveSettings();
 
         numberOfWaves = waves.Count;
+        startPoint = GameManager.GetStartPoint();
     }
 
     private void Start()
@@ -59,15 +61,17 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
-        CheckWaveTime();
+        if (GameManager.isGamePaused)
+            return;
+
+        //CheckWaveTime();
 
         ActivateEnemies();
+        CheckWaveTime();
     }
 
     private void CheckWaveTime()
     {
-        timeSinceWaveStarted += Time.deltaTime;
-
         if (timeSinceWaveStarted > waveTime)
         {
             if (waveNumber < numberOfWaves - 1)
@@ -80,13 +84,16 @@ public class WaveManager : MonoBehaviour
                 //gameover
             }
         }
+        timeSinceWaveStarted += Time.deltaTime;
     }
 
     private void ActivateEnemies()
     {
+        timeSinceEnemyDropped += Time.deltaTime;
+
         if (timeSinceWaveStarted >= startTime && canSpawn)
         {
-            if (timeSinceEnemyDropped > timeBetweenSpawns)
+            if (timeSinceEnemyDropped >= timeBetweenSpawns)
             {
                 Enemy enemy = currentEnemyList[enemyNumberInWave];
                 Profiler.BeginSample("INSTANTIATE");
@@ -97,10 +104,9 @@ public class WaveManager : MonoBehaviour
 
                 enemyNumberInWave++;
                 timeSinceEnemyDropped = 0f;
+                timeSinceEnemyDropped += Time.deltaTime;
             }
         }
-
-        timeSinceEnemyDropped += Time.deltaTime;
     }
 
     public void DeactivateEnemies(GameObject enemy)
@@ -109,7 +115,7 @@ public class WaveManager : MonoBehaviour
         numberOfDeactivatedEnemies++;
         //Debug.Log(numberOfEnemies);
         //Debug.Log(numberOfDeactivatedEnemies);
-        if(numberOfDeactivatedEnemies==numberOfEnemies)
+        if(numberOfDeactivatedEnemies==numberOfEnemies && !GameManager.isGameOver)
         {
             UIManager.Instance.ShowWinPanel();
         }
@@ -132,6 +138,7 @@ public class WaveManager : MonoBehaviour
         enemyTransform.rotation = Quaternion.identity;
         enemyTransform.parent = transform;
         enemyTransform.gameObject.SetActive(true);
+        //Debug.Log("Activate");
     }
 
     private void UpdateWave()

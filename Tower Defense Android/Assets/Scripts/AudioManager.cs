@@ -38,6 +38,7 @@ public class AudioManager : MonoBehaviour
     [Header("Mixer Groups")]
     public AudioMixerGroup musicGroup;
     public AudioMixerGroup soundGroup;
+    public AudioMixerGroup constantActiveGroup;
     public AudioMixerGroup towerGroup;
     public AudioMixerGroup enemyGroup;
     public AudioMixerGroup voiceGroup;
@@ -56,8 +57,11 @@ public class AudioManager : MonoBehaviour
     AudioSource bulletTowerSource;
     AudioSource rocketTowerSource;
     AudioSource voiceSource;
-    //AudioSource rocketSource;
     AudioSource stingSource;
+
+    private float activeSoundVolume;
+    private float minMixerVolume=-80f;
+    private const string ACTIVESOUND = "ActiveSound"; 
 
     public static float MusicVolume { get; private set; }
     public static float SoundVolume { get; private set; }
@@ -123,17 +127,31 @@ public class AudioManager : MonoBehaviour
         instance.musicSource.Play();
     }
 
-    public static void StopAllSounds()
+    public static void StopAllActiveSounds()
     {
-        //instance.soundGroup.audioMixer.SetFloat("Sound", 0f);
-        //instance.tankPlayerSource.Stop();
+        //instance.tankSource.Stop();
+        //instance.greenAirplaneSource.Stop();
+        //instance.greyAirplaneSource.Stop();
+        //instance.soldierSource.Stop();
+        //instance.desertSoldierSource.Stop();
+        //instance.stormtrooperSource.Stop();
         
+
+        instance.constantActiveGroup.audioMixer.GetFloat(ACTIVESOUND, out instance.activeSoundVolume);
+        instance.constantActiveGroup.audioMixer.SetFloat(ACTIVESOUND, instance.minMixerVolume);
+    }
+
+    public static void PlayActiveSounds()
+    {
+        instance.constantActiveGroup.audioMixer.SetFloat(ACTIVESOUND, instance.activeSoundVolume);
     }
 
 
 
     public static void PlayTankAudio()
     {
+        //take enemytype, identify it and play the correspond audioClip if it is not being played 
+        //take enemyType, identigy it and stop playing
         if (instance == null || instance.tankSource.isPlaying)
             return;
 
@@ -197,7 +215,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
             return;
 
-        StopAllSounds();
+        StopAllActiveSounds();
 
         instance.voiceSource.clip = instance.gameOverClip;
         instance.voiceSource.Play();
@@ -208,7 +226,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
             return;
 
-        StopAllSounds();
+        StopAllActiveSounds();
 
         instance.voiceSource.clip = instance.congratulationsClip;
         instance.voiceSource.Play();

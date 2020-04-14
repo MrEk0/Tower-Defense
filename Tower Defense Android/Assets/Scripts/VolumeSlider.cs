@@ -78,7 +78,7 @@ public class VolumeSlider : MonoBehaviour
 
    public void SetSliderValue(/*float musicVolume, float soundVolume*/)
     {
-        float musicVolume=AudioManager.MusicVolume;
+        float musicVolume = AudioManager.MusicVolume;
         float soundVolume = AudioManager.SoundVolume;
 
         switch(sliderType)

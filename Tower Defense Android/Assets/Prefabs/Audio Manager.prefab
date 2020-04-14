@@ -66,6 +66,8 @@ MonoBehaviour:
     type: 2}
   soundGroup: {fileID: -6657502102855423816, guid: b1972550b9b1f6a4cb2a1798ea068268,
     type: 2}
+  constantActiveGroup: {fileID: 1390363486156504439, guid: b1972550b9b1f6a4cb2a1798ea068268,
+    type: 2}
   towerGroup: {fileID: 1029324058122998179, guid: b1972550b9b1f6a4cb2a1798ea068268,
     type: 2}
   enemyGroup: {fileID: 1147902106364418580, guid: b1972550b9b1f6a4cb2a1798ea068268,
