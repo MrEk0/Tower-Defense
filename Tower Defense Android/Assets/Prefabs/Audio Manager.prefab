@@ -70,7 +70,13 @@ MonoBehaviour:
     type: 2}
   towerGroup: {fileID: 1029324058122998179, guid: b1972550b9b1f6a4cb2a1798ea068268,
     type: 2}
-  enemyGroup: {fileID: 1147902106364418580, guid: b1972550b9b1f6a4cb2a1798ea068268,
+  soldierGroup: {fileID: -7526996301379446470, guid: b1972550b9b1f6a4cb2a1798ea068268,
+    type: 2}
+  airplaneGroup: {fileID: -6324535720309396095, guid: b1972550b9b1f6a4cb2a1798ea068268,
+    type: 2}
+  tankGroup: {fileID: 828403633143635148, guid: b1972550b9b1f6a4cb2a1798ea068268,
+    type: 2}
+  impactGroup: {fileID: -8177931648600228107, guid: b1972550b9b1f6a4cb2a1798ea068268,
     type: 2}
   voiceGroup: {fileID: 588545222912093890, guid: b1972550b9b1f6a4cb2a1798ea068268,
     type: 2}

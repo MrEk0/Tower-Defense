@@ -85,24 +85,10 @@ public class LevelButtonsBehaviour : MonoBehaviour
         //GameManager.PauseGame();
     }
 
-    //public void OpenSettingsPanel()
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    //AudioManager.LoadVolume();
-    //    //GameManager.LoadProgress();
-    //}
-
-    //public void CloseSettingButton()
-    //{
-    //    AudioManager.PlayUIButtonAudio();
-    //    //GameManager.Save();
-    //    //GameManager.SaveProgress();
-    //}
-
     public void ResumeGame()
     {
         AudioManager.PlayUIButtonAudio();
-        AudioManager.PlayActiveSounds();
+        //AudioManager.PlayActiveSounds();
         GameManager.isGamePaused = false;
         //GameManager.ResumeGame();
     }

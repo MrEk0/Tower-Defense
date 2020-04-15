@@ -49,23 +49,15 @@ public class Enemy : MonoBehaviour
         currentTarget = wayPoints[_wayPointNumber];
     }
 
-    private void Start()
-    {
-        //HealthBar.Activate();
-        //SetUpAudio();
-    }
-
     private void OnBecameVisible()
     {
         HealthBar.SetMaxValue(_health);
-        SetUpAudio();
-        //HealthBar.Activate();
     }
 
-    //private void OnBecameInvisible()
-    //{
-        
-    //}
+    private void OnBecameInvisible()
+    {
+        AudioManager.StopEnemySound(enemyClass);
+    }
 
     private void SetUpAudio()
     {
@@ -109,7 +101,9 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.isGamePaused || GameManager.isGameOver)
             return;
-
+        Profiler.BeginSample("AUDIO");
+        SetUpAudio();
+        Profiler.EndSample();
         ReachedWaypointBehaviour();
     }
 
@@ -182,12 +176,11 @@ public class Enemy : MonoBehaviour
 
         if (_health == 0)
         {
-            WaveManager.Instance.DeactivateEnemies(gameObject);
             Debug.Log("health 0");
             HealthBar.Deactivate();
-
             AudioManager.PlayEnemyExplosionAudio();
             UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());
+            WaveManager.Instance.DeactivateEnemies(gameObject);
         }
     }
 

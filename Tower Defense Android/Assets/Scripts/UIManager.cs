@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour
     int numberOfHealthBar = 0;
 
     public GameObject TowerToWork { private get; set; }
+    //
+    //public Action GameOver;
+    //
     public event Action onTowerUpdated;
     public event Action<float> onUpdatePanelShowed;
 
@@ -63,6 +66,8 @@ public class UIManager : MonoBehaviour
 
         SetUpHealthBars();
         sellPanelScreenBounds = RectTransformExtensions.CalculateScreenBounds(towerPanel, canvasScaler);
+
+        //GameOver =AudioManager.GameOverBehaviour;//!!!!
     }
 
     private void SetUpHealthBars()
@@ -87,19 +92,13 @@ public class UIManager : MonoBehaviour
 
     public void GetDamage(float amount)
     {
-        lives -= amount;
+        lives=Math.Max(0, lives - amount);
+        livesText.text = "Health " + lives;
 
-        if (lives > 0)
+        if(lives==0)
         {
-            livesText.text = "Health " + lives;
-        }
-        else
-        {
-            livesText.text = "Health 0";
-            AudioManager.PlayGameOverAudio();
             gameoverPanel.SetActive(true);
-            GameManager.isGameOver = true;
-            //Time.timeScale = 0f;
+            GameManager.GameOver();
         }
     }
 

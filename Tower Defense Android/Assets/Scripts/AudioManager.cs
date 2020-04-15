@@ -40,7 +40,10 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup soundGroup;
     public AudioMixerGroup constantActiveGroup;
     public AudioMixerGroup towerGroup;
-    public AudioMixerGroup enemyGroup;
+    public AudioMixerGroup soldierGroup;
+    public AudioMixerGroup airplaneGroup;
+    public AudioMixerGroup tankGroup;
+    public AudioMixerGroup impactGroup;
     public AudioMixerGroup voiceGroup;
     public AudioMixerGroup stringGroup;
 
@@ -61,7 +64,9 @@ public class AudioManager : MonoBehaviour
 
     private float activeSoundVolume;
     private float minMixerVolume=-80f;
-    private const string ACTIVESOUND = "ActiveSound"; 
+    private const string ACTIVESOUND = "ActiveSound";
+
+    private List<AudioSource> activeAudioSources;
 
     public static float MusicVolume { get; private set; }
     public static float SoundVolume { get; private set; }
@@ -94,28 +99,39 @@ public class AudioManager : MonoBehaviour
         rocketTowerSource = gameObject.AddComponent<AudioSource>() as AudioSource;
         stingSource = gameObject.AddComponent<AudioSource>() as AudioSource;
 
+        FillUpAudioSoureList();
+
         musicSource.outputAudioMixerGroup = musicGroup;
-        enemyBodyImpactSource.outputAudioMixerGroup = towerGroup;
-        enemyExplosionSource.outputAudioMixerGroup = enemyGroup;
+        enemyBodyImpactSource.outputAudioMixerGroup = impactGroup;
+        enemyExplosionSource.outputAudioMixerGroup = impactGroup;
         voiceSource.outputAudioMixerGroup = voiceGroup;
         bulletTowerSource.outputAudioMixerGroup = towerGroup;
-        enemyMetalImpactSource.outputAudioMixerGroup = enemyGroup;
-        tankSource.outputAudioMixerGroup = enemyGroup;
-        greyAirplaneSource.outputAudioMixerGroup = enemyGroup;
-        greenAirplaneSource.outputAudioMixerGroup = enemyGroup;
-        stormtrooperSource.outputAudioMixerGroup = enemyGroup;
-        soldierSource.outputAudioMixerGroup = enemyGroup;
-        desertSoldierSource.outputAudioMixerGroup = enemyGroup;
+        enemyMetalImpactSource.outputAudioMixerGroup = impactGroup;
+        tankSource.outputAudioMixerGroup = tankGroup;
+        greyAirplaneSource.outputAudioMixerGroup = airplaneGroup;
+        greenAirplaneSource.outputAudioMixerGroup = airplaneGroup;
+        stormtrooperSource.outputAudioMixerGroup = soldierGroup;
+        soldierSource.outputAudioMixerGroup = soldierGroup;
+        desertSoldierSource.outputAudioMixerGroup = soldierGroup;
         rocketTowerSource.outputAudioMixerGroup = towerGroup;
         stingSource.outputAudioMixerGroup = stringGroup;
 
         PlayMainAudio();
+        instance.constantActiveGroup.audioMixer.GetFloat(ACTIVESOUND, out instance.activeSoundVolume);
     }
 
-    //private void Start()
-    //{
-    //    LoadVolume();
-    //}
+    private void FillUpAudioSoureList()
+    {
+        activeAudioSources = new List<AudioSource>();
+        activeAudioSources.Add(bulletTowerSource);
+        activeAudioSources.Add(rocketTowerSource);
+        activeAudioSources.Add(tankSource);
+        activeAudioSources.Add(greenAirplaneSource);
+        activeAudioSources.Add(greyAirplaneSource);
+        activeAudioSources.Add(soldierSource);
+        activeAudioSources.Add(desertSoldierSource);
+        activeAudioSources.Add(stormtrooperSource);
+    }
 
     private void PlayMainAudio()
     {
@@ -135,10 +151,13 @@ public class AudioManager : MonoBehaviour
         //instance.soldierSource.Stop();
         //instance.desertSoldierSource.Stop();
         //instance.stormtrooperSource.Stop();
-        
+        for(int i=0; i<instance.activeAudioSources.Count; i++)
+        {
+            instance.activeAudioSources[i].Stop();
+        }
 
-        instance.constantActiveGroup.audioMixer.GetFloat(ACTIVESOUND, out instance.activeSoundVolume);
-        instance.constantActiveGroup.audioMixer.SetFloat(ACTIVESOUND, instance.minMixerVolume);
+        //instance.constantActiveGroup.audioMixer.GetFloat(ACTIVESOUND, out instance.activeSoundVolume);
+        //instance.constantActiveGroup.audioMixer.SetFloat(ACTIVESOUND, instance.minMixerVolume);
     }
 
     public static void PlayActiveSounds()
@@ -146,12 +165,39 @@ public class AudioManager : MonoBehaviour
         instance.constantActiveGroup.audioMixer.SetFloat(ACTIVESOUND, instance.activeSoundVolume);
     }
 
+    public static void StopEnemySound(EnemyClass enemyClass)
+    {
+        if (instance == null)
+            return;
+
+        switch (enemyClass)
+        {
+            case EnemyClass.DesertSoldier:
+                instance.desertSoldierSource.Stop();
+                break;
+            case EnemyClass.GreenAirplane:
+                instance.greenAirplaneSource.Stop();
+                break;
+            case EnemyClass.GreyAirplane:
+                instance.greyAirplaneSource.Stop();
+                break;
+            case EnemyClass.Soldier:
+                instance.soldierSource.Stop();
+                break;
+            case EnemyClass.Stormtrooper:
+                instance.stormtrooperSource.Stop();
+                break;
+            case EnemyClass.Tank:
+                instance.tankSource.Stop();
+                break;
+        }
+    }
 
 
     public static void PlayTankAudio()
     {
         //take enemytype, identify it and play the correspond audioClip if it is not being played 
-        //take enemyType, identigy it and stop playing
+        //take enemyType, identify it and stop playing
         if (instance == null || instance.tankSource.isPlaying)
             return;
 

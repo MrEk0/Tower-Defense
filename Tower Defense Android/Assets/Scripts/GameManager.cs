@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     //public static event Action<int> onProgressLoaded;
     //public static event Action<float, float> onAudioLoaded;
     public static bool isGamePaused { get; set; } = false;
-    public static bool isGameOver { get; set; } = false;
+    public static bool isGameOver { get; private set; } = false;
 
     private void Awake()
     {
@@ -32,15 +32,6 @@ public class GameManager : MonoBehaviour
 
         FindLastAndStartPathPoint();
     }
-
-    //private void Start()
-    //{
-    //    LoadProgress();
-    //}
-    //public static void GamePause()
-    //{
-    //    isGamePaused = true;
-    //}
 
     private static void FindLastAndStartPathPoint()
     {
@@ -69,17 +60,7 @@ public class GameManager : MonoBehaviour
         if(progress!=null)
         {
             instance.currentLevel = progress.levelProgress;
-            //float soundVol = progress.soundVolume;
-            //float musicVol = progress.musicVolume;
-
-            //AudioManager.SetSoundVolume(soundVol);
-            //AudioManager.SetMusicVolume(musicVol);
-
-            //onAudioLoaded(musicVol, soundVol);
-            //Debug.Log("Load " + soundVol);
         }
- 
-        //onProgressLoaded(instance.currentLevel);
     }
 
     public static Transform GetLastPathPoint()
@@ -105,6 +86,13 @@ public class GameManager : MonoBehaviour
     public static int GetCurrentLevel()
     {
         return instance.currentLevel;
+    }
+
+    public static void GameOver()
+    {
+        isGameOver = true;
+        AudioManager.StopAllActiveSounds();
+        AudioManager.PlayGameOverAudio();
     }
 
     public static void LevelAccomplished()

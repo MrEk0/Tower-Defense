@@ -16,8 +16,9 @@ public class Tower : MonoBehaviour
     float damage;
     float timeSinceLastShot = Mathf.Infinity;
 
-    LayerMask enemyMask;    
-    Transform lastWayPoint;
+    LayerMask enemyMask;
+    //Transform lastWayPoint;
+    Vector3 lastPointPosition;
     GameObject bulletPrefab;   
     Transform target;
     Transform myTransform;
@@ -30,7 +31,7 @@ public class Tower : MonoBehaviour
         bulletPrefab = towerType.Bullet;
 
         myTransform = GetComponent<Transform>();
-        lastWayPoint = GameManager.GetLastPathPoint();//!!!!!
+        lastPointPosition = GameManager.GetLastPathPoint().position;//!!!!!
 
         CreateListOfBullets();
     }
@@ -115,21 +116,25 @@ public class Tower : MonoBehaviour
 
     private void FindNewTarget()
     {
-        //float distanceToEnemy = Mathf.Infinity;
+        float distanceToEnemy = Mathf.Infinity;
 
-        //Collider2D[] colliders = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);//create from outside and clear after using
-        //for (int i = 0; i < colliders.Length; i++)
-        //{
-        //    float currentDistance = Vector2.Distance(lastWayPoint.position, colliders[i].transform.position);
-        //    if (currentDistance < distanceToEnemy)
-        //    {
-        //        distanceToEnemy = currentDistance;
-        //        target = colliders[i].transform;
-        //    }
-        //}
-        Collider2D collider = Physics2D.OverlapCircle(myTransform.position, range, enemyMask);
-        if(collider)
-        target = collider.transform;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
+        if (colliders.Length == 0)
+            return;
+
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            //float currentDistance = Vector2.Distance(lastWayPoint.position, colliders[i].transform.position);
+            float currentDistance = Vector2.SqrMagnitude(colliders[i].transform.position-lastPointPosition);
+            if (currentDistance < distanceToEnemy)
+            {
+                distanceToEnemy = currentDistance;
+                target = colliders[i].transform;
+            }
+        }
+        //Collider2D collider = Physics2D.OverlapCircle(myTransform.position, range, enemyMask);
+        //if(collider)
+        //target = collider.transform;
     }
 
     private void Rotate()

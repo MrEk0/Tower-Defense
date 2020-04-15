@@ -64,8 +64,6 @@ public class WaveManager : MonoBehaviour
         if (GameManager.isGamePaused)
             return;
 
-        //CheckWaveTime();
-
         ActivateEnemies();
         CheckWaveTime();
     }
@@ -78,7 +76,7 @@ public class WaveManager : MonoBehaviour
             {
                 UpdateWave();
             }
-            else
+            else//!!!!!
             {
                 canSpawn = false;
                 //gameover
@@ -104,7 +102,7 @@ public class WaveManager : MonoBehaviour
 
                 enemyNumberInWave++;
                 timeSinceEnemyDropped = 0f;
-                timeSinceEnemyDropped += Time.deltaTime;
+                timeSinceEnemyDropped += Time.deltaTime;//to avoid the situation when an enemy is not activated 
             }
         }
     }
