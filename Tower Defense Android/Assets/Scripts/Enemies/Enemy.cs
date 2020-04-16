@@ -15,7 +15,8 @@ public enum EnemyClass
 public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemySettings enemyType;
-    [SerializeField] EnemyClass enemyClass; 
+    [SerializeField] EnemyClass enemyClass;
+    [SerializeField] GameObject explosionPrefab;
     //[SerializeField] Transform path;
     [SerializeField] float rotationSpeed=10f;
 
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
     Transform currentTarget;    
     Rigidbody2D rb;
     Transform myTransform;
+    GameObject explosion;
 
     //public event Action<float> onDamageTaken;
     public HealthBar HealthBar { private get; set; }
@@ -47,16 +49,13 @@ public class Enemy : MonoBehaviour
 
         wayPoints = CreateListOfWayPoint();
         currentTarget = wayPoints[_wayPointNumber];
+        explosion = Instantiate(explosionPrefab, myTransform.position, Quaternion.identity);
+        explosion.SetActive(false);
     }
 
     private void OnBecameVisible()
     {
         HealthBar.SetMaxValue(_health);
-    }
-
-    private void OnBecameInvisible()
-    {
-        AudioManager.StopEnemySound(enemyClass);
     }
 
     private void SetUpAudio()
@@ -170,6 +169,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        //if health =0?
         _health = Mathf.Max(_health - damage, 0);
         HealthBar.ChangeSliderValue(_health);
         SetUpHitAudio();
@@ -180,7 +180,10 @@ public class Enemy : MonoBehaviour
             HealthBar.Deactivate();
             AudioManager.PlayEnemyExplosionAudio();
             UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());
+            explosion.transform.position = myTransform.position;
+            explosion.SetActive(true);
             WaveManager.Instance.DeactivateEnemies(gameObject);
+            AudioManager.StopEnemySound(enemyClass);
         }
     }
 
