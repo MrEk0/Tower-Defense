@@ -146,7 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: {fileID: 11400000, guid: ffe6c7b78a59f3540a184b4fff87603b, type: 2}
   enemyClass: 4
-  path: {fileID: 1132323818967045163, guid: 25416792804d4734c8ae50fed6fb0f38, type: 3}
+  explosionPrefab: {fileID: 7697484829159236259, guid: d2b89efa84bf06449b1430f04840b22b,
+    type: 3}
   rotationSpeed: 10
 --- !u!1 &7092233503434336925
 GameObject:

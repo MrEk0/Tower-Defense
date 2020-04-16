@@ -145,5 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: {fileID: 11400000, guid: 68686653a36e86d4cadbf8190d88b3d2, type: 2}
   enemyClass: 1
-  path: {fileID: 1132323818967045163, guid: 25416792804d4734c8ae50fed6fb0f38, type: 3}
+  explosionPrefab: {fileID: 7697484829159236259, guid: d2b89efa84bf06449b1430f04840b22b,
+    type: 3}
   rotationSpeed: 10

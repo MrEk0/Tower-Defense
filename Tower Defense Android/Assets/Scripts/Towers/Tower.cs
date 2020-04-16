@@ -117,24 +117,21 @@ public class Tower : MonoBehaviour
     private void FindNewTarget()
     {
         float distanceToEnemy = Mathf.Infinity;
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
-        if (colliders.Length == 0)
+        if (enemies.Length == 0)
             return;
 
-        for (int i = 0; i < colliders.Length; i++)
+        for (int i = 0; i < enemies.Length; i++)
         {
             //float currentDistance = Vector2.Distance(lastWayPoint.position, colliders[i].transform.position);
-            float currentDistance = Vector2.SqrMagnitude(colliders[i].transform.position-lastPointPosition);
+            float currentDistance = Vector2.SqrMagnitude(enemies[i].transform.position - lastPointPosition);
             if (currentDistance < distanceToEnemy)
             {
                 distanceToEnemy = currentDistance;
-                target = colliders[i].transform;
+                target = enemies[i].transform;
             }
         }
-        //Collider2D collider = Physics2D.OverlapCircle(myTransform.position, range, enemyMask);
-        //if(collider)
-        //target = collider.transform;
     }
 
     private void Rotate()
