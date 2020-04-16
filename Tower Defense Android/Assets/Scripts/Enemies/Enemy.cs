@@ -133,7 +133,7 @@ public class Enemy : MonoBehaviour
                 HealthBar.Deactivate();
                 //wavemanager deactivate
                 WaveManager.Instance.DeactivateEnemies(gameObject);
-                Debug.Log("finish line");
+                //Debug.Log("finish line");
                 //gameObject.SetActive(false);
             }
         }
@@ -176,7 +176,7 @@ public class Enemy : MonoBehaviour
 
         if (_health == 0)
         {
-            Debug.Log("health 0");
+            //Debug.Log("health 0");
             HealthBar.Deactivate();
             AudioManager.PlayEnemyExplosionAudio();
             UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());

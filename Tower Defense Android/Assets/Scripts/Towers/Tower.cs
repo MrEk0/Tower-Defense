@@ -23,6 +23,8 @@ public class Tower : MonoBehaviour
     Transform target;
     Transform myTransform;
     List<GameObject> bullets;
+    //
+    Collider2D enemy;
 
     private void Awake()
     {
@@ -116,7 +118,12 @@ public class Tower : MonoBehaviour
 
     private void FindNewTarget()
     {
+        enemy = Physics2D.OverlapCircle(myTransform.position, range, enemyMask);//to avoid constanct array creation
+        if (!enemy)
+            return;
+
         float distanceToEnemy = Mathf.Infinity;
+        
         Collider2D[] enemies = Physics2D.OverlapCircleAll(myTransform.position, range, enemyMask);
 
         if (enemies.Length == 0)
