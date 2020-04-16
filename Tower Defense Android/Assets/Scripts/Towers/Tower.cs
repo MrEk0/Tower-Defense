@@ -23,7 +23,6 @@ public class Tower : MonoBehaviour
     Transform target;
     Transform myTransform;
     List<GameObject> bullets;
-    //
     Collider2D enemy;
 
     private void Awake()
@@ -47,11 +46,6 @@ public class Tower : MonoBehaviour
     {
         UIManager.Instance.onTowerUpdated -= UpdateTower;
     }
-
-    //private void Start()
-    //{
-    //    lastWayPoint = GameManager.GetLastPathPoint();
-    //}
 
     void Update()
     {
@@ -111,11 +105,6 @@ public class Tower : MonoBehaviour
         return Mathf.CeilToInt(timeToGetRange/shotInterval);
     }
 
-    //private void OnDrawGizmos()//delete
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, range);
-    //}
-
     private void FindNewTarget()
     {
         enemy = Physics2D.OverlapCircle(myTransform.position, range, enemyMask);//to avoid constanct array creation
@@ -131,7 +120,7 @@ public class Tower : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            //float currentDistance = Vector2.Distance(lastWayPoint.position, colliders[i].transform.position);
+            //float currentDistance = Vector2.Distance(lastPointPosition, enemies[i].transform.position);
             float currentDistance = Vector2.SqrMagnitude(enemies[i].transform.position - lastPointPosition);
             if (currentDistance < distanceToEnemy)
             {

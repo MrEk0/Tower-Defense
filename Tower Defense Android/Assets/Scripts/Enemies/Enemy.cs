@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] EnemySettings enemyType;
     [SerializeField] EnemyClass enemyClass;
     [SerializeField] GameObject explosionPrefab;
-    //[SerializeField] Transform path;
     [SerializeField] float rotationSpeed=10f;
 
     private float _health;
@@ -169,7 +168,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        //if health =0?
+        //if health ==0 return?
+        if (_health == 0)
+            return;
+
         _health = Mathf.Max(_health - damage, 0);
         HealthBar.ChangeSliderValue(_health);
         SetUpHitAudio();

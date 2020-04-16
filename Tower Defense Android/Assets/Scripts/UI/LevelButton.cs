@@ -23,7 +23,6 @@ public class LevelButton : MonoBehaviour
         if (levelButtons == null)
             return;
 
-        GameManager.Save();
         //AudioManager.PlayUIButtonAudio();
         levelButtons.LoadSpecificLevel(levelNumber);
     }

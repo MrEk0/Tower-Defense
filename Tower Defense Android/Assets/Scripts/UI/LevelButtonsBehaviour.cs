@@ -67,6 +67,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
         AudioManager.PlayUIButtonAudio();
         loadPanel.gameObject.SetActive(true);
         StartCoroutine(LoadLevel(0));
+        GameManager.Save();
     }
 
     public void PlayAgain()
@@ -104,6 +105,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
         AudioManager.PlayUIButtonAudio();
         loadPanel.gameObject.SetActive(true);
         StartCoroutine(LoadLevel(levelIndex));
+        GameManager.Save();
     }
 }
 

@@ -15,7 +15,7 @@ public class DataSaver
         string path = GetFilePath();
 
         FileStream stream = new FileStream(path, FileMode.Create);
-        PlayerData playerData = new PlayerData(soundVolume, musicVolume);
+        PlayerData playerData = new PlayerData(soundVolume, musicVolume, levelProgress);
 
         formatter.Serialize(stream, playerData);
         stream.Close();

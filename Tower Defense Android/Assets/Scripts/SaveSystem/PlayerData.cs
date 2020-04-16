@@ -10,10 +10,11 @@ public class PlayerData
     public float musicVolume;
     public int levelProgress;
 
-    public PlayerData(float soundVolume, float musicVolume)
+    public PlayerData(float soundVolume, float musicVolume, int levelProgress)
     {
         this.soundVolume = soundVolume;
         this.musicVolume = musicVolume;
+        this.levelProgress = levelProgress;
     }
 
     public PlayerData(/*float soundVolume, float musicVolume,*/ int levelProgress)

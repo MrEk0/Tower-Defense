@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     private static void FindLastAndStartPathPoint()
     {
         instance.wayPoints = new List<Transform>();
-        Transform currentPath = instance.paths[instance.currentLevel];
+        Transform currentPath = instance.paths[instance.currentLevel];//!!!!!!!
 
         int numberOfWayPoints = currentPath.childCount;
         foreach (Transform child in currentPath)
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     public static void Save()
     {
         DataSaver.SaveData(AudioManager.SoundVolume, AudioManager.MusicVolume, instance.currentLevel);
+        Debug.Log("Save " + instance.currentLevel);
     }
 
     public static void LoadProgress()
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
         if(progress!=null)
         {
             instance.currentLevel = progress.levelProgress;
+            Debug.Log("Load " + progress.levelProgress);
         }
     }
 
