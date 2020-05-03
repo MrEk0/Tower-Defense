@@ -29,8 +29,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BoundSlider: 0
-    - _CircleSlider: 1
+    - _BoundSlider: 0.5
+    - _CircleSlider: 0
     - _FormSlider: 0
     - _RoundSlider: 0.5
     - _SquareSlider: 0.5

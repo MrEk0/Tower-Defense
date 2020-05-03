@@ -97,6 +97,7 @@ public class UIManager : MonoBehaviour
 
         if(lives==0)
         {
+            ignoreRaycastPanel.SetActive(true);
             gameoverPanel.SetActive(true);
             GameManager.GameOver();
         }
@@ -182,5 +183,10 @@ public class UIManager : MonoBehaviour
         ignoreRaycastPanel.SetActive(true);
         winPanel.SetActive(true);
         AudioManager.PlayCongratulationsAudio();
+    }
+
+    public void CloseRaycastPanel()
+    {
+        ignoreRaycastPanel.SetActive(false);
     }
 }

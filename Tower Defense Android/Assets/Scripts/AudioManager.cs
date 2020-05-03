@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+//[DefaultExecutionOrder(-100)]
 public class AudioManager : MonoBehaviour
 {
     static AudioManager instance;
