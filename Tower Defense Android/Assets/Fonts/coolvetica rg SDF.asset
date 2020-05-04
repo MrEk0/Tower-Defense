@@ -19,8 +19,8 @@ MonoBehaviour:
   m_SourceFontFileGUID: fa986e4c5f362d744bb7a27a2c4e50ea
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: fa986e4c5f362d744bb7a27a2c4e50ea,
     type: 3}
-  m_SourceFontFile: {fileID: 12800000, guid: fa986e4c5f362d744bb7a27a2c4e50ea, type: 3}
-  m_AtlasPopulationMode: 1
+  m_SourceFontFile: {fileID: 0}
+  m_AtlasPopulationMode: 0
   m_FaceInfo:
     m_FamilyName: Coolvetica
     m_StyleName: Regular

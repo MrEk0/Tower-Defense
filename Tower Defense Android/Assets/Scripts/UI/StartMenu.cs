@@ -3,6 +3,8 @@
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] GameObject settingPanel;
+    [SerializeField] GameObject levelPanel;
+    [SerializeField] GameObject startPanel;
 
     Animator animator;
 
@@ -48,6 +50,7 @@ public class StartMenu : MonoBehaviour
     public void PushLevelButton()
     {
         //GameManager.Load();
+        //levelPanel.SetActive(true);
         AudioManager.PlayUIButtonAudio();
         animator.ResetTrigger(ids[1]);
         animator.SetTrigger(ids[0]);
