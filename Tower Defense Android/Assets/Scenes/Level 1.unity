@@ -148,12 +148,12 @@ PrefabInstance:
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.04
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.08
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
@@ -299,12 +299,12 @@ PrefabInstance:
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.04
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
@@ -374,7 +374,7 @@ PrefabInstance:
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.01
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
@@ -896,12 +896,12 @@ PrefabInstance:
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.04
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.04
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7479755257880721941, guid: 0939f3454d14a71489ae54ab6ba1dc87,
         type: 3}
@@ -1354,6 +1354,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4880126324828668036}
+    - target: {fileID: 8503228293128249252, guid: 347f4591e76f6a5409c1692b66eb025f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8975318773852399239, guid: 347f4591e76f6a5409c1692b66eb025f,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

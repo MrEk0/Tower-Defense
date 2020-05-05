@@ -32,11 +32,8 @@ public class UIManager : MonoBehaviour
     Vector2 sellPanelScreenBounds;
     int numberOfHealthBar = 0;
 
-    public GameObject TowerToWork { private get; set; }
-    //
-    //public Action GameOver;
-    //
-    public event Action onTowerUpdated;
+    public Tower TowerToWork { private get; set; }
+
     public event Action<float> onUpdatePanelShowed;
 
     private void OnEnable()
@@ -143,7 +140,8 @@ public class UIManager : MonoBehaviour
         {
             coins -= price;
             coinsText.text = "Coins " + coins;//method
-            onTowerUpdated();
+            //onTowerUpdated();
+            TowerToWork.UpdateTower();
             AudioManager.PlayUIButtonAudio();
         }
     }

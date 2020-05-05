@@ -10,20 +10,19 @@ public class Tower : MonoBehaviour
     [SerializeField] TowerClass towerClass;
     [SerializeField] TowerUpdate towerUpdate;
 
-    int currentLevel = 1;
-    float range;
-    float shotInterval;
-    float damage;
-    float timeSinceLastShot = Mathf.Infinity;
+    private int currentLevel = 1;
+    private float range;
+    private float shotInterval;
+    private float damage;
+    private float timeSinceLastShot = Mathf.Infinity;
 
-    LayerMask enemyMask;
-    //Transform lastWayPoint;
-    Vector3 lastPointPosition;
-    GameObject bulletPrefab;   
-    Transform target;
-    Transform myTransform;
-    List<GameObject> bullets;
-    Collider2D enemy;
+    private LayerMask enemyMask;
+    private Vector3 lastPointPosition;
+    private GameObject bulletPrefab;
+    private Transform target;
+    private Transform myTransform;
+    private List<GameObject> bullets;
+    private Collider2D enemy;
 
     private void Awake()
     {
@@ -35,16 +34,6 @@ public class Tower : MonoBehaviour
         lastPointPosition = GameManager.GetLastPathPoint().position;//!!!!!
 
         CreateListOfBullets();
-    }
-
-    private void OnEnable()
-    {
-        UIManager.Instance.onTowerUpdated += UpdateTower;
-    }
-
-    private void OnDisable()
-    {
-        UIManager.Instance.onTowerUpdated -= UpdateTower;
     }
 
     void Update()
@@ -186,11 +175,11 @@ public class Tower : MonoBehaviour
 
     private void OnMouseDown()
     {       
-        UIManager.Instance.TowerToWork = gameObject;
+        UIManager.Instance.TowerToWork = this;
         UIManager.Instance.ShowUpdatePanel();
     }
 
-    private void UpdateTower()
+    public void UpdateTower()
     {
         currentLevel++;
 
