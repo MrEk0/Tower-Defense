@@ -10,7 +10,6 @@ public class WaveManager : MonoBehaviour
     public static WaveManager Instance { get; private set; }
 
     [SerializeField] List<WaveSettings> waves;
-    //[SerializeField] Transform startPoint;
 
     WaveSettings currentWave;
     List<Enemy> currentEnemyList;
@@ -111,8 +110,6 @@ public class WaveManager : MonoBehaviour
     {
         enemy.SetActive(false);
         numberOfDeactivatedEnemies++;
-        //Debug.Log(numberOfEnemies);
-        //Debug.Log(numberOfDeactivatedEnemies);
         if(numberOfDeactivatedEnemies==numberOfEnemies && !GameManager.isGameOver)
         {
             UIManager.Instance.ShowWinPanel();
@@ -136,7 +133,6 @@ public class WaveManager : MonoBehaviour
         enemyTransform.rotation = Quaternion.identity;
         enemyTransform.parent = transform;
         enemyTransform.gameObject.SetActive(true);
-        //Debug.Log("Activate");
     }
 
     private void UpdateWave()
