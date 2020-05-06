@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Enemies_Tanks
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 4e8f26616d677cd47a4bb4c2160d55d2, type: 3}
+    totalSpriteSurfaceArea: 126976
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f57630409d0af8a4d8608732c055cab1, type: 3}
+  - {fileID: 21300000, guid: 238c7f511dfc238438f2120420ac9312, type: 3}
+  - {fileID: 21300000, guid: 4993a671349ee3f45aceb1432abb41ea, type: 3}
+  - {fileID: 21300000, guid: 3c6b60f1798666b4fabce6d7e7a001bc, type: 3}
+  - {fileID: 21300000, guid: cdcae7a299b62914a8f3a68d52e13df4, type: 3}
+  - {fileID: 21300000, guid: fbb9ba43202a5454b806f055a16d2d23, type: 3}
+  - {fileID: 21300000, guid: d6e68e14c67929c4a82ac54c6825e490, type: 3}
+  - {fileID: 21300000, guid: 1bc414448c2e53541aa081dbe1b577d7, type: 3}
+  - {fileID: 21300000, guid: da2e38543ca3f7848859923b20433ddf, type: 3}
+  - {fileID: 21300000, guid: bc3a24743e05ad84bb519ca96cdc3198, type: 3}
+  - {fileID: 21300000, guid: dee14e94cea55064093208f5a4ac0772, type: 3}
+  - {fileID: 21300000, guid: b552496698e11244f80e4b69edd958b2, type: 3}
+  - {fileID: 21300000, guid: 9023e3b6932f98b46a607de25b3c3d04, type: 3}
+  - {fileID: 21300000, guid: 487d45b62ff8bde4f91e558948c0ef71, type: 3}
+  - {fileID: 21300000, guid: 2f7f3a173935ede4ea28195ea06be77c, type: 3}
+  - {fileID: 21300000, guid: 7bb54c3726400ab4391e8c3142ac6795, type: 3}
+  - {fileID: 21300000, guid: 613bf1778c2f6b745ab2e5b4256bd1c4, type: 3}
+  - {fileID: 21300000, guid: 01e42e870551855449fce095f9866799, type: 3}
+  - {fileID: 21300000, guid: 09e250d8054f88e49a80b3ade5fac1d7, type: 3}
+  - {fileID: 21300000, guid: f59048692369f664fa34cbfc23c70e68, type: 3}
+  - {fileID: 21300000, guid: da7f0b8b84c33e44eb27e33f66bae5a4, type: 3}
+  - {fileID: 21300000, guid: 60a6bcebb285a47468d73fa553615d53, type: 3}
+  - {fileID: 21300000, guid: 83f2451c51b8f7f44849beae591a6039, type: 3}
+  - {fileID: 21300000, guid: 8936a2bd0af52e2429605284bff9c39f, type: 3}
+  - {fileID: 21300000, guid: 4451c3bd228eb7e42a339dc329dfda8e, type: 3}
+  - {fileID: 21300000, guid: f112b2cd4733f76488fa95cd13a3540d, type: 3}
+  - {fileID: 21300000, guid: e5c3990e2d99a9b4da15c53a6d4a31e2, type: 3}
+  - {fileID: 21300000, guid: 68c4611e63b84af45bbae1e69004b537, type: 3}
+  - {fileID: 21300000, guid: 4bb479de23826af4a983a2ce274578eb, type: 3}
+  - {fileID: 21300000, guid: 62ab755fa6d2dc14da656c9af4b75bfa, type: 3}
+  - {fileID: 21300000, guid: 1cd04def9bc5b7747ac0cc71f4844ed2, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - towerDefense_tile295
+  - towerDefense_tile300
+  - towerDefense_tile228
+  - towerDefense_tile205
+  - towerDefense_tile226
+  - towerDefense_tile251
+  - towerDefense_tile252
+  - towerDefense_tile248
+  - towerDefense_tile245
+  - towerDefense_tile301
+  - towerDefense_tile203
+  - towerDefense_tile249
+  - towerDefense_tile270
+  - towerDefense_tile296
+  - towerDefense_tile250
+  - towerDefense_tile204
+  - towerDefense_tile293
+  - towerDefense_tile227
+  - towerDefense_tile229
+  - towerDefense_tile294
+  - towerDefense_tile302
+  - towerDefense_tile291
+  - towerDefense_tile268
+  - towerDefense_tile247
+  - towerDefense_tile246
+  - towerDefense_tile297
+  - towerDefense_tile271
+  - towerDefense_tile269
+  - towerDefense_tile206
+  - towerDefense_tile298
+  - towerDefense_tile292
+  m_Tag: Enemies_Tanks
+  m_IsVariant: 0

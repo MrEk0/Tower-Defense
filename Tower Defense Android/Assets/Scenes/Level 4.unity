@@ -333,6 +333,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8503228293128249252, guid: 347f4591e76f6a5409c1692b66eb025f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 347f4591e76f6a5409c1692b66eb025f, type: 3}
 --- !u!224 &79235997 stripped
@@ -7717,8 +7722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de72913cf8ff6b741bc6778c14156203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasScaler: {fileID: 0}
-  towerWindow: {fileID: 0}
+  canvasScaler: {fileID: 79236003}
+  towerWindow: {fileID: 79236002}
 --- !u!1001 &1563262320
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7858,8 +7858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de72913cf8ff6b741bc6778c14156203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasScaler: {fileID: 0}
-  towerWindow: {fileID: 0}
+  canvasScaler: {fileID: 1430589139}
+  towerWindow: {fileID: 1430589138}
 --- !u!1001 &1331927435
 PrefabInstance:
   m_ObjectHideFlags: 0

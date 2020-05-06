@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 6e8ef7118d6c8c448bfdf93866419843, type: 3}
+    totalSpriteSurfaceArea: 41472
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 64293a0007097454bb0765b8868223ec, type: 3}
+  - {fileID: 21300000, guid: 172e3e31ae7c0844eb1603ef6fb3c1d4, type: 3}
+  - {fileID: 21300000, guid: 3a7cb712b03194c47bcc3a46d3d48e3d, type: 3}
+  - {fileID: 21300000, guid: e77c1b92dc7196543912a79bd0ec0f9a, type: 3}
+  - {fileID: 21300000, guid: 7bb98f4357a77bc49ab95f58af2f9882, type: 3}
+  - {fileID: 21300000, guid: 7de6cb14ad38a8643ae1e6b43aab18dd, type: 3}
+  - {fileID: 21300000, guid: 50efb2445b3036e46881726e8c609368, type: 3}
+  - {fileID: 21300000, guid: 7d70aca4806762749a1cb306e05d2208, type: 3}
+  - {fileID: 21300000, guid: 0c9b8ad4d452b3e45bf4234492e38967, type: 3}
+  - {fileID: 21300000, guid: 25e9d5555199f924c8237778fd88f2eb, type: 3}
+  - {fileID: 21300000, guid: 3245b146829f5e34cb2a9118683f57ec, type: 3}
+  - {fileID: 21300000, guid: dc8f4da6266207c48bebabb02123db68, type: 3}
+  - {fileID: 21300000, guid: 60edd138b81c1084981e27e1a0eca034, type: 3}
+  - {fileID: 21300000, guid: 2e6e192bab9e6b54daac092f8a6f418f, type: 3}
+  - {fileID: 21300000, guid: 885fac7cfeacb35409bbdae808035e33, type: 3}
+  - {fileID: 21300000, guid: 78ec619e9f8cee74d81a0325bf7a7ab4, type: 3}
+  - {fileID: 21300000, guid: 5494c4af0ffd8a44db029d3248fe967d, type: 3}
+  - {fileID: 21300000, guid: 9994bfffb296ac24b996d3d9a12ca661, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - flatLight21
+  - flatLight19
+  - flatLight14
+  - flatLight31
+  - flatLight33
+  - flatLight16
+  - flatLight13
+  - flatLight20
+  - Volume Off
+  - flatLight12
+  - flatLight30
+  - flatLight18
+  - flatLight32
+  - flatLight11
+  - flatLight29
+  - flatLight28
+  - flatLight10
+  - flatLight15
+  m_Tag: UI
+  m_IsVariant: 0
