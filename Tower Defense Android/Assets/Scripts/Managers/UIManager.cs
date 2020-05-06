@@ -129,7 +129,7 @@ public class UIManager : MonoBehaviour
         coinsText.text = "Coins " + coins;
 
         AudioManager.PlayUIButtonAudio();
-        Destroy(TowerToWork);//????
+        Destroy(TowerToWork.gameObject);//????
     }
 
     public void UpdateTowerButton()

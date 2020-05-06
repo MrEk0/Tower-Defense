@@ -2041,6 +2041,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfd2d13796a163141b079afe2eb71d13, type: 3}
+--- !u!114 &966419805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4880126324440369548, guid: bfd2d13796a163141b079afe2eb71d13,
+    type: 3}
+  m_PrefabInstance: {fileID: 966419804}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf4e1ca8570e3345810bd60a879ee02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1172145624
 GameObject:
   m_ObjectHideFlags: 0
@@ -6594,7 +6606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259856004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 556573782}
@@ -8073,6 +8085,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1651963788156273619, guid: 347f4591e76f6a5409c1692b66eb025f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 966419805}
+    - target: {fileID: 1651963788156273619, guid: 347f4591e76f6a5409c1692b66eb025f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SellTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3740455674602216293, guid: 347f4591e76f6a5409c1692b66eb025f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 966419805}
+    - target: {fileID: 3740455674602216293, guid: 347f4591e76f6a5409c1692b66eb025f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateTowerButton
+      objectReference: {fileID: 0}
     - target: {fileID: 3961712986666396672, guid: 347f4591e76f6a5409c1692b66eb025f,
         type: 3}
       propertyPath: m_LocalPosition.x
