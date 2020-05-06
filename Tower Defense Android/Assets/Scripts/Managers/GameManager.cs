@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private List<Transform> wayPoints;
     private Transform pathLastPoint;
     private Transform pathStartPoint;
+    private AndroidAds ads;
 
     public static bool isGamePaused { get; set; } = false;
     public static bool isGameOver { get; private set; } = false;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         FindLastAndStartPathPoint();
+        ads = GetComponent<AndroidAds>();
     }
 
     private static void FindLastAndStartPathPoint()
@@ -97,6 +99,8 @@ public class GameManager : MonoBehaviour
 
     public static void LevelAccomplished()
     {
+        ShowAds();
+
         instance.currentLevel++;
         FindLastAndStartPathPoint();
         Save();
@@ -106,5 +110,10 @@ public class GameManager : MonoBehaviour
     {
         isGamePaused = false;
         isGameOver = false;
+    }
+
+    private static void ShowAds()
+    {
+        instance.ads.ShowVideoAds();
     }
 }

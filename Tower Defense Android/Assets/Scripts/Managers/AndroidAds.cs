@@ -4,20 +4,20 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 
-public class Ads : MonoBehaviour, IUnityAdsListener
+public class AndroidAds : MonoBehaviour, IUnityAdsListener
 {
-    private const string gameID = "3491898";
+    private const string gameID = "3590488";
     private const string videoPlacementID = "video";
 
-    IEnumerator Start()
+    private void Start()
     {
         Advertisement.AddListener(this);
         Advertisement.Initialize(gameID);
 
-        while (!Advertisement.IsReady())
-            yield return null;
+        //while (!Advertisement.IsReady())
+        //    yield return null;
 
-        Advertisement.Banner.SetPosition(BannerPosition.TOP_CENTER);
+        //Advertisement.Banner.SetPosition(BannerPosition.TOP_CENTER);
     }
 
     public void ShowVideoAds()
@@ -53,10 +53,5 @@ public class Ads : MonoBehaviour, IUnityAdsListener
         {
             Time.timeScale = 1;
         }
-    }
-
-    public void CloseBanner()
-    {
-        Advertisement.Banner.Hide();
     }
 }
