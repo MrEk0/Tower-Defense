@@ -33,6 +33,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
         int sceneIndex = GameManager.GetCurrentLevel() + 1;
         StartCoroutine(LoadLevel(sceneIndex));
         GameManager.Save();
+        GameManager.LevelAccomplished(sceneIndex);
     }
 
     public void LoadNextLevel()
@@ -41,7 +42,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
         StartCoroutine(LoadLevel(nextSceneIndex));
-        GameManager.LevelAccomplished();
+        GameManager.LevelAccomplished(nextSceneIndex);
     }
 
     IEnumerator LoadLevel(int sceneIndex)
@@ -90,6 +91,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
         AudioManager.PlayUIButtonAudio();
         StartCoroutine(LoadLevel(levelIndex));
         GameManager.Save();
+        GameManager.LevelAccomplished(levelIndex);
     }
 }
 

@@ -9,15 +9,15 @@ public class AndroidAds : MonoBehaviour, IUnityAdsListener
     private const string gameID = "3590488";
     private const string videoPlacementID = "video";
 
-    private void Start()
+    IEnumerator Start()
     {
         Advertisement.AddListener(this);
-        Advertisement.Initialize(gameID);
+        Advertisement.Initialize(gameID, true);
 
-        //while (!Advertisement.IsReady())
-        //    yield return null;
+        while (!Advertisement.IsReady())
+            yield return null;
 
-        //Advertisement.Banner.SetPosition(BannerPosition.TOP_CENTER);
+        Advertisement.Show(videoPlacementID);
     }
 
     public void ShowVideoAds()

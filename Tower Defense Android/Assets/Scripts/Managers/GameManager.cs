@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,14 +29,15 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        FindLastAndStartPathPoint();
+        //FindLastAndStartPathPoint();
         ads = GetComponent<AndroidAds>();
     }
 
     private static void FindLastAndStartPathPoint()
     {
         instance.wayPoints = new List<Transform>();
-        Transform currentPath = instance.paths[instance.currentLevel];//!!!!!!!
+        //int pathIndex = SceneManager.GetActiveScene().buildIndex;
+        Transform currentPath = instance.paths[instance.currentLevel-1];//!!!!!!!
 
         int numberOfWayPoints = currentPath.childCount;
         foreach (Transform child in currentPath)
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     public static Transform GetCurrentPath()
     {
-        return instance.paths[instance.currentLevel];
+        return instance.paths[instance.currentLevel-1];
     }
 
     public static int GetNumberOfLevels()
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     public static int GetCurrentLevel()
     {
-        return instance.currentLevel;
+        return instance.currentLevel-1;
     }
 
     public static void GameOver()
@@ -97,11 +98,11 @@ public class GameManager : MonoBehaviour
         AudioManager.PlayGameOverAudio();
     }
 
-    public static void LevelAccomplished()
+    public static void LevelAccomplished(int currentLevel)
     {
         ShowAds();
 
-        instance.currentLevel++;
+        instance.currentLevel=currentLevel;
         FindLastAndStartPathPoint();
         Save();
     }

@@ -116,10 +116,10 @@ public class LevelCreator : MonoBehaviour
 
     private void OpenAvailableLevels()
     {
-        Debug.Log("Reveal");
+        //Debug.Log("Reveal");
         float numberOfAvailableLevels=GameManager.GetCurrentLevel();
 
-        for(int i=0; i<=numberOfAvailableLevels; i++)
+        for (int i = 0; i <= numberOfAvailableLevels; i++) 
         {
             buttons[i].GetComponent<LevelButton>().RevealButton();
         }

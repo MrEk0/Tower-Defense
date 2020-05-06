@@ -8,7 +8,7 @@ public class MobileNotificationAndroid : MonoBehaviour
     void Start()
     {
         CreateChannel();
-        SendSecondReturnNotification();
+        SendReturnNotification();
     }
 
     private void CreateChannel()
@@ -48,7 +48,7 @@ public class MobileNotificationAndroid : MonoBehaviour
         {
             Title = "Where are you?",
             Text = "Don't disappoint me and rush to play",
-            LargeIcon = "black_tank_large",
+            LargeIcon = "return_rocket",
             FireTime = System.DateTime.Now.AddHours(3)
         };
 
