@@ -50,9 +50,10 @@ MonoBehaviour:
   towerPanel: {fileID: 0}
   updatePanel: {fileID: 0}
   gameoverPanel: {fileID: 0}
+  winPanel: {fileID: 0}
   ignoreRaycastPanel: {fileID: 0}
   healthBarPrefab: {fileID: 6052853814195576624, guid: 8755e6d56acddf84ca7b33e0ddeae499,
     type: 3}
   healthBarParent: {fileID: 0}
-  startNumberOfCoins: 200
+  startNumberOfCoins: 500
   startAmountOfHealth: 100

@@ -39,11 +39,11 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 1
+      enableTightPacking: 0
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 6e8ef7118d6c8c448bfdf93866419843, type: 3}
-    totalSpriteSurfaceArea: 41472
+    totalSpriteSurfaceArea: 47872
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -61,6 +61,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: dc8f4da6266207c48bebabb02123db68, type: 3}
   - {fileID: 21300000, guid: 60edd138b81c1084981e27e1a0eca034, type: 3}
   - {fileID: 21300000, guid: 2e6e192bab9e6b54daac092f8a6f418f, type: 3}
+  - {fileID: 21300000, guid: 61aaf7cbe07598c4abd8635f255fddbc, type: 3}
   - {fileID: 21300000, guid: 885fac7cfeacb35409bbdae808035e33, type: 3}
   - {fileID: 21300000, guid: 78ec619e9f8cee74d81a0325bf7a7ab4, type: 3}
   - {fileID: 21300000, guid: 5494c4af0ffd8a44db029d3248fe967d, type: 3}
@@ -80,6 +81,7 @@ SpriteAtlas:
   - flatLight18
   - flatLight32
   - flatLight11
+  - flatLight46
   - flatLight29
   - flatLight28
   - flatLight10
