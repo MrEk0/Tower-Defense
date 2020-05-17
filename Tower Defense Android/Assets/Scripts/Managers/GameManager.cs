@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     public static int GetCurrentLevel()
     {
-        return instance.currentLevel-1;
+        return instance.currentLevel;
     }
 
     public static void GameOver()

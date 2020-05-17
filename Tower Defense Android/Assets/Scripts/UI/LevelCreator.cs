@@ -101,7 +101,8 @@ public class LevelCreator : MonoBehaviour
 
     private void OpenAvailableLevels()
     {
-        float numberOfAvailableLevels=GameManager.GetCurrentLevel();
+        float numberOfAvailableLevels = GameManager.GetCurrentLevel() - 1;
+        numberOfAvailableLevels = Mathf.Max(0, numberOfAvailableLevels);
 
         for (int i = 0; i <= numberOfAvailableLevels; i++) 
         {

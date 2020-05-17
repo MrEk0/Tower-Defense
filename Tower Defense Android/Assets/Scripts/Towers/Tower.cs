@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
@@ -171,7 +171,13 @@ public class Tower : MonoBehaviour
     }
 
     private void OnMouseDown()
-    {       
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        if (RectTransformExtensions.IsPointerOverUIObject())
+            return;
+
         UIManager.Instance.TowerToWork = this;
         UIManager.Instance.ShowUpdatePanel();
     }

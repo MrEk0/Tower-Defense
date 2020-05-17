@@ -25,7 +25,7 @@ public class TowerCell : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (IsPointerOverUIObject())
+        if (RectTransformExtensions.IsPointerOverUIObject())
             return;
 
         towerWindow.SetActive(true);
@@ -38,15 +38,5 @@ public class TowerCell : MonoBehaviour
 
         RectTransformExtensions.CheckScreenPosition(towerWindow, windowScreenBound.x, windowScreenBound.y);
         towerWindow.GetComponent<TowerSpawner>().spawnPos = roundMousePos;
-    }
-
-    private bool IsPointerOverUIObject()
-    {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
     }
 }

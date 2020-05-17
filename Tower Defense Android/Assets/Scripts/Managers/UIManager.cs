@@ -138,6 +138,8 @@ public class UIManager : MonoBehaviour
             TowerToWork.UpdateTower();
             AudioManager.PlayUIButtonAudio();
         }
+
+        updatePanel.SetActive(false);
     }
 
     public void ShowUpdatePanel()
