@@ -6,6 +6,7 @@ using TMPro;
 public class Price : MonoBehaviour
 {
     [SerializeField] TowerSettings towerType;
+
     TextMeshProUGUI priceText;
 
     private void Awake()

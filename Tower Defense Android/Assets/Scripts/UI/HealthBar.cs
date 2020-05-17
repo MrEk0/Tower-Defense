@@ -11,25 +11,6 @@ public class HealthBar : MonoBehaviour
 
     public Enemy Enemy { private get; set; }
 
-    //private void OnEnable()
-    //{
-    //    Enemy.onDamageTaken += ChangeSliderValue;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    Enemy.onDamageTaken -= ChangeSliderValue;
-    //}
-    //private void OnBecameVisible()
-    //{
-    //    Enemy.onDamageTaken += ChangeSliderValue;
-    //}
-
-    //private void OnBecameInvisible()
-    //{
-    //    Enemy.onDamageTaken -= ChangeSliderValue;
-    //}
-
     private void Awake()
     {
         slider=GetComponent<Slider>();
@@ -37,27 +18,6 @@ public class HealthBar : MonoBehaviour
         transformRect = transform.GetComponent<RectTransform>();
     }
 
-    private void Start()
-    {
-        //slider.maxValue = Enemy.GetHealth();
-        ////ChangeSliderValue(slider.maxValue);
-        //FollowEnemy();
-    } 
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Enemy)
-        //{
-        //    FollowEnemy();
-        //    slider.value = Enemy.GetHealth();//improve
-        //}
-        //else
-        //{
-        //    gameObject.SetActive(false);
-        //}
-    }
 
     public void FollowEnemy(Transform enemyTransform)
     {

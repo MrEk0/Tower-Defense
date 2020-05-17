@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    float speed;
-    float damage;
-    Rigidbody2D rb;
-    Transform myTransform;
+    private float speed;
+    private float damage;
+    private Rigidbody2D rb;
+    private Transform myTransform;
 
     public Transform target { private get; set; }
 

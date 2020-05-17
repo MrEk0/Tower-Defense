@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21dfef37f304d24987bbc95f3b568e9, type: 3}
   m_Name: DoubleRocketTower
   m_EditorClassIdentifier: 
-  buildPrice: 100
+  buildPrice: 200
   bulletSpeed: 8
   bullet: {fileID: 2788015215729615249, guid: eb38e61784f1ff240b322067ddb18222, type: 3}
   enemyMask:

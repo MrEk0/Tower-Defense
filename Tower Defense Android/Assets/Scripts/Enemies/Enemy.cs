@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 
 public enum EnemyClass
@@ -19,42 +18,41 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject explosionPrefab;
     [SerializeField] float rotationSpeed=10f;
 
-    private float _health;
-    private float _speed;
-    private float _damage;
-    private float _angleOffset=180f;
-    private int _wayPointNumber = 0;
+    private float health;
+    private float speed;
+    private float damage;
+    private float angleOffset=180f;
+    private int wayPointNumber = 0;
 
-    Transform path;
-    List<Transform> wayPoints;
-    Vector2 newPos;
-    Transform currentTarget;    
-    Rigidbody2D rb;
-    Transform myTransform;
-    GameObject explosion;
+    private Transform path;
+    private List<Transform> wayPoints;
+    private Vector2 targetPos;
+    private Transform currentTarget;
+    private Rigidbody2D rb;
+    private Transform myTransform;
+    private GameObject explosion;
 
-    //public event Action<float> onDamageTaken;
     public HealthBar HealthBar { private get; set; }
     
 
     private void Awake()
     {
-        _health = enemyType.Health;
-        _speed = enemyType.Speed;
-        _damage = enemyType.Damage;
+        health = enemyType.Health;
+        speed = enemyType.Speed;
+        damage = enemyType.Damage;
 
         rb = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
 
         wayPoints = CreateListOfWayPoint();
-        currentTarget = wayPoints[_wayPointNumber];
+        currentTarget = wayPoints[wayPointNumber];
         explosion = Instantiate(explosionPrefab, myTransform.position, Quaternion.identity);
         explosion.SetActive(false);
     }
 
     private void OnBecameVisible()
     {
-        HealthBar.SetMaxValue(_health);
+        HealthBar.SetMaxValue(health);
     }
 
     private void SetUpAudio()
@@ -99,9 +97,8 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.isGamePaused || GameManager.isGameOver)
             return;
-        Profiler.BeginSample("AUDIO");
+
         SetUpAudio();
-        Profiler.EndSample();
         ReachedWaypointBehaviour();
     }
 
@@ -110,9 +107,7 @@ public class Enemy : MonoBehaviour
         if (GameManager.isGamePaused || GameManager.isGameOver)
             return;
 
-        Profiler.BeginSample("FOLLOW");
         Move();
-        Profiler.EndSample();
         HealthBar.FollowEnemy(myTransform);
     }
 
@@ -122,32 +117,29 @@ public class Enemy : MonoBehaviour
 
         if (Mathf.Approximately(distance, 0))
         {
-            if (_wayPointNumber < wayPoints.Count - 1)
+            if (wayPointNumber < wayPoints.Count - 1)
             {
                 UpdateMovement();
             }
             else
             {
-                UIManager.Instance.GetDamage(_damage);
+                UIManager.Instance.GetDamage(damage);
                 HealthBar.Deactivate();
-                //wavemanager deactivate
                 WaveManager.Instance.DeactivateEnemies(gameObject);
-                //Debug.Log("finish line");
-                //gameObject.SetActive(false);
             }
         }
     }
 
     private void UpdateMovement()
     {
-        _wayPointNumber++;
-        currentTarget = wayPoints[_wayPointNumber];       
+        wayPointNumber++;
+        currentTarget = wayPoints[wayPointNumber];       
     }
 
     private void Move()
     {
-        newPos = Vector2.MoveTowards(myTransform.position, currentTarget.position, _speed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
+        targetPos = Vector2.MoveTowards(myTransform.position, currentTarget.position, speed * Time.fixedDeltaTime);
+        rb.MovePosition(targetPos);
 
         myTransform.rotation = SmoothRotation(currentTarget);
     }
@@ -161,32 +153,37 @@ public class Enemy : MonoBehaviour
 
         Vector2 dir = currentTarget.position - myTransform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - _angleOffset);
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle - angleOffset);
 
         return Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 
     public void TakeDamage(float damage)
     {
-        //if health ==0 return?
-        if (_health == 0)
+        if (health == 0)
             return;
 
-        _health = Mathf.Max(_health - damage, 0);
-        HealthBar.ChangeSliderValue(_health);
+        health = Mathf.Max(health - damage, 0);
+        HealthBar.ChangeSliderValue(health);
         SetUpHitAudio();
 
-        if (_health == 0)
+        if (health == 0)
         {
-            //Debug.Log("health 0");
-            HealthBar.Deactivate();
-            AudioManager.PlayEnemyExplosionAudio();
-            UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());
-            explosion.transform.position = myTransform.position;
-            explosion.SetActive(true);
-            WaveManager.Instance.DeactivateEnemies(gameObject);
-            AudioManager.StopEnemySound(enemyClass);
+            Death();
         }
+    }
+
+    private void Death()
+    {
+        HealthBar.Deactivate();
+        UIManager.Instance.ChangeNumberOfCoins(enemyType.GetRandomCoin());
+        WaveManager.Instance.DeactivateEnemies(gameObject);
+
+        explosion.transform.position = myTransform.position;
+        explosion.SetActive(true);
+
+        AudioManager.PlayEnemyExplosionAudio();
+        AudioManager.StopEnemySound(enemyClass);
     }
 
     private void SetUpHitAudio()

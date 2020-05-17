@@ -9,17 +9,6 @@ public class TowerUpdate :ScriptableObject
 
     public float GetRange(TowerClass towerClass, int towerLevel)
     {
-        //foreach (UpdateSettings setting in updateSettings)
-        //{
-        //    if(setting.towers==towerClass)
-        //    {
-        //        if (towerLevel > setting.range.Length)
-        //            return setting.range[setting.range.Length];
-
-        //        return setting.range[towerLevel - 1];
-        //    }
-        //}
-
         for (int i=0; i<updateSettings.Length; i++)
         {
             if (updateSettings[i].towers == towerClass)

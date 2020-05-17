@@ -17,10 +17,8 @@ public class PlayerData
         this.levelProgress = levelProgress;
     }
 
-    public PlayerData(/*float soundVolume, float musicVolume,*/ int levelProgress)
+    public PlayerData(int levelProgress)
     {
-        //this.soundVolume = soundVolume;
-        //this.musicVolume = musicVolume;
         this.levelProgress = levelProgress;
     }
 }

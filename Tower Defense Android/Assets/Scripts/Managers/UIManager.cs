@@ -24,13 +24,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] float startNumberOfCoins;
     [SerializeField] float startAmountOfHealth;
 
-    float coins;
-    float lives;
-    //float numberOfWaves;
-    List<HealthBar> healthBars;
-    Camera mainCamera;
-    Vector2 sellPanelScreenBounds;
-    int numberOfHealthBar = 0;
+    private float coins;
+    private float lives;
+    private List<HealthBar> healthBars;
+    private Camera mainCamera;
+    private Vector2 sellPanelScreenBounds;
+    private int numberOfHealthBar = 0;
 
     public Tower TowerToWork { private get; set; }
 
@@ -57,14 +56,9 @@ public class UIManager : MonoBehaviour
 
         coins = startNumberOfCoins;
         lives = startAmountOfHealth;
-        //numberOfWaves = WaveManager.Instance.GetNumberOfWaves();
-
-        //Time.timeScale = 1f;//????
 
         SetUpHealthBars();
         sellPanelScreenBounds = RectTransformExtensions.CalculateScreenBounds(towerPanel, canvasScaler);
-
-        //GameOver =AudioManager.GameOverBehaviour;//!!!!
     }
 
     private void SetUpHealthBars()
@@ -129,7 +123,7 @@ public class UIManager : MonoBehaviour
         coinsText.text = "Coins " + coins;
 
         AudioManager.PlayUIButtonAudio();
-        Destroy(TowerToWork.gameObject);//????
+        Destroy(TowerToWork.gameObject);
     }
 
     public void UpdateTowerButton()
@@ -139,8 +133,8 @@ public class UIManager : MonoBehaviour
         if (coins >= price)
         {
             coins -= price;
-            coinsText.text = "Coins " + coins;//method
-            //onTowerUpdated();
+            coinsText.text = "Coins " + coins;
+
             TowerToWork.UpdateTower();
             AudioManager.PlayUIButtonAudio();
         }
@@ -169,9 +163,7 @@ public class UIManager : MonoBehaviour
     public void InitializeHealthBar(Enemy enemy)
     {
         HealthBar healthBar = healthBars[numberOfHealthBar];
-        //healthBar.Enemy = enemy;
         enemy.HealthBar = healthBar;
-        //healthBar.gameObject.SetActive(true);
 
         numberOfHealthBar++;
     }

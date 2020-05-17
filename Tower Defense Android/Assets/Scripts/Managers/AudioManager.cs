@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-//[DefaultExecutionOrder(-100)]
 public class AudioManager : MonoBehaviour
 {
     static AudioManager instance;
@@ -64,7 +63,6 @@ public class AudioManager : MonoBehaviour
     AudioSource stingSource;
 
     private float activeSoundVolume;
-    private float minMixerVolume=-80f;
     private const string ACTIVESOUND = "ActiveSound";
 
     private List<AudioSource> activeAudioSources;
@@ -85,20 +83,20 @@ public class AudioManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        musicSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        enemyExplosionSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        enemyBodyImpactSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        voiceSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        bulletTowerSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        enemyMetalImpactSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        tankSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        greyAirplaneSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        greenAirplaneSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        soldierSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        desertSoldierSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        stormtrooperSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        rocketTowerSource = gameObject.AddComponent<AudioSource>() as AudioSource;
-        stingSource = gameObject.AddComponent<AudioSource>() as AudioSource;
+        musicSource              = gameObject.AddComponent<AudioSource>() as AudioSource;
+        enemyExplosionSource     = gameObject.AddComponent<AudioSource>() as AudioSource;
+        enemyBodyImpactSource    = gameObject.AddComponent<AudioSource>() as AudioSource;
+        voiceSource              = gameObject.AddComponent<AudioSource>() as AudioSource;
+        bulletTowerSource        = gameObject.AddComponent<AudioSource>() as AudioSource;
+        enemyMetalImpactSource   = gameObject.AddComponent<AudioSource>() as AudioSource;
+        tankSource               = gameObject.AddComponent<AudioSource>() as AudioSource;
+        greyAirplaneSource       = gameObject.AddComponent<AudioSource>() as AudioSource;
+        greenAirplaneSource      = gameObject.AddComponent<AudioSource>() as AudioSource;
+        soldierSource            = gameObject.AddComponent<AudioSource>() as AudioSource;
+        desertSoldierSource      = gameObject.AddComponent<AudioSource>() as AudioSource;
+        stormtrooperSource       = gameObject.AddComponent<AudioSource>() as AudioSource;
+        rocketTowerSource        = gameObject.AddComponent<AudioSource>() as AudioSource;
+        stingSource              = gameObject.AddComponent<AudioSource>() as AudioSource;
 
         FillUpAudioSoureList();
 
@@ -146,19 +144,10 @@ public class AudioManager : MonoBehaviour
 
     public static void StopAllActiveSounds()
     {
-        //instance.tankSource.Stop();
-        //instance.greenAirplaneSource.Stop();
-        //instance.greyAirplaneSource.Stop();
-        //instance.soldierSource.Stop();
-        //instance.desertSoldierSource.Stop();
-        //instance.stormtrooperSource.Stop();
         for(int i=0; i<instance.activeAudioSources.Count; i++)
         {
             instance.activeAudioSources[i].Stop();
         }
-
-        //instance.constantActiveGroup.audioMixer.GetFloat(ACTIVESOUND, out instance.activeSoundVolume);
-        //instance.constantActiveGroup.audioMixer.SetFloat(ACTIVESOUND, instance.minMixerVolume);
     }
 
     public static void PlayActiveSounds()
@@ -197,8 +186,6 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayTankAudio()
     {
-        //take enemytype, identify it and play the correspond audioClip if it is not being played 
-        //take enemyType, identify it and stop playing
         if (instance == null || instance.tankSource.isPlaying)
             return;
 
@@ -303,7 +290,6 @@ public class AudioManager : MonoBehaviour
             return;
 
         instance.enemyExplosionSource.clip = instance.explosionClip;
-        //instance.enemySource.loop = false;
         instance.enemyExplosionSource.Play();
     }
 
@@ -373,7 +359,6 @@ public class AudioManager : MonoBehaviour
 
             SetMusicVolume(data.musicVolume);
             SetSoundVolume(data.soundVolume);
-            //onAudioLoaded(MusicVolume, SoundVolume);
         }
     }
 }

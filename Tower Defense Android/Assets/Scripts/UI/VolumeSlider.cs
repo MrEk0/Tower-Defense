@@ -13,7 +13,6 @@ public class VolumeSlider : MonoBehaviour
 {
     [SerializeField] SliderType sliderType;
     [SerializeField] Image soundImage;
-    //[SerializeField] Sprite soundOnSprite;
     [SerializeField] Sprite soundOffSprite;
 
     private float minSliderValue;
@@ -27,21 +26,6 @@ public class VolumeSlider : MonoBehaviour
         soundOnSprite = soundImage.sprite;
     }
 
-    //private void OnEnable()
-    //{
-    //    Debug.Log("Enable");
-    //    //AudioManager.onAudioLoaded += SetSliderValue;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    AudioManager.onAudioLoaded -= SetSliderValue;
-    //}
-    //private void OnBecameVisible()
-    //{
-    //    Debug.Log("Visible");
-    //    SetSliderValue();
-    //}
     private void Start()
     {
         SetSliderValue();
@@ -49,7 +33,6 @@ public class VolumeSlider : MonoBehaviour
 
     public void SetSoundVolume(float volume)
     {
-        //slider.value = volume;
         AudioManager.SetSoundVolume(volume);
 
         ReplaceSoundSprite();
@@ -57,11 +40,9 @@ public class VolumeSlider : MonoBehaviour
 
     public void SetMusicVolume(float volume)
     {
-        //slider.value = volume;
         AudioManager.SetMusicVolume(volume);
 
         ReplaceSoundSprite();
-
     }
 
     private void ReplaceSoundSprite()
@@ -76,7 +57,7 @@ public class VolumeSlider : MonoBehaviour
         }
     }
 
-   public void SetSliderValue(/*float musicVolume, float soundVolume*/)
+   public void SetSliderValue()
     {
         float musicVolume = AudioManager.MusicVolume;
         float soundVolume = AudioManager.SoundVolume;

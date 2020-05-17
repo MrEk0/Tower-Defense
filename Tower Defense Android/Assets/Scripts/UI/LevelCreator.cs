@@ -10,12 +10,12 @@ public class LevelCreator : MonoBehaviour
     [SerializeField] GameObject buttonPanelPrefab;
     [SerializeField] GameObject canvas;
 
-    Rect panelRect;
-    RectTransform thisRect;
-    List<GameObject> buttons;
-    int numberPerPage;
-    int levelCount = 0;
-    int numberOfLevels;
+    private Rect panelRect;
+    private RectTransform thisRect;
+    private List<GameObject> buttons;
+    private int numberPerPage;
+    private int levelCount = 0;
+    private int numberOfLevels;
 
     private void Awake()
     {
@@ -23,22 +23,11 @@ public class LevelCreator : MonoBehaviour
         thisRect = GetComponent<RectTransform>();
     }
 
-    //private void OnEnable()
-    //{
-    //    GameManager.onProgressLoaded += OpenAvailableLevels;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    GameManager.onProgressLoaded -= OpenAvailableLevels;
-    //}
-
     private void Start()
     {
         numberOfLevels = GameManager.GetNumberOfLevels();
         CreateLevelPanel();
         OpenAvailableLevels();
-        //GameManager.levelButtons = buttons;
     }
 
     private void CreateLevelPanel()
@@ -71,8 +60,6 @@ public class LevelCreator : MonoBehaviour
         panelCloneRect = panelClone.GetComponent<RectTransform>();
         RectTransform thisRect = GetComponent<RectTransform>();
 
-        //RectTransformExtensions.SetLeft(panelCloneRect, thisRect.offsetMax.x);
-        //RectTransformExtensions.SetRight(panelCloneRect, thisRect.offsetMax.x);
         panelCloneRect.SetLeft(thisRect.offsetMax.x);
         panelCloneRect.SetRight( thisRect.offsetMax.x);
     }
@@ -87,8 +74,6 @@ public class LevelCreator : MonoBehaviour
 
             RectTransform panelCloneRect = panel.GetComponent<RectTransform>();
 
-            //RectTransformExtensions.SetLeft(panelCloneRect, thisRect.offsetMax.x);
-            //RectTransformExtensions.SetRight(panelCloneRect, thisRect.offsetMax.x);
             panelCloneRect.SetLeft(thisRect.offsetMax.x);
             panelCloneRect.SetRight(thisRect.offsetMax.x);
 
@@ -116,7 +101,6 @@ public class LevelCreator : MonoBehaviour
 
     private void OpenAvailableLevels()
     {
-        //Debug.Log("Reveal");
         float numberOfAvailableLevels=GameManager.GetCurrentLevel();
 
         for (int i = 0; i <= numberOfAvailableLevels; i++) 

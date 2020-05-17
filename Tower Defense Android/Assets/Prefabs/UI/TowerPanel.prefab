@@ -1802,7 +1802,7 @@ PrefabInstance:
         type: 3}
       propertyPath: towerType
       value: 
-      objectReference: {fileID: 11400000, guid: aa2277fa6c631bc448a5f59ac35bbf41,
+      objectReference: {fileID: 11400000, guid: cfd1e01ae30cc02408d8827cc7f249fc,
         type: 2}
     - target: {fileID: 9183079517978761849, guid: 62eb8b3eab0ebe2449ab57ece8f5e7f3,
         type: 3}

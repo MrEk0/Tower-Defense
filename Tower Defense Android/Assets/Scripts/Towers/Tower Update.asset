@@ -15,10 +15,10 @@ MonoBehaviour:
   updateSettings:
   - towers: 0
     updatePrice:
-    - 250
     - 400
-    - 500
-    - 650
+    - 600
+    - 900
+    - 1000
     range:
     - 2
     - 3
@@ -26,11 +26,11 @@ MonoBehaviour:
     - 5
     - 6
     damage:
-    - 15
-    - 20
-    - 20
     - 25
-    - 25
+    - 30
+    - 40
+    - 45
+    - 50
     shotInterval:
     - 2
     - 1.5
@@ -50,11 +50,11 @@ MonoBehaviour:
     - 5
     - 6
     damage:
-    - 20
-    - 20
+    - 25
     - 30
     - 30
     - 35
+    - 40
     shotInterval:
     - 3
     - 2.5
@@ -63,10 +63,10 @@ MonoBehaviour:
     - 1
   - towers: 2
     updatePrice:
+    - 200
+    - 300
     - 400
     - 500
-    - 600
-    - 800
     range:
     - 4
     - 5
@@ -74,11 +74,11 @@ MonoBehaviour:
     - 7
     - 8
     damage:
-    - 10
-    - 12
-    - 15
-    - 18
-    - 23
+    - 20
+    - 20
+    - 25
+    - 30
+    - 30
     shotInterval:
     - 2.5
     - 1.9
@@ -87,16 +87,16 @@ MonoBehaviour:
     - 0.5
   - towers: 3
     updatePrice:
-    - 15
-    - 30
-    - 40
-    - 60
+    - 100
+    - 200
+    - 400
+    - 1000
     range:
     - 3
     - 4
+    - 4
     - 5
-    - 6
-    - 7
+    - 5
     damage:
     - 10
     - 15
@@ -122,8 +122,8 @@ MonoBehaviour:
     - 6
     - 6
     damage:
-    - 5
     - 10
+    - 15
     - 20
     - 30
     - 40

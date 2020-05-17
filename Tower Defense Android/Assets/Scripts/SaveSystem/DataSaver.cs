@@ -22,19 +22,6 @@ public class DataSaver
 
     }
 
-    //public static void SaveData(/*float soundVolume, float musicVolume,*/ int levelProgress)
-    //{
-    //    BinaryFormatter formatter = new BinaryFormatter();
-    //    string path = GetFilePath();
-
-    //    FileStream stream = new FileStream(path, FileMode.Create);
-    //    PlayerData playerData = new PlayerData(/*soundVolume, musicVolume,*/ levelProgress);
-
-    //    formatter.Serialize(stream, playerData);
-    //    stream.Close();
-
-    //}
-
     public static PlayerData LoadData()
     {
         string path = GetFilePath();

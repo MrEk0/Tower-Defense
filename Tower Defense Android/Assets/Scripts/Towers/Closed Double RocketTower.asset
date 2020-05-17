@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21dfef37f304d24987bbc95f3b568e9, type: 3}
   m_Name: Closed Double RocketTower
   m_EditorClassIdentifier: 
-  buildPrice: 150
-  range: 5
-  shootInterval: 1
-  damage: 15
+  buildPrice: 300
   bulletSpeed: 10
   bullet: {fileID: 2788015215729615249, guid: eb38e61784f1ff240b322067ddb18222, type: 3}
   enemyMask:

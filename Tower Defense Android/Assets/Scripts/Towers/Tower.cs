@@ -31,7 +31,7 @@ public class Tower : MonoBehaviour
         bulletPrefab = towerType.Bullet;
 
         myTransform = GetComponent<Transform>();
-        lastPointPosition = GameManager.GetLastPathPoint().position;//!!!!!
+        lastPointPosition = GameManager.GetLastPathPoint().position;
 
         CreateListOfBullets();
     }
@@ -43,14 +43,11 @@ public class Tower : MonoBehaviour
 
         if (target == null || !target.gameObject.activeInHierarchy)
         {
-            Profiler.BeginSample("FONDTARGET");
             FindNewTarget();
-            Profiler.EndSample();
         }
         else
         {
             if (Vector2.Distance(myTransform.position, target.transform.position) > range)
-            //if(Vector2.SqrMagnitude(target.transform.position-myTransform.position)>range)//??????
             {
                 FindNewTarget();
             }
@@ -109,8 +106,8 @@ public class Tower : MonoBehaviour
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            //float currentDistance = Vector2.Distance(lastPointPosition, enemies[i].transform.position);
-            float currentDistance = Vector2.SqrMagnitude(enemies[i].transform.position - lastPointPosition);
+            float currentDistance = Vector2.Distance(lastPointPosition, enemies[i].transform.position);
+
             if (currentDistance < distanceToEnemy)
             {
                 distanceToEnemy = currentDistance;

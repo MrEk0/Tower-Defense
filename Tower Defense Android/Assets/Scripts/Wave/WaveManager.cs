@@ -11,24 +11,25 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] List<WaveSettings> waves;
 
-    WaveSettings currentWave;
-    List<Enemy> currentEnemyList;
-    Transform startPoint;
+    private WaveSettings currentWave;
+    private List<Enemy> currentEnemyList;
+    private Transform startPoint;
 
-    float waveDuration;
-    float startTime;
-    float waveTime;
-    float timeBetweenSpawns;
-    float timeSinceWaveStarted = 0f;
-    float timeSinceEnemyDropped = Mathf.Infinity;
+    private float waveDuration;
+    private float startTime;
+    private float waveTime;
+    private float timeBetweenSpawns;
+    private float timeSinceWaveStarted = 0f;
+    private float timeSinceEnemyDropped = Mathf.Infinity;
 
-    int waveNumber = 0;
-    int numberOfWaves;
-    int enemyNumberInWave = 0;
-    int numberOfEnemies = 0;
-    int numberOfDeactivatedEnemies = 0;
-    bool canSpawn = true;
-    Dictionary< int, List<Enemy>> waveOfEnemies = new Dictionary<int, List<Enemy>>();
+    private int waveNumber = 0;
+    private int numberOfWaves;
+    private int enemyNumberInWave = 0;
+    private int numberOfEnemies = 0;
+    private int numberOfDeactivatedEnemies = 0;
+
+    private bool canSpawn = true;
+    private Dictionary< int, List<Enemy>> waveOfEnemies = new Dictionary<int, List<Enemy>>();
 
     public event Action<int, int> onWaveChanged;
 

@@ -29,15 +29,13 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        //FindLastAndStartPathPoint();
         ads = GetComponent<AndroidAds>();
     }
 
     private static void FindLastAndStartPathPoint()
     {
         instance.wayPoints = new List<Transform>();
-        //int pathIndex = SceneManager.GetActiveScene().buildIndex;
-        Transform currentPath = instance.paths[instance.currentLevel-1];//!!!!!!!
+        Transform currentPath = instance.paths[instance.currentLevel-1];
 
         int numberOfWayPoints = currentPath.childCount;
         foreach (Transform child in currentPath)
@@ -52,7 +50,6 @@ public class GameManager : MonoBehaviour
     public static void Save()
     {
         DataSaver.SaveData(AudioManager.SoundVolume, AudioManager.MusicVolume, instance.currentLevel);
-        //Debug.Log("Save " + instance.currentLevel);
     }
 
     public static void LoadProgress()
@@ -62,7 +59,6 @@ public class GameManager : MonoBehaviour
         if(progress!=null)
         {
             instance.currentLevel = progress.levelProgress;
-            //Debug.Log("Load " + progress.levelProgress);
         }
     }
 
