@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] GameObject explosionPrefab;
+
     private float speed;
     private float damage;
     private float lifeTime;
     private float timeSinceStart=0f;
+
     private Transform target;
     private Rigidbody2D rb;
     private Transform myTransform;
-
-    //public Transform target { private get; set; }
+    private GameObject explosion;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
+
+        explosion = Instantiate(explosionPrefab, myTransform.position, Quaternion.identity);
+        explosion.SetActive(false);
     }
-
-
 
     public void SetParameters(Transform target, float speed, float damage, float lifeTime)
     {
@@ -36,8 +39,10 @@ public class Bullet : MonoBehaviour
 
         if (target.gameObject.activeInHierarchy == false || timeSinceStart>lifeTime)
         {
-            gameObject.SetActive(false);
+            explosion.transform.position = myTransform.position;
+            explosion.SetActive(true);
             timeSinceStart = 0f;
+            gameObject.SetActive(false);
         }
         else
         {

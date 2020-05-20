@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 395210515
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: f112b2cd4733f76488fa95cd13a3540d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,4 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758b00d7652c2f94f9d3dfca886674f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerType: {fileID: 11400000, guid: fc05b715320f4664eaaae43532631231, type: 2}
+  explosionPrefab: {fileID: 2198313134598357438, guid: 90ea67b64ab98924f912c030954bb7da,
+    type: 3}

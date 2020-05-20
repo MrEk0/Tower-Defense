@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: Android
-      m_MaxTextureSize: 2048
+      m_MaxTextureSize: 4096
       m_ResizeAlgorithm: 0
       m_TextureFormat: 47
       m_TextureCompression: 1
@@ -39,19 +39,29 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
-      enableTightPacking: 1
+      enableTightPacking: 0
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 5eaced3fb141cf14787342e0c3828817, type: 3}
-    totalSpriteSurfaceArea: 3087156
+    - {fileID: 102900000, guid: 4d0fbe785db985c429f4254cf4a5a9c5, type: 3}
+    totalSpriteSurfaceArea: 5459297
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 9639236007a5eea4a84e510026ed2ff6, type: 3}
   - {fileID: 21300000, guid: b29282d3564c4af418fa313e15e24252, type: 3}
+  - {fileID: 21300000, guid: 17329f34615904646852e643c001cc78, type: 3}
+  - {fileID: 21300000, guid: 1417f144810b3ab4baff19da62361605, type: 3}
+  - {fileID: 21300000, guid: 1953e1f479c348a42944ebd99c9acba4, type: 3}
+  - {fileID: 21300000, guid: f2b969a5c75cad34684b768218c36166, type: 3}
+  - {fileID: 21300000, guid: 53115376be553e243bb94c180f1b5c9d, type: 3}
   - {fileID: 21300000, guid: 0e979ac8476dd6247abb0172aa373c0b, type: 3}
+  - {fileID: 21300000, guid: aafd993a7b6f8834d8114c83fe4b9261, type: 3}
   - {fileID: 21300000, guid: b9b464ab169ffdb49811badf8f18dd40, type: 3}
   - {fileID: 21300000, guid: ef1fcadb6cba80441b46d7c0b53e41b2, type: 3}
+  - {fileID: 21300000, guid: e549961cc359bde4f8de35f52b39ad2f, type: 3}
+  - {fileID: 21300000, guid: b76f46ac15fd2cf4eab1ed4f62104fcf, type: 3}
+  - {fileID: 21300000, guid: 466b94ec77d53f14ab3c2de13623ad48, type: 3}
   - {fileID: 21300000, guid: 8269173da3ee8af4fbdae2d9dc9e1935, type: 3}
   - {fileID: 21300000, guid: df01576ec1c031f4c85f8903042184c9, type: 3}
   - {fileID: 21300000, guid: 4786e7ef19a880749aee5f285f1b83be, type: 3}
@@ -59,9 +69,18 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - explosion01
   - explosion04
+  - flash03
+  - flash07
+  - flash00
+  - flash02
+  - flash08
   - explosion08
+  - flash04
   - explosion06
   - explosion07
+  - flash05
+  - flash01
+  - flash06
   - explosion03
   - explosion02
   - explosion05
