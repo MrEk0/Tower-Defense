@@ -16,9 +16,4 @@ public class PlayerData
         this.musicVolume = musicVolume;
         this.levelProgress = levelProgress;
     }
-
-    public PlayerData(int levelProgress)
-    {
-        this.levelProgress = levelProgress;
-    }
 }

@@ -126,6 +126,7 @@ public class Enemy : MonoBehaviour
                 UIManager.Instance.GetDamage(damage);
                 HealthBar.Deactivate();
                 WaveManager.Instance.DeactivateEnemies(gameObject);
+                AudioManager.StopEnemySound(enemyClass);
             }
         }
     }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int numberOfLevels = 20;
 
     private int currentLevel = 0;
+    private int accomplishedLevels = 0;
     private List<Transform> wayPoints;
     private Transform pathLastPoint;
     private Transform pathStartPoint;
@@ -49,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     public static void Save()
     {
-        DataSaver.SaveData(AudioManager.SoundVolume, AudioManager.MusicVolume, instance.currentLevel);
+        DataSaver.SaveData(AudioManager.SoundVolume, AudioManager.MusicVolume, instance.accomplishedLevels);
     }
 
     public static void LoadProgress()
@@ -87,6 +88,8 @@ public class GameManager : MonoBehaviour
         return instance.currentLevel;
     }
 
+    public static int GetAccomplishedLevels() => instance.accomplishedLevels;
+
     public static void GameOver()
     {
         isGameOver = true;
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour
         ShowAds();
 
         instance.currentLevel=currentLevel;
+        instance.accomplishedLevels = currentLevel > instance.accomplishedLevels ? instance.accomplishedLevels+1 : instance.accomplishedLevels;
         FindLastAndStartPathPoint();
         Save();
     }

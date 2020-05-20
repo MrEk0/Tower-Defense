@@ -193,9 +193,9 @@ public class Tower : MonoBehaviour
 
     private void CheckBulletList()
     {
-        int numberOfBulles = GetNumberOfActiveBullets();
+        int numberOfBullets = GetNumberOfActiveBullets();
 
-        if(numberOfBulles>bullets.Count)
+        if(numberOfBullets>bullets.Count)
         {
             CreateABullet();
         }

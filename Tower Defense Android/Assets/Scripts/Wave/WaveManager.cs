@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 [DefaultExecutionOrder(-100)]
 public class WaveManager : MonoBehaviour
@@ -76,10 +75,9 @@ public class WaveManager : MonoBehaviour
             {
                 UpdateWave();
             }
-            else//!!!!!
+            else
             {
                 canSpawn = false;
-                //gameover
             }
         }
         timeSinceWaveStarted += Time.deltaTime;
@@ -94,9 +92,7 @@ public class WaveManager : MonoBehaviour
             if (timeSinceEnemyDropped >= timeBetweenSpawns)
             {
                 Enemy enemy = currentEnemyList[enemyNumberInWave];
-                Profiler.BeginSample("INSTANTIATE");
                 EnemyInstantiation(enemy);
-                Profiler.EndSample();
 
                 UIManager.Instance.InitializeHealthBar(enemy);
 
