@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Airplane
   m_EditorClassIdentifier: 
   health: 75
-  speed: 5
-  damage: 2
+  speed: 3
+  damage: 5
   lowerCoinsBoundary: 10
   upperCoinsBoundary: 20
