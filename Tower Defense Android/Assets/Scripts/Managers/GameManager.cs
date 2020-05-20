@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
         if(progress!=null)
         {
-            instance.currentLevel = progress.levelProgress;
+            instance.accomplishedLevels = progress.levelProgress;
         }
     }
 

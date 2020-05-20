@@ -42,23 +42,18 @@ public class Tower : MonoBehaviour
         if (GameManager.isGamePaused || GameManager.isGameOver)
             return;
 
-        if (target == null || !target.gameObject.activeInHierarchy)
+        if (target == null || !target.gameObject.activeInHierarchy
+            || Vector2.Distance(myTransform.position, target.transform.position) > range)
         {
             FindNewTarget();
         }
         else
         {
-            if (Vector2.Distance(myTransform.position, target.transform.position) > range)
-            {
-                FindNewTarget();
-            }
-            else
-            {
-                Rotate();
-                Shoot();
-            
-            }
+            Rotate();
+            Shoot();
         }
+
+        timeSinceLastShot += Time.deltaTime;
     }
 
     private void UpdateParameters()
@@ -135,8 +130,6 @@ public class Tower : MonoBehaviour
 
             timeSinceLastShot = 0f;
         }
-
-        timeSinceLastShot += Time.deltaTime;
     }
 
     private void SetUpBullet()

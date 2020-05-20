@@ -28,7 +28,7 @@ public class LevelButtonsBehaviour : MonoBehaviour
     {
         AudioManager.PlayUIButtonAudio();
 
-        int sceneIndex = GameManager.GetCurrentLevel();
+        int sceneIndex = GameManager.GetAccomplishedLevels();
         sceneIndex = Mathf.Max(1, sceneIndex);
 
         StartCoroutine(LoadLevel(sceneIndex));

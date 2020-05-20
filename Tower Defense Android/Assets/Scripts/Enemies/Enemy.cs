@@ -201,7 +201,7 @@ public class Enemy : MonoBehaviour
                 AudioManager.PlayBodyHitAudio();
                 break;
             case EnemyClass.Tank:
-                AudioManager.PlayBodyHitAudio();
+                AudioManager.PlayEnemyMetalHitAudio();
                 break;
             case EnemyClass.GreyAirplane:
                 AudioManager.PlayEnemyMetalHitAudio();

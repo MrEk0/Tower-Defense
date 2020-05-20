@@ -150,10 +150,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static void PlayActiveSounds()
-    {
-        instance.constantActiveGroup.audioMixer.SetFloat(ACTIVESOUND, instance.activeSoundVolume);
-    }
+    //public static void PlayActiveSounds()
+    //{
+    //    instance.constantActiveGroup.audioMixer.SetFloat(ACTIVESOUND, instance.activeSoundVolume);
+    //}
 
     public static void StopEnemySound(EnemyClass enemyClass)
     {
