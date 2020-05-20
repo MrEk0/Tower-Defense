@@ -14,6 +14,7 @@ public class Tower : MonoBehaviour
     private float range;
     private float shotInterval;
     private float damage;
+    private float bulletLifeTime;
     private float timeSinceLastShot = Mathf.Infinity;
 
     private LayerMask enemyMask;
@@ -87,8 +88,8 @@ public class Tower : MonoBehaviour
 
     private int GetNumberOfActiveBullets()
     {
-        float timeToGetRange = range / towerType.BulletSpeed;
-        return Mathf.CeilToInt(timeToGetRange/shotInterval);
+        bulletLifeTime = range / towerType.BulletSpeed;
+        return Mathf.CeilToInt(bulletLifeTime / shotInterval);
     }
 
     private void FindNewTarget()
@@ -141,10 +142,9 @@ public class Tower : MonoBehaviour
     private void SetUpBullet()
     {
         GameObject bullet = bullets.First(b => !b.activeInHierarchy);
-        bullet.GetComponent<Bullet>().SetParameters(towerType.BulletSpeed, damage);
+        bullet.GetComponent<Bullet>().SetParameters(target, towerType.BulletSpeed, damage, bulletLifeTime);
         bullet.transform.position = myTransform.position;
         bullet.transform.rotation = myTransform.rotation;
-        bullet.GetComponent<Bullet>().target = target;
         bullet.SetActive(true);
     }
 
@@ -188,7 +188,6 @@ public class Tower : MonoBehaviour
 
         UpdateParameters();
         CheckBulletList();
-
     }
 
     private void CheckBulletList()

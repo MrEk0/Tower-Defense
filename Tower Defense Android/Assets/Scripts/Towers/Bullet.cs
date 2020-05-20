@@ -6,10 +6,13 @@ public class Bullet : MonoBehaviour
 {
     private float speed;
     private float damage;
+    private float lifeTime;
+    private float timeSinceStart=0f;
+    private Transform target;
     private Rigidbody2D rb;
     private Transform myTransform;
 
-    public Transform target { private get; set; }
+    //public Transform target { private get; set; }
 
     private void Awake()
     {
@@ -17,17 +20,24 @@ public class Bullet : MonoBehaviour
         myTransform = GetComponent<Transform>();
     }
 
-    public void SetParameters(float speed, float damage)
+
+
+    public void SetParameters(Transform target, float speed, float damage, float lifeTime)
     {
+        this.target = target;
         this.speed = speed;
         this.damage = damage;
+        this.lifeTime = lifeTime;
     }
 
     private void Update()
     {
-        if (target.gameObject.activeInHierarchy == false)//improve. if target becomes invisible we disable bullet
+        timeSinceStart += Time.deltaTime;
+
+        if (target.gameObject.activeInHierarchy == false || timeSinceStart>lifeTime)
         {
             gameObject.SetActive(false);
+            timeSinceStart = 0f;
         }
         else
         {
@@ -44,6 +54,7 @@ public class Bullet : MonoBehaviour
         if(collision.GetComponent<Enemy>()!=null)
         {
             collision.GetComponent<Enemy>().TakeDamage(damage);
+            timeSinceStart = 0f;
             gameObject.SetActive(false);
         }
     }
