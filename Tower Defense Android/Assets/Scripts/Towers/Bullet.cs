@@ -39,19 +39,29 @@ public class Bullet : MonoBehaviour
 
         if (target.gameObject.activeInHierarchy == false || timeSinceStart>lifeTime)
         {
-            explosion.transform.position = myTransform.position;
-            explosion.SetActive(true);
-            timeSinceStart = 0f;
-            gameObject.SetActive(false);
+            ExplodeBullet();
         }
         else
         {
-            Vector2 dir = target.position - myTransform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            myTransform.rotation = Quaternion.Euler(0f, 0f, angle-90);
-
-            rb.velocity = myTransform.up * speed;
+            BulletMovement();
         }
+    }
+
+    private void ExplodeBullet()
+    {
+        explosion.transform.position = myTransform.position;
+        explosion.SetActive(true);
+        timeSinceStart = 0f;
+        gameObject.SetActive(false);
+    }
+
+    private void BulletMovement()
+    {
+        Vector2 dir = target.position - myTransform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        myTransform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
+
+        rb.velocity = myTransform.up * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
